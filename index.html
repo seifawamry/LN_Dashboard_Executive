@@ -27,14 +27,13 @@
       overflow-x: hidden;
     }
     
-    /* Touch-friendly scrolling */
     .touch-scroll {
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
     .touch-scroll::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      display: none;
     }
     
     .custom-scrollbar::-webkit-scrollbar {
@@ -72,7 +71,6 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* Sticky first column on mobile tables */
     .sticky-col {
       position: sticky;
       left: 0;
@@ -104,14 +102,13 @@
           </div>
         </div>
 
-        <!-- Share / Print on Desktop -->
         <button onclick="window.print()" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition shadow-xs">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
           Print Report
         </button>
       </div>
 
-      <!-- Segmented View Tabs (Mobile Swipeable / Full Width) -->
+      <!-- Segmented View Tabs -->
       <nav class="w-full sm:w-auto">
         <div class="grid grid-cols-3 sm:flex rounded-xl p-1 bg-slate-100 border border-slate-200 text-xs font-semibold shadow-inner" id="viewModeGroup">
           <button onclick="setView('stage')" id="btn-stage" class="view-btn py-2 px-2.5 sm:px-3 rounded-lg transition-all duration-150 bg-white text-indigo-700 shadow-xs font-bold text-center">
@@ -141,12 +138,12 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
           </div>
           <div>
-            <span class="text-[11px] sm:text-xs font-bold text-slate-800 uppercase tracking-wider block sm:inline">Active Analysis Scope</span>
-            <span class="text-[10px] sm:text-[11px] text-slate-500 block">Touch any stage to filter cards and charts</span>
+            <span class="text-[11px] sm:text-xs font-bold text-slate-800 uppercase tracking-wider block sm:inline">Active Analysis Scope:</span>
+            <span class="text-[10px] sm:text-[11px] text-slate-500 block">Updates KPIs, Segments, Corporates & Liptis views simultaneously</span>
           </div>
         </div>
 
-        <!-- Native Select (Optimized for iOS Wheel / Android Bottom Sheet) -->
+        <!-- Native Select Picker -->
         <div class="w-full sm:w-auto">
           <select id="scope-selector" onchange="onScopeChanged(this.value)" class="w-full text-xs font-bold bg-slate-100 border border-slate-300 text-slate-800 rounded-xl px-3 py-2.5 sm:py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none cursor-pointer">
             <option value="ALL_MARKET">🌍 Total Infant Formula Market (All Corporates)</option>
@@ -176,7 +173,7 @@
         </div>
       </div>
 
-      <!-- Touch-friendly Horizontal Pill Scrollbar (Native momentum scroll) -->
+      <!-- Touch-friendly Pill Carousel -->
       <div class="flex items-center gap-1.5 overflow-x-auto touch-scroll py-1 text-[11px] font-semibold text-slate-600">
         <button onclick="setScope('ALL_MARKET')" id="pill-ALL_MARKET" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">🌍 Total Market</button>
         <button onclick="setScope('SECTOR_PREMIUM')" id="pill-SECTOR_PREMIUM" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">⭐ Premium Sector</button>
@@ -198,7 +195,7 @@
     <!-- DYNAMIC TOP 4 KPI CARDS (2x2 on Mobile, 4x1 on Desktop) -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="kpi-cards-grid">
       
-      <!-- CARD 1: TOTAL MARKET VOLUME -->
+      <!-- CARD 1: TOTAL MARKET VOLUME IN ACTIVE SCOPE -->
       <div id="kpi-card-1" class="bg-white rounded-2xl p-3 sm:p-4 border border-slate-200 shadow-xs relative overflow-hidden transition-all duration-300 flex flex-col justify-between">
         <div class="flex items-start justify-between gap-1 mb-1">
           <span id="kpi-market-title" class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-tight line-clamp-1">TOTAL MARKET</span>
@@ -211,7 +208,7 @@
         </div>
       </div>
 
-      <!-- CARD 2: LIPTIS PRODUCT VOLUME -->
+      <!-- CARD 2: LIPTIS VOLUME IN ACTIVE SCOPE -->
       <div id="kpi-card-2" class="bg-white rounded-2xl p-3 sm:p-4 border border-emerald-200 shadow-xs relative overflow-hidden ring-1 ring-emerald-100 transition-all duration-300 flex flex-col justify-between">
         <div class="flex items-start justify-between gap-1 mb-1">
           <span id="kpi-liptis-title" class="text-[10px] sm:text-xs font-semibold text-emerald-800 uppercase tracking-tight line-clamp-1">PEDIAMIL 1 VOL.</span>
@@ -224,7 +221,7 @@
         </div>
       </div>
 
-      <!-- CARD 3: LIPTIS MARKET SHARE -->
+      <!-- CARD 3: LIPTIS MARKET SHARE IN ACTIVE SCOPE -->
       <div id="kpi-card-3" class="bg-white rounded-2xl p-3 sm:p-4 border border-indigo-200 shadow-xs relative overflow-hidden ring-1 ring-indigo-100 transition-all duration-300 flex flex-col justify-between">
         <div class="flex items-start justify-between gap-1 mb-1">
           <span id="kpi-share-title" class="text-[10px] sm:text-xs font-semibold text-indigo-800 uppercase tracking-tight line-clamp-1">MARKET SHARE</span>
@@ -237,7 +234,7 @@
         </div>
       </div>
 
-      <!-- CARD 4: EVOLUTION INDEX -->
+      <!-- CARD 4: EVOLUTION INDEX IN ACTIVE SCOPE -->
       <div id="kpi-card-4" class="bg-white rounded-2xl p-3 sm:p-4 border border-purple-200 shadow-xs relative overflow-hidden ring-1 ring-purple-100 transition-all duration-300 flex flex-col justify-between">
         <div class="flex items-start justify-between gap-1 mb-1">
           <span id="kpi-ei-title" class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-tight line-clamp-1">EVOLUTION INDEX</span>
@@ -272,20 +269,17 @@
             </div>
           </div>
 
-          <!-- Pie / Donut SVG Container (Responsive & Touch Sized) -->
           <div class="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[260px] sm:min-h-[290px]">
             <div id="stage-pie-container" class="w-full flex items-center justify-center"></div>
-            <!-- Mobile Tap / Tooltip Feedback -->
             <div id="stage-pie-tooltip" class="text-center mt-2 min-h-[40px] flex items-center justify-center px-2">
-              <span class="text-[11px] font-semibold text-slate-400">Tap a slice to see volume & market share</span>
+              <span class="text-[11px] font-semibold text-slate-400">Tap or hover a slice to see volume & share</span>
             </div>
           </div>
 
-          <!-- Legend Grid (Scrollable on small screens) -->
           <div id="stage-legend" class="grid grid-cols-2 gap-1.5 pt-3 border-t border-slate-100 text-[11px] max-h-36 sm:max-h-44 overflow-y-auto custom-scrollbar"></div>
         </div>
 
-        <!-- Stage Volume Bar Chart (Responsive Full Width - No horizontal scroll cutoff) -->
+        <!-- Stage Volume Bar Chart -->
         <div class="lg:col-span-7 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
@@ -307,19 +301,19 @@
 
       </div>
 
-      <!-- Stage Detailed Table with Sticky First Column & Mobile Swipe Hint -->
+      <!-- Stage Detailed Table -->
       <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="p-3.5 sm:p-4 border-b border-slate-200 bg-slate-50/70 flex flex-wrap items-center justify-between gap-2">
           <div>
             <h3 class="text-xs sm:text-sm font-bold text-slate-900" id="stage-table-title">Full Matrix</h3>
-            <p class="text-[11px] text-slate-500">Swipe horizontally on mobile to view all metrics</p>
+            <p class="text-[11px] text-slate-500">Brand performance within active scope</p>
           </div>
           <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
             ⭐ Liptis in emerald
           </span>
         </div>
 
-        <div class="sm:hidden text-[10px] text-indigo-600 font-semibold px-3 py-1 bg-indigo-50/60 border-b border-indigo-100 flex items-center gap-1.5">
+        <div class="sm:hidden text-[10px] text-indigo-600 font-semibold px-3 py-1 bg-indigo-50/60 border-b border-indigo-100">
           <span>👈 Swipe table horizontally for Growth & EI 👉</span>
         </div>
 
@@ -346,17 +340,27 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- VIEW 2: CORPORATE OVERVIEW -->
+    <!-- VIEW 2: CORPORATE OVERVIEW (RESONATES WITH SCOPE) -->
     <!-- ======================================================== -->
     <section id="view-corporate" class="hidden space-y-4 sm:space-y-6">
+      
+      <!-- Dynamic Corporate Scope Notification Banner -->
+      <div class="bg-indigo-50/70 border border-indigo-200/80 rounded-2xl p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-indigo-600 animate-ping"></span>
+          <span class="font-bold text-indigo-950" id="corp-scope-banner-title">Corporate Analysis for: Stage 1 Premium</span>
+        </div>
+        <span class="text-indigo-700 font-medium" id="corp-scope-banner-sub">Comparing manufacturer shares and volumes in this scope</span>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
         
         <!-- Corporate Pie / Donut Market Share -->
         <div class="lg:col-span-5 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h2 class="text-xs sm:text-base font-bold text-slate-900 leading-tight">Corporate Market Share (MS %)</h2>
-              <p class="text-[11px] text-slate-500 mt-0.5">Overall market distribution across all companies</p>
+              <h2 class="text-xs sm:text-base font-bold text-slate-900 leading-tight" id="corp-pie-title">Corporate Market Share (MS %)</h2>
+              <p class="text-[11px] text-slate-500 mt-0.5" id="corp-pie-subtitle">Manufacturer distribution in active scope</p>
             </div>
             <div class="inline-flex rounded-lg p-0.5 bg-slate-100 text-xs font-medium border border-slate-200">
               <button onclick="setCorporatePieYear('2026')" id="corp-pie-2026-btn" class="px-2.5 py-1 rounded-md bg-white text-indigo-700 font-bold shadow-xs">2026</button>
@@ -367,7 +371,7 @@
           <div class="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[260px] sm:min-h-[290px]">
             <div id="corporate-pie-container" class="w-full flex items-center justify-center"></div>
             <div id="pie-tooltip" class="text-center mt-2 min-h-[40px] flex items-center justify-center px-2">
-              <span class="text-[11px] font-semibold text-slate-400">Tap or hover a slice to view details</span>
+              <span class="text-[11px] font-semibold text-slate-400">Tap or hover a corporate slice to view metrics</span>
             </div>
           </div>
 
@@ -378,8 +382,8 @@
         <div class="lg:col-span-7 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h2 class="text-xs sm:text-base font-bold text-slate-900 leading-tight">Corporate Sales Volume</h2>
-              <p class="text-[11px] text-slate-500 mt-0.5">2025 vs 2026 Volume (tins) & Growth</p>
+              <h2 class="text-xs sm:text-base font-bold text-slate-900 leading-tight" id="corp-bar-title">Corporate Sales Volume</h2>
+              <p class="text-[11px] text-slate-500 mt-0.5">2025 vs 2026 Volume (tins) & Growth in active scope</p>
             </div>
             <div class="flex items-center gap-3 text-xs">
               <div class="flex items-center gap-1.5 font-medium text-slate-500 text-[11px]">
@@ -399,8 +403,8 @@
       <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="p-3.5 sm:p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 bg-slate-50/70">
           <div>
-            <h3 class="text-xs sm:text-sm font-bold text-slate-900">Corporate Volume Sales Matrix</h3>
-            <p class="text-[11px] text-slate-500">YTD MAY 2025 vs 2026 Share Gain/Loss & Evolution Index</p>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900" id="corp-table-title">Corporate Volume Sales Matrix</h3>
+            <p class="text-[11px] text-slate-500">Corporate Share Gain/Loss & Evolution Index in active scope</p>
           </div>
           <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span> Liptis Highlighted
@@ -433,43 +437,45 @@
     </section>
 
     <!-- ======================================================== -->
-    <!-- VIEW 3: LIPTIS NUTRITION DEDICATED PORTFOLIO DEEP DIVE -->
+    <!-- VIEW 3: LIPTIS DEEP DIVE (RESONATES WITH SCOPE) -->
     <!-- ======================================================== -->
     <section id="view-liptis" class="hidden space-y-4 sm:space-y-6">
 
-      <!-- Executive Overview Banner (Responsive on mobile) -->
+      <!-- Dynamic Executive Overview Banner -->
       <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-indigo-950 text-white rounded-3xl p-4 sm:p-6 shadow-lg relative overflow-hidden">
         <div class="absolute right-0 top-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
           <div class="md:col-span-8 space-y-2 sm:space-y-3">
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30" id="liptis-banner-tag">
               🚀 Market Outperformer
             </div>
-            <h2 class="text-lg sm:text-2xl font-black tracking-tight leading-tight">Liptis Nutrition: +105.6% Volume Surge</h2>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              Liptis volume more than doubled from <span class="text-white font-bold">317,589 tins</span> in YTD May 2025 to <span class="text-emerald-300 font-bold">653,051 tins</span> in YTD May 2026, reaching a 4.4% overall market share with an Evolution Index of <span class="text-emerald-300 font-bold">188.1</span>.
+            <h2 class="text-lg sm:text-2xl font-black tracking-tight leading-tight" id="liptis-banner-title">
+              Liptis Nutrition: +105.6% Volume Surge
+            </h2>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed" id="liptis-banner-desc">
+              Liptis volume more than doubled from 317,589 tins in 2025 to 653,051 tins in 2026, reaching a 4.4% overall market share with an Evolution Index of 188.1.
             </p>
           </div>
           <div class="md:col-span-4 grid grid-cols-2 gap-2 sm:gap-3">
             <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
-              <div class="text-[10px] sm:text-xs text-slate-300">Absolute Growth</div>
-              <div class="text-base sm:text-lg font-black text-emerald-300">+335,462</div>
+              <div class="text-[10px] sm:text-xs text-slate-300">Absolute Gain</div>
+              <div class="text-base sm:text-lg font-black text-emerald-300" id="liptis-stat-abs">+335,462</div>
               <div class="text-[9px] sm:text-[10px] text-slate-400">tins gained</div>
             </div>
             <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
               <div class="text-[10px] sm:text-xs text-slate-300">MS Gain</div>
-              <div class="text-base sm:text-lg font-black text-emerald-300">+2.04%</div>
-              <div class="text-[9px] sm:text-[10px] text-slate-400">to 4.4% overall</div>
+              <div class="text-base sm:text-lg font-black text-emerald-300" id="liptis-stat-ms">+2.04%</div>
+              <div class="text-[9px] sm:text-[10px] text-slate-400" id="liptis-stat-ms-sub">to 4.4% share</div>
             </div>
             <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
-              <div class="text-[10px] sm:text-xs text-slate-300">Top Growth SKU</div>
-              <div class="text-xs sm:text-sm font-bold text-white truncate">PEDIAMIL 1</div>
-              <div class="text-[9px] sm:text-[10px] text-emerald-300">+238.9% (190k)</div>
+              <div class="text-[10px] sm:text-xs text-slate-300" id="liptis-stat-box3-label">Evolution Index</div>
+              <div class="text-xs sm:text-sm font-bold text-white truncate" id="liptis-stat-box3-val">188.1</div>
+              <div class="text-[9px] sm:text-[10px] text-emerald-300" id="liptis-stat-box3-sub">+88.1 vs benchmark</div>
             </div>
             <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
-              <div class="text-[10px] sm:text-xs text-slate-300">New Launch</div>
-              <div class="text-xs sm:text-sm font-bold text-white truncate">PEDIAMIL LBW</div>
-              <div class="text-[9px] sm:text-[10px] text-emerald-300">10.8% MS Debut</div>
+              <div class="text-[10px] sm:text-xs text-slate-300" id="liptis-stat-box4-label">Competitive Rank</div>
+              <div class="text-xs sm:text-sm font-bold text-white truncate" id="liptis-stat-box4-val">#5 Overall</div>
+              <div class="text-[9px] sm:text-[10px] text-emerald-300" id="liptis-stat-box4-sub">Top 5 Corporate</div>
             </div>
           </div>
         </div>
@@ -478,31 +484,31 @@
       <!-- Liptis Portfolio Visuals -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
 
-        <!-- Liptis Portfolio Volume Share Pie Chart -->
+        <!-- Liptis Pie Chart -->
         <div class="lg:col-span-5 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight">Liptis Internal Volume Share</h3>
-              <p class="text-[11px] text-slate-500 mt-0.5">Share of 653,051 total tins by SKU</p>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight" id="liptis-pie-title">Liptis Volume Breakdown</h3>
+              <p class="text-[11px] text-slate-500 mt-0.5" id="liptis-pie-subtitle">Share in active scope</p>
             </div>
           </div>
 
           <div class="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[260px] sm:min-h-[290px]">
             <div id="liptis-pie-container" class="w-full flex items-center justify-center"></div>
             <div id="liptis-pie-tooltip" class="text-center mt-2 min-h-[40px] flex items-center justify-center px-2">
-              <span class="text-[11px] font-semibold text-slate-400">Tap or hover slice to see SKU metrics</span>
+              <span class="text-[11px] font-semibold text-slate-400">Tap or hover slice to see metrics</span>
             </div>
           </div>
 
           <div id="liptis-legend" class="grid grid-cols-2 gap-1.5 pt-3 border-t border-slate-100 text-[11px] max-h-36 sm:max-h-44 overflow-y-auto custom-scrollbar"></div>
         </div>
 
-        <!-- Liptis SKU Growth & Evolution Index Matrix -->
+        <!-- Liptis SKU Growth Matrix Bars -->
         <div class="lg:col-span-7 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight">Liptis SKU Volumes</h3>
-              <p class="text-[11px] text-slate-500 mt-0.5">2025 vs 2026 Volume by Product</p>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight" id="liptis-bar-title">Liptis SKU Volumes</h3>
+              <p class="text-[11px] text-slate-500 mt-0.5">2025 vs 2026 Volume by Product in active scope</p>
             </div>
             <div class="flex items-center gap-3 text-xs">
               <div class="flex items-center gap-1.5 font-medium text-slate-500 text-[11px]">
@@ -519,14 +525,14 @@
 
       </div>
 
-      <!-- Liptis Complete Products Table -->
+      <!-- Liptis Products Table -->
       <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="p-3.5 sm:p-4 border-b border-slate-200 bg-emerald-50/40 flex items-center justify-between">
           <div>
-            <h3 class="text-xs sm:text-sm font-bold text-emerald-950">Liptis Product Performance (10 SKUs)</h3>
-            <p class="text-[11px] text-emerald-700">Detailed performance against corresponding sub-segment</p>
+            <h3 class="text-xs sm:text-sm font-bold text-emerald-950" id="liptis-table-title">Liptis Product Performance Matrix</h3>
+            <p class="text-[11px] text-emerald-700" id="liptis-table-subtitle">Performance breakdown in active scope</p>
           </div>
-          <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300" id="liptis-table-badge">
             Total '26: 653,051
           </span>
         </div>
@@ -586,6 +592,29 @@
       { name: "NUTRIX GROUP*", vol25: 0, vol26: 7207, ppg: null, ms25: 0.0, ms26: 0.05, ms_gl: 0.05, abs_gth: 7207, ei: null, color: "#CBD5E1" },
       { name: "INTRA PHARM*", vol25: 0, vol26: 6776, ppg: null, ms25: 0.0, ms26: 0.05, ms_gl: 0.05, abs_gth: 6776, ei: null, color: "#E2E8F0" }
     ];
+
+    const CORP_COLOR_PALETTE = {
+      "HERO": "#3B82F6",
+      "HERO*": "#3B82F6",
+      "NUTRICIA": "#6366F1",
+      "NUTRICIA*": "#6366F1",
+      "NESTLE": "#EC4899",
+      "NESTLE*": "#EC4899",
+      "LACTO MISR": "#F59E0B",
+      "LACTO MISR*": "#F59E0B",
+      "LIPTIS NUTRITION": "#10B981",
+      "NUTRIBIO": "#8B5CF6",
+      "NUTRIBIO*": "#8B5CF6",
+      "ABBOTT": "#06B6D4",
+      "ABBOTT*": "#06B6D4",
+      "GLOBAL NAPI": "#14B8A6",
+      "GLOBAL NAPI*": "#14B8A6",
+      "PHARMALYS": "#94A3B8",
+      "PHARMALYS LAB.*": "#94A3B8",
+      "OTHER": "#94A3B8",
+      "NUTRIX GROUP*": "#CBD5E1",
+      "INTRA PHARM*": "#E2E8F0"
+    };
 
     const STAGE_DATA = {
       "Stage 1 Premium": {
@@ -805,7 +834,7 @@
     }
 
     // ==========================================
-    // DYNAMIC SCOPE LOGIC (RESONATES ALL KPIS)
+    // DYNAMIC SCOPE LOGIC (SYNCS ALL 3 VIEWS + KPIS)
     // ==========================================
     function setScope(scope) {
       document.getElementById('scope-selector').value = scope;
@@ -822,17 +851,16 @@
       const activePill = document.getElementById(`pill-${scope}`);
       if (activePill) {
         activePill.className = 'scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-indigo-300 bg-indigo-50 text-indigo-700 font-bold transition ring-1 ring-indigo-200 active:scale-95';
-        // Auto scroll active pill into view smoothly on mobile
         activePill.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
       }
 
-      // Update Top KPI Cards
+      // 1. Update Top KPI Cards
       updateTopKPIs(scope);
 
-      // Re-render Stage View if on Stage tab
-      if (currentView === 'stage') {
-        renderStageView();
-      }
+      // 2. Re-render ALL views so they immediately resonate with the scope!
+      renderStageView();
+      renderCorporateView();
+      renderLiptisView();
     }
 
     function updateTopKPIs(scope) {
@@ -1069,6 +1097,107 @@
     }
 
     // ==========================================
+    // HELPER: GET DYNAMIC CORPORATE DATA FOR SCOPE
+    // ==========================================
+    function getScopeCorporates(scope) {
+      if (scope === 'ALL_MARKET') {
+        return {
+          title: "All Market Corporates",
+          subtitle: "Overall market corporate share across Egypt/Regional infant formula market",
+          corporates: CORPORATE_DATA,
+          total25: 13728180,
+          total26: 15008604,
+          ppg: 9.3
+        };
+      }
+
+      let relevantProducts = [];
+      let scopeTitle = "";
+
+      if (scope === 'SECTOR_PREMIUM') {
+        scopeTitle = "Premium Sector (Stages 1, 2, 3)";
+        ['Stage 1 Premium', 'Stage 2 Premium', 'Stage 3 Premium'].forEach(stg => {
+          relevantProducts.push(...STAGE_DATA[stg].products);
+        });
+      } else if (scope === 'SECTOR_STANDARD') {
+        scopeTitle = "Standard Sector (Stages 1 & 2)";
+        ['Stage 1 Standard', 'Stage 2 Standard'].forEach(stg => {
+          relevantProducts.push(...STAGE_DATA[stg].products);
+        });
+      } else if (scope === 'SECTOR_SPECIALTY') {
+        scopeTitle = "Specialty Sector (AC, AR, LF, HA, LBW)";
+        ['AC Market', 'AR Market', 'LF Market', 'HA Prevention Market', 'LBW Market'].forEach(stg => {
+          relevantProducts.push(...STAGE_DATA[stg].products);
+        });
+      } else {
+        const stageObj = STAGE_DATA[scope];
+        if (stageObj) {
+          scopeTitle = scope;
+          relevantProducts = stageObj.products;
+        }
+      }
+
+      const corpMap = {};
+      let total25 = 0;
+      let total26 = 0;
+
+      relevantProducts.forEach(p => {
+        const corpName = p.corp || "OTHER";
+        if (!corpMap[corpName]) {
+          corpMap[corpName] = {
+            name: corpName,
+            vol25: 0,
+            vol26: 0,
+            color: CORP_COLOR_PALETTE[corpName] || "#64748B",
+            isLiptis: (corpName === "LIPTIS NUTRITION" || corpName === "LIPTIS")
+          };
+        }
+        corpMap[corpName].vol25 += (p.vol25 || 0);
+        corpMap[corpName].vol26 += (p.vol26 || 0);
+        total25 += (p.vol25 || 0);
+        total26 += (p.vol26 || 0);
+      });
+
+      const marketPPG = total25 > 0 ? ((total26 - total25) / total25) * 100 : 0;
+
+      const corporates = Object.values(corpMap).map(c => {
+        const ppg = c.vol25 > 0 ? ((c.vol26 - c.vol25) / c.vol25) * 100 : null;
+        const ms25 = total25 > 0 ? +((c.vol25 / total25) * 100).toFixed(1) : 0;
+        const ms26 = total26 > 0 ? +((c.vol26 / total26) * 100).toFixed(1) : 0;
+        const ms_gl = +(ms26 - ms25).toFixed(2);
+        const abs_gth = c.vol26 - c.vol25;
+        let ei = null;
+        if (ppg !== null && marketPPG !== -100) {
+          ei = +(((1 + ppg / 100) / (1 + marketPPG / 100)) * 100).toFixed(2);
+        }
+        return {
+          name: c.name,
+          vol25: c.vol25,
+          vol26: c.vol26,
+          ppg: ppg,
+          ms25: ms25,
+          ms26: ms26,
+          ms_gl: ms_gl,
+          abs_gth: abs_gth,
+          ei: ei,
+          color: c.color,
+          isLiptis: c.isLiptis
+        };
+      });
+
+      corporates.sort((a, b) => b.vol26 - a.vol26);
+
+      return {
+        title: `Corporates in ${scopeTitle}`,
+        subtitle: `Manufacturer market share and volume breakdown in ${scopeTitle}`,
+        corporates: corporates,
+        total25: total25,
+        total26: total26,
+        ppg: marketPPG
+      };
+    }
+
+    // ==========================================
     // PURE SVG PIE / DONUT (MOBILE RESPONSIVE + TOUCH)
     // ==========================================
     function createSvgDonut(data, valueKey, labelKey, colorKey, tooltipTargetId, centerTitle, centerSub) {
@@ -1079,7 +1208,7 @@
       const cy = size / 2;
 
       const total = data.reduce((acc, d) => acc + (d[valueKey] || 0), 0);
-      if (total === 0) return `<div class="text-xs text-slate-400">No volume data</div>`;
+      if (total === 0) return `<div class="text-xs text-slate-400">No volume data in this scope</div>`;
 
       let cumulativeAngle = -Math.PI / 2;
 
@@ -1121,7 +1250,6 @@
         const color = item[colorKey] || '#94A3B8';
         const labelText = item[labelKey];
 
-        // Touch and mouse handlers
         const handlerArgs = `'${tooltipTargetId}', '${labelText.replace(/'/g, "\\'")}', '${fmt(val)} tins', '${pct}%', '${color}', '${item.isLiptis ? '🌟 Liptis' : ''}'`;
 
         return `
@@ -1164,9 +1292,7 @@
       `;
     }
 
-    function resetPieTooltip(containerId) {
-      // Kept open on touch devices for easier readability
-    }
+    function resetPieTooltip(containerId) {}
 
     // ==========================================
     // VIEW 1: STAGE & SECTOR RENDER
@@ -1253,13 +1379,11 @@
       document.getElementById('stage-bar-title').textContent = `Volume: ${stageKey}`;
       document.getElementById('stage-table-title').textContent = `${stageKey} Matrix`;
 
-      // 1. Stage Pie Chart
       const valKey = stagePieYear === '2026' ? 'vol26' : 'vol25';
       const pieContainer = document.getElementById('stage-pie-container');
       const pieTotal = displayProducts.reduce((acc, p) => acc + (p[valKey] || 0), 0);
       pieContainer.innerHTML = createSvgDonut(displayProducts, valKey, 'name', 'color', 'stage-pie-tooltip', stagePieYear, fmtCompact(pieTotal));
 
-      // Stage Legend
       const leg = document.getElementById('stage-legend');
       leg.innerHTML = displayProducts.map(p => {
         const share = pieTotal > 0 ? ((p[valKey] / pieTotal) * 100).toFixed(1) : '0';
@@ -1273,7 +1397,6 @@
         `;
       }).join('');
 
-      // 2. Stage Bars (Fully responsive mobile layout)
       const barContainer = document.getElementById('stage-bar-container');
       const maxVol = Math.max(...displayProducts.map(p => Math.max(p.vol25, p.vol26)));
 
@@ -1283,7 +1406,6 @@
         const isGrowth = (p.vol26 >= p.vol25);
         return `
           <div class="p-2 sm:p-2.5 rounded-xl transition ${p.isLiptis ? 'bg-emerald-50/80 border border-emerald-300 ring-1 ring-emerald-200' : 'bg-slate-50/60 hover:bg-slate-100/70'}">
-            <!-- Header Row -->
             <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
               <div class="flex items-center gap-1.5 truncate">
                 <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
@@ -1296,7 +1418,6 @@
               </div>
             </div>
 
-            <!-- 2026 Bar -->
             <div class="flex items-center gap-1.5 sm:gap-2 mb-1">
               <span class="text-[9px] sm:text-[10px] font-bold text-indigo-600 w-6 sm:w-7">'26</span>
               <div class="flex-1 bg-slate-200/80 rounded-full h-2.5 sm:h-3 overflow-hidden flex">
@@ -1305,7 +1426,6 @@
               <span class="text-[10px] sm:text-[11px] font-bold text-slate-900 w-16 sm:w-20 text-right font-mono">${fmt(p.vol26)}</span>
             </div>
 
-            <!-- 2025 Bar -->
             <div class="flex items-center gap-1.5 sm:gap-2">
               <span class="text-[9px] sm:text-[10px] font-semibold text-slate-400 w-6 sm:w-7">'25</span>
               <div class="flex-1 bg-slate-200/80 rounded-full h-1.5 sm:h-2 overflow-hidden flex">
@@ -1317,7 +1437,6 @@
         `;
       }).join('');
 
-      // 3. Stage Table with Sticky First Column
       const tbody = document.getElementById('stage-table-body');
       tbody.innerHTML = displayProducts.map(p => {
         const isPos = (p.ms_gl >= 0);
@@ -1362,23 +1481,38 @@
     }
 
     // ==========================================
-    // VIEW 2: CORPORATE RENDER
+    // VIEW 2: CORPORATE RENDER (DYNAMIC RESONANCE)
     // ==========================================
     function setCorporatePieYear(yr) {
       corporatePieYear = yr;
       document.getElementById('corp-pie-2026-btn').className = yr === '2026' ? 'px-2.5 py-1 rounded-md bg-white text-indigo-700 font-bold shadow-xs' : 'px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900';
       document.getElementById('corp-pie-2025-btn').className = yr === '2025' ? 'px-2.5 py-1 rounded-md bg-white text-indigo-700 font-bold shadow-xs' : 'px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900';
-      renderCorporatePie();
+      renderCorporateView();
     }
 
-    function renderCorporatePie() {
+    function renderCorporateView() {
+      const scopeData = getScopeCorporates(currentScope);
+      const corps = scopeData.corporates;
+      const total25 = scopeData.total25;
+      const total26 = scopeData.total26;
       const valKey = corporatePieYear === '2026' ? 'vol26' : 'vol25';
-      const container = document.getElementById('corporate-pie-container');
-      const total = CORPORATE_DATA.reduce((a, b) => a + b[valKey], 0);
-      container.innerHTML = createSvgDonut(CORPORATE_DATA, valKey, 'name', 'color', 'pie-tooltip', 'TOTAL ' + corporatePieYear, fmtCompact(total));
 
+      // Update Dynamic Titles & Scope Banner
+      document.getElementById('corp-scope-banner-title').textContent = `Corporate Analysis for: ${scopeData.title}`;
+      document.getElementById('corp-scope-banner-sub').textContent = `Total Volume in Scope: ${fmt(total26)} tins (${fmtPct(scopeData.ppg)} growth)`;
+      document.getElementById('corp-pie-title').textContent = `Corporate Shares (${corporatePieYear})`;
+      document.getElementById('corp-pie-subtitle').textContent = `Market share of manufacturers in ${currentScope}`;
+      document.getElementById('corp-bar-title').textContent = `Corporate Volumes: ${currentScope}`;
+      document.getElementById('corp-table-title').textContent = `Corporate Matrix: ${currentScope}`;
+
+      // 1. Corporate Pie Chart
+      const container = document.getElementById('corporate-pie-container');
+      const pieTotal = corps.reduce((a, b) => a + (b[valKey] || 0), 0);
+      container.innerHTML = createSvgDonut(corps, valKey, 'name', 'color', 'pie-tooltip', corporatePieYear, fmtCompact(pieTotal));
+
+      // Corporate Legend
       const leg = document.getElementById('corporate-legend');
-      leg.innerHTML = CORPORATE_DATA.map(d => `
+      leg.innerHTML = corps.map(d => `
         <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-pointer active:bg-slate-100"
              onclick="showPieTooltip('pie-tooltip', '${d.name.replace(/'/g, "\\'")}', '${fmt(d[valKey])} tins', '${corporatePieYear === '2026' ? d.ms26 : d.ms25}%', '${d.color}', '${d.isLiptis ? '🌟 Liptis' : ''}')">
           <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${d.color}"></span>
@@ -1386,13 +1520,12 @@
           <span class="ml-auto font-bold text-slate-900">${corporatePieYear === '2026' ? d.ms26 : d.ms25}%</span>
         </div>
       `).join('');
-    }
 
-    function renderCorporateBars() {
-      const container = document.getElementById('corporate-bar-container');
-      const maxVol = Math.max(...CORPORATE_DATA.map(d => Math.max(d.vol25, d.vol26)));
+      // 2. Corporate Bars
+      const barContainer = document.getElementById('corporate-bar-container');
+      const maxVol = Math.max(...corps.map(d => Math.max(d.vol25, d.vol26)));
 
-      container.innerHTML = CORPORATE_DATA.map(d => {
+      barContainer.innerHTML = corps.map(d => {
         const w25 = ((d.vol25 / maxVol) * 100).toFixed(1);
         const w26 = ((d.vol26 / maxVol) * 100).toFixed(1);
         const isGrowth = (d.vol26 >= d.vol25);
@@ -1429,11 +1562,10 @@
           </div>
         `;
       }).join('');
-    }
 
-    function renderCorporateTable() {
+      // 3. Corporate Table
       const tbody = document.getElementById('corporate-table-body');
-      tbody.innerHTML = CORPORATE_DATA.map(d => {
+      tbody.innerHTML = corps.map(d => {
         const isPos = d.ms_gl >= 0;
         return `
           <tr class="${d.isLiptis ? 'bg-emerald-50/60 font-semibold' : 'hover:bg-slate-50/80'} transition">
@@ -1464,61 +1596,187 @@
         `;
       }).join('') + `
         <tr class="bg-slate-100 font-black border-t-2 border-slate-300">
-          <td class="py-2.5 px-3 sm:px-4 text-slate-900 sticky-col bg-slate-100 whitespace-nowrap">TOTAL MARKET</td>
-          <td class="py-2.5 px-2.5 text-right font-mono text-slate-700 whitespace-nowrap">13,728,180</td>
-          <td class="py-2.5 px-2.5 text-right font-mono text-slate-900 whitespace-nowrap">15,008,604</td>
-          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">+9.3%</td>
+          <td class="py-2.5 px-3 sm:px-4 text-slate-900 sticky-col bg-slate-100 whitespace-nowrap">SCOPE TOTAL</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-slate-700 whitespace-nowrap">${fmt(total25)}</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-slate-900 whitespace-nowrap">${fmt(total26)}</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">${fmtPct(scopeData.ppg)}</td>
           <td class="py-2.5 px-2.5 text-right text-slate-700 whitespace-nowrap">100.0%</td>
           <td class="py-2.5 px-2.5 text-right text-slate-900 whitespace-nowrap">100.0%</td>
           <td class="py-2.5 px-2.5 text-right text-slate-400 whitespace-nowrap">-</td>
-          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-700 whitespace-nowrap">+1,280,424</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-700 whitespace-nowrap">${fmtSign(total26 - total25)}</td>
           <td class="py-2.5 px-3 text-right text-slate-500 font-mono whitespace-nowrap">100.00</td>
         </tr>
       `;
     }
 
-    function renderCorporateView() {
-      renderCorporatePie();
-      renderCorporateBars();
-      renderCorporateTable();
+    // ==========================================
+    // VIEW 3: LIPTIS DEEP DIVE (DYNAMIC RESONANCE)
+    // ==========================================
+    function getScopeLiptisData(scope) {
+      let filteredProducts = [];
+      let bannerTitle = "";
+      let bannerDesc = "";
+      let bannerTag = "🚀 Market Outperformer";
+      let absGain = 0;
+      let msGain = "";
+      let msGainSub = "";
+      let box3Label = "Evolution Index";
+      let box3Val = "188.1";
+      let box3Sub = "+88.1 vs benchmark";
+      let box4Label = "Competitive Rank";
+      let box4Val = "#5 Overall";
+      let box4Sub = "Top 5 Corporate";
+
+      if (scope === 'ALL_MARKET') {
+        filteredProducts = LIPTIS_PRODUCTS;
+        bannerTitle = "Liptis Nutrition: +105.6% Volume Surge Across Total Market";
+        bannerDesc = "Liptis volume more than doubled from 317,589 tins in 2025 to 653,051 tins in 2026 (+335,462 tins gained), reaching 4.4% overall market share with an Evolution Index of 188.1.";
+        absGain = "+335,462";
+        msGain = "+2.04%";
+        msGainSub = "to 4.4% overall";
+      } else if (scope === 'SECTOR_PREMIUM') {
+        filteredProducts = LIPTIS_PRODUCTS.filter(p => p.sector === "Premium");
+        const tot25 = 106851;
+        const tot26 = 324748;
+        bannerTitle = "Liptis Premium Portfolio: +203.9% Volume Explosion";
+        bannerDesc = "Pediamil 1, Pediamil 2, and Pediagrow 3 combined for 324,748 tins in 2026 (up from 106,851), capturing 5.3% of the Premium sector with an outstanding Evolution Index of 323.9.";
+        absGain = "+217,897";
+        msGain = "+3.68%";
+        msGainSub = "to 5.3% sector MS";
+        box3Val = "323.9";
+        box3Sub = "+223.9 vs benchmark";
+        box4Val = "3 SKUs";
+        box4Sub = "Stages 1, 2, 3";
+      } else if (scope === 'SECTOR_STANDARD') {
+        filteredProducts = LIPTIS_PRODUCTS.filter(p => p.sector === "Standard");
+        const tot25 = 145261;
+        const tot26 = 199886;
+        bannerTitle = "Liptis Standard Portfolio (Pedia-Start): +37.6% Growth";
+        bannerDesc = "Pedia-Start 1 and Pedia-Start 2 reached 199,886 tins in 2026 (up from 145,261), capturing 3.3% of the Standard sector with an Evolution Index of 110.3.";
+        absGain = "+54,625";
+        msGain = "+0.31%";
+        msGainSub = "to 3.3% sector MS";
+        box3Val = "110.3";
+        box3Sub = "+10.3 vs benchmark";
+        box4Val = "2 SKUs";
+        box4Sub = "Stages 1 & 2";
+      } else if (scope === 'SECTOR_SPECIALTY') {
+        filteredProducts = LIPTIS_PRODUCTS.filter(p => p.sector === "Specialty");
+        const tot25 = 65477;
+        const tot26 = 128417;
+        bannerTitle = "Liptis Specialty Clinical Portfolio: +96.1% Volume Surge";
+        bannerDesc = "5 therapeutic formulations (Pediamil AC, AR, LF, HA, and new LBW) reached 128,417 tins in 2026 (up from 65,477), capturing 6.8% of the specialty market with an EI of 174.2.";
+        absGain = "+62,940";
+        msGain = "+2.91%";
+        msGainSub = "to 6.8% sector MS";
+        box3Val = "174.2";
+        box3Sub = "+74.2 vs benchmark";
+        box4Val = "5 Specialty SKUs";
+        box4Sub = "AC, AR, LF, HA, LBW";
+      } else {
+        // Individual Stage Focus
+        const targetProduct = LIPTIS_PRODUCTS.find(p => p.stage === scope);
+        if (targetProduct) {
+          filteredProducts = [targetProduct, ...LIPTIS_PRODUCTS.filter(p => p.stage !== scope)];
+          bannerTitle = `${targetProduct.name}: ${targetProduct.ppg !== null ? '+' + targetProduct.ppg.toFixed(1) + '%' : 'Debut Launch'} in ${scope}`;
+          bannerDesc = `${targetProduct.name} reached ${fmt(targetProduct.vol26)} tins in 2026 (vs ${fmt(targetProduct.vol25)} in 2025), securing a ${targetProduct.ms26}% market share in ${scope} (${targetProduct.ms_gl >= 0 ? '+' : ''}${targetProduct.ms_gl.toFixed(2)}% gain, ${targetProduct.rank}).`;
+          bannerTag = `⭐ Focus: ${targetProduct.name}`;
+          absGain = fmtSign(targetProduct.vol26 - targetProduct.vol25);
+          msGain = `${targetProduct.ms_gl >= 0 ? '+' : ''}${targetProduct.ms_gl.toFixed(2)}%`;
+          msGainSub = `to ${targetProduct.ms26}% category MS`;
+          box3Label = "Evolution Index";
+          box3Val = targetProduct.ei ? targetProduct.ei.toFixed(1) : "New Debut";
+          box3Sub = targetProduct.ei ? `${targetProduct.ei >= 100 ? '+' : ''}${(targetProduct.ei - 100).toFixed(1)} vs benchmark` : "10.8% debut share";
+          box4Label = "Category Rank";
+          box4Val = targetProduct.rank;
+          box4Sub = `Sector: ${targetProduct.sector}`;
+        } else {
+          filteredProducts = LIPTIS_PRODUCTS;
+        }
+      }
+
+      return {
+        products: filteredProducts,
+        bannerTitle: bannerTitle,
+        bannerDesc: bannerDesc,
+        bannerTag: bannerTag,
+        absGain: absGain,
+        msGain: msGain,
+        msGainSub: msGainSub,
+        box3Label: box3Label,
+        box3Val: box3Val,
+        box3Sub: box3Sub,
+        box4Label: box4Label,
+        box4Val: box4Val,
+        box4Sub: box4Sub
+      };
     }
 
-    // ==========================================
-    // VIEW 3: LIPTIS DEEP DIVE RENDER
-    // ==========================================
     function renderLiptisView() {
-      const container = document.getElementById('liptis-pie-container');
-      container.innerHTML = createSvgDonut(LIPTIS_PRODUCTS, 'vol26', 'name', 'color', 'liptis-pie-tooltip', 'LIPTIS ' + stagePieYear, '653,051');
+      const liptisData = getScopeLiptisData(currentScope);
+      const prods = liptisData.products;
 
+      // Update Banner Elements
+      document.getElementById('liptis-banner-tag').textContent = liptisData.bannerTag;
+      document.getElementById('liptis-banner-title').textContent = liptisData.bannerTitle;
+      document.getElementById('liptis-banner-desc').textContent = liptisData.bannerDesc;
+      document.getElementById('liptis-stat-abs').textContent = liptisData.absGain;
+      document.getElementById('liptis-stat-ms').textContent = liptisData.msGain;
+      document.getElementById('liptis-stat-ms-sub').textContent = liptisData.msGainSub;
+      document.getElementById('liptis-stat-box3-label').textContent = liptisData.box3Label;
+      document.getElementById('liptis-stat-box3-val').textContent = liptisData.box3Val;
+      document.getElementById('liptis-stat-box3-sub').textContent = liptisData.box3Sub;
+      document.getElementById('liptis-stat-box4-label').textContent = liptisData.box4Label;
+      document.getElementById('liptis-stat-box4-val').textContent = liptisData.box4Val;
+      document.getElementById('liptis-stat-box4-sub').textContent = liptisData.box4Sub;
+
+      // Titles
+      document.getElementById('liptis-pie-title').textContent = `Liptis Breakdown (${currentScope})`;
+      document.getElementById('liptis-bar-title').textContent = `Liptis SKU Volumes (${currentScope})`;
+      document.getElementById('liptis-table-title').textContent = `Liptis Performance Matrix (${currentScope})`;
+      
+      const total26 = prods.reduce((acc, p) => acc + p.vol26, 0);
+      const total25 = prods.reduce((acc, p) => acc + p.vol25, 0);
+      document.getElementById('liptis-table-badge').textContent = `2026 Scope Vol: ${fmt(total26)} tins`;
+
+      // 1. Liptis Pie Chart
+      const container = document.getElementById('liptis-pie-container');
+      container.innerHTML = createSvgDonut(prods, 'vol26', 'name', 'color', 'liptis-pie-tooltip', 'LIPTIS 2026', fmtCompact(total26));
+
+      // Legend
       const leg = document.getElementById('liptis-legend');
-      leg.innerHTML = LIPTIS_PRODUCTS.map(p => {
-        const share = ((p.vol26 / 653051) * 100).toFixed(1);
+      leg.innerHTML = prods.map(p => {
+        const share = total26 > 0 ? ((p.vol26 / total26) * 100).toFixed(1) : '0';
+        const isCurrentStage = (p.stage === currentScope);
         return `
-          <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-pointer active:bg-slate-100"
+          <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-pointer active:bg-slate-100 ${isCurrentStage ? 'bg-emerald-50 font-black' : ''}"
                onclick="showPieTooltip('liptis-pie-tooltip', '${p.name.replace(/'/g, "\\'")}', '${fmt(p.vol26)} tins', '${share}%', '${p.color}', '🌟 Liptis')">
             <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
-            <span class="truncate font-bold text-slate-800">${p.name}</span>
+            <span class="truncate ${isCurrentStage ? 'text-emerald-950 font-black' : 'text-slate-800 font-bold'}">${p.name}</span>
             <span class="ml-auto font-bold text-emerald-700">${share}%</span>
           </div>
         `;
       }).join('');
 
+      // 2. Liptis Bars
       const barContainer = document.getElementById('liptis-bar-container');
-      const maxVol = Math.max(...LIPTIS_PRODUCTS.map(p => Math.max(p.vol25, p.vol26)));
+      const maxVol = Math.max(...prods.map(p => Math.max(p.vol25, p.vol26)));
 
-      barContainer.innerHTML = LIPTIS_PRODUCTS.map(p => {
+      barContainer.innerHTML = prods.map(p => {
         const w25 = ((p.vol25 / maxVol) * 100).toFixed(1);
         const w26 = ((p.vol26 / maxVol) * 100).toFixed(1);
+        const isCurrentStage = (p.stage === currentScope);
         return `
-          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:border-emerald-300 transition">
+          <div class="p-2 sm:p-2.5 rounded-xl transition ${isCurrentStage ? 'bg-emerald-100/70 border-2 border-emerald-400 shadow-xs' : 'bg-slate-50/70 border border-slate-200/80 hover:border-emerald-300'}">
             <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
               <div class="flex items-center gap-1.5 truncate">
                 <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
-                <span class="font-extrabold text-slate-900 truncate">${p.name}</span>
+                <span class="font-extrabold truncate ${isCurrentStage ? 'text-emerald-950 font-black' : 'text-slate-900'}">${p.name}</span>
                 <span class="text-[9px] sm:text-[10px] text-slate-500 px-1 py-0.2 bg-slate-200/60 rounded truncate">${p.stage.replace(' Market', '')}</span>
+                ${isCurrentStage ? '<span class="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded">ACTIVE STAGE</span>' : ''}
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 text-[11px]">
-                <span class="text-slate-500 hidden xs:inline">Share: <strong class="text-emerald-700">${p.ms26}%</strong></span>
+                <span class="text-slate-500 hidden xs:inline">Category Share: <strong class="text-emerald-700">${p.ms26}%</strong></span>
                 <span class="font-black ${p.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</span>
               </div>
             </div>
@@ -1542,15 +1800,18 @@
         `;
       }).join('');
 
+      // 3. Liptis Table
       const tbody = document.getElementById('liptis-table-body');
-      tbody.innerHTML = LIPTIS_PRODUCTS.map(p => {
+      tbody.innerHTML = prods.map(p => {
         const isPos = p.ms_gl >= 0;
+        const isCurrentStage = (p.stage === currentScope);
         return `
-          <tr class="hover:bg-emerald-50/40 transition">
-            <td class="py-2.5 px-3 sm:px-4 font-extrabold sticky-col bg-white text-slate-900 whitespace-nowrap">
+          <tr class="transition ${isCurrentStage ? 'bg-emerald-100/60 font-black' : 'hover:bg-emerald-50/40'}">
+            <td class="py-2.5 px-3 sm:px-4 font-extrabold sticky-col ${isCurrentStage ? 'bg-emerald-100 text-emerald-950' : 'bg-white text-slate-900'} whitespace-nowrap">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
                 <span>${p.name}</span>
+                ${isCurrentStage ? '<span class="bg-emerald-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded ml-1">ACTIVE</span>' : ''}
               </div>
             </td>
             <td class="py-2.5 px-2.5 whitespace-nowrap">
@@ -1576,16 +1837,16 @@
         `;
       }).join('') + `
         <tr class="bg-emerald-100/70 font-black border-t-2 border-emerald-300">
-          <td class="py-2.5 px-3 sm:px-4 text-emerald-950 sticky-col bg-emerald-100 whitespace-nowrap">TOTAL LIPTIS</td>
-          <td class="py-2.5 px-2.5 text-emerald-800 whitespace-nowrap">10 SKUs</td>
-          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-900 whitespace-nowrap">317,589</td>
-          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-950 whitespace-nowrap">653,051</td>
-          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">+105.6%</td>
-          <td class="py-2.5 px-2.5 text-right text-emerald-900 whitespace-nowrap">2.3%</td>
-          <td class="py-2.5 px-2.5 text-right text-emerald-950 whitespace-nowrap">4.4%</td>
-          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">+2.04%</td>
-          <td class="py-2.5 px-2.5 text-right text-emerald-800 font-mono whitespace-nowrap">188.09</td>
-          <td class="py-2.5 px-3 text-center text-emerald-900 whitespace-nowrap">#5 Overall</td>
+          <td class="py-2.5 px-3 sm:px-4 text-emerald-950 sticky-col bg-emerald-100 whitespace-nowrap">SCOPE TOTAL</td>
+          <td class="py-2.5 px-2.5 text-emerald-800 whitespace-nowrap">${prods.length} SKUs</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-900 whitespace-nowrap">${fmt(total25)}</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-950 whitespace-nowrap">${fmt(total26)}</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">${total25 > 0 ? fmtPct(((total26-total25)/total25)*100) : '+100%'}</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-900 whitespace-nowrap">-</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-950 whitespace-nowrap">-</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">${fmtSign(total26 - total25)}</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-800 font-mono whitespace-nowrap">-</td>
+          <td class="py-2.5 px-3 text-center text-emerald-900 whitespace-nowrap">Liptis Portfolio</td>
         </tr>
       `;
     }
@@ -1593,6 +1854,8 @@
     // Initialize with Stage 1 Premium
     updateTopKPIs("Stage 1 Premium");
     renderStageView();
+    renderCorporateView();
+    renderLiptisView();
   </script>
 </body>
 </html>

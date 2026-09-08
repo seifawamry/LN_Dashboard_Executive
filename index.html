@@ -2,110 +2,153 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Infant Formula Market Volume & Liptis Nutrition Performance Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Infant Formula Market Volume & Liptis Nutrition Analytics</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>if (!window.tailwind) { document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>'); }</script>
+  <script>
+    if (!window.tailwind) {
+      document.write('<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"><\/script>');
+    }
+  </script>
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-    body {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    
+    :root {
+      -webkit-tap-highlight-color: transparent;
     }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    /* Touch-friendly scrolling */
+    .touch-scroll {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+    .touch-scroll::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    
     .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.03);
+      background: rgba(0,0,0,0.02);
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(0,0,0,0.15);
+      background: rgba(0,0,0,0.18);
       border-radius: 9999px;
     }
+    
     .pie-slice {
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+      transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
       transform-origin: center;
       cursor: pointer;
     }
-    .pie-slice:hover {
+    .pie-slice:hover, .pie-slice:active {
       transform: scale(1.035);
       opacity: 0.95;
     }
+    
     .bar-anim {
-      transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    
     .kpi-pulse {
-      animation: kpiHighlight 0.45s ease-out;
+      animation: kpiHighlight 0.4s ease-out;
     }
     @keyframes kpiHighlight {
-      0% { transform: scale(0.98); opacity: 0.8; }
+      0% { transform: scale(0.97); opacity: 0.85; }
       50% { transform: scale(1.02); }
       100% { transform: scale(1); opacity: 1; }
     }
+
+    /* Sticky first column on mobile tables */
+    .sticky-col {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      box-shadow: 2px 0 5px -2px rgba(0,0,0,0.06);
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen antialiased flex flex-col selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 min-h-screen antialiased flex flex-col selection:bg-indigo-500 selection:text-white pb-safe">
 
   <!-- TOP APP BAR -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-emerald-500 flex items-center justify-center text-white font-black text-xl shadow-md shadow-indigo-500/20 ring-2 ring-indigo-100">
-          IF
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 class="text-lg font-bold tracking-tight text-slate-900 leading-tight">Infant Formula Market Analytics</h1>
-            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
-              YTD MAY 2026 vs 2025
-            </span>
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-emerald-500 flex items-center justify-center text-white font-black text-lg sm:text-xl shadow-md shadow-indigo-500/20 ring-2 ring-indigo-100 flex-shrink-0">
+            IF
           </div>
-          <p class="text-xs text-slate-500 font-medium">Volume Intelligence &bull; Dynamic Scope Filtering &bull; Liptis Nutrition Portfolio</p>
-        </div>
-      </div>
-
-      <!-- Main Navigation Tabs -->
-      <div class="flex items-center gap-3 flex-wrap">
-        <div class="inline-flex rounded-lg p-1 bg-slate-100 border border-slate-200 text-xs font-semibold shadow-inner" id="viewModeGroup">
-          <button onclick="setView('stage')" id="btn-stage" class="view-btn px-3 py-1.5 rounded-md transition-all duration-150 bg-white text-indigo-700 shadow-xs font-bold">
-            📊 Segments & Stages
-          </button>
-          <button onclick="setView('corporate')" id="btn-corporate" class="view-btn px-3 py-1.5 rounded-md transition-all duration-150 text-slate-600 hover:text-slate-900">
-            🏢 Corporates
-          </button>
-          <button onclick="setView('liptis')" id="btn-liptis" class="view-btn px-3 py-1.5 rounded-md transition-all duration-150 text-slate-600 hover:text-slate-900 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            ⭐ Liptis Deep Dive
-          </button>
+          <div>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 leading-tight">Infant Formula Analytics</h1>
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 whitespace-nowrap">
+                YTD MAY 2026 vs '25
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-slate-500 font-medium">Liptis Nutrition Portfolio & Market Intelligence</p>
+          </div>
         </div>
 
-        <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition shadow-xs">
+        <!-- Share / Print on Desktop -->
+        <button onclick="window.print()" class="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition shadow-xs">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-          Print / PDF
+          Print Report
         </button>
       </div>
+
+      <!-- Segmented View Tabs (Mobile Swipeable / Full Width) -->
+      <nav class="w-full sm:w-auto">
+        <div class="grid grid-cols-3 sm:flex rounded-xl p-1 bg-slate-100 border border-slate-200 text-xs font-semibold shadow-inner" id="viewModeGroup">
+          <button onclick="setView('stage')" id="btn-stage" class="view-btn py-2 px-2.5 sm:px-3 rounded-lg transition-all duration-150 bg-white text-indigo-700 shadow-xs font-bold text-center">
+            📊 Segments
+          </button>
+          <button onclick="setView('corporate')" id="btn-corporate" class="view-btn py-2 px-2.5 sm:px-3 rounded-lg transition-all duration-150 text-slate-600 hover:text-slate-900 text-center">
+            🏢 Corporates
+          </button>
+          <button onclick="setView('liptis')" id="btn-liptis" class="view-btn py-2 px-2.5 sm:px-3 rounded-lg transition-all duration-150 text-slate-600 hover:text-slate-900 text-center flex items-center justify-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse hidden xs:inline-block"></span>
+            ⭐ Liptis
+          </button>
+        </div>
+      </nav>
+
     </div>
   </header>
 
   <!-- MAIN CONTENT CONTAINER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1 space-y-6">
+  <main class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-4 sm:py-6 w-full flex-1 space-y-4 sm:space-y-6">
 
     <!-- DYNAMIC GLOBAL SECTOR / STAGE FILTER BAR -->
-    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs space-y-3">
-      <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200 shadow-xs space-y-2.5">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
         <div class="flex items-center gap-2">
-          <div class="p-1.5 rounded-lg bg-indigo-50 text-indigo-700">
+          <div class="p-1.5 rounded-lg bg-indigo-50 text-indigo-700 flex-shrink-0">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
           </div>
           <div>
-            <span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Active Analysis Scope:</span>
-            <p class="text-[11px] text-slate-500">Selecting a sector or stage updates all 4 KPI cards and graphs below</p>
+            <span class="text-[11px] sm:text-xs font-bold text-slate-800 uppercase tracking-wider block sm:inline">Active Analysis Scope</span>
+            <span class="text-[10px] sm:text-[11px] text-slate-500 block">Touch any stage to filter cards and charts</span>
           </div>
         </div>
 
-        <div class="flex items-center gap-2 flex-wrap">
-          <label for="scope-selector" class="text-xs font-semibold text-slate-600 hidden sm:inline">Choose Scope:</label>
-          <select id="scope-selector" onchange="onScopeChanged(this.value)" class="text-xs font-bold bg-slate-100 border border-slate-300 text-slate-800 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none cursor-pointer">
+        <!-- Native Select (Optimized for iOS Wheel / Android Bottom Sheet) -->
+        <div class="w-full sm:w-auto">
+          <select id="scope-selector" onchange="onScopeChanged(this.value)" class="w-full text-xs font-bold bg-slate-100 border border-slate-300 text-slate-800 rounded-xl px-3 py-2.5 sm:py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none cursor-pointer">
             <option value="ALL_MARKET">🌍 Total Infant Formula Market (All Corporates)</option>
             
             <optgroup label="🌟 Premium Sector">
@@ -133,99 +176,95 @@
         </div>
       </div>
 
-      <!-- Fast Quick-Pills Filter for instant click -->
-      <div class="flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1 text-[11px] font-semibold text-slate-600">
-        <button onclick="setScope('ALL_MARKET')" id="pill-ALL_MARKET" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">🌍 Total Market</button>
-        <button onclick="setScope('SECTOR_PREMIUM')" id="pill-SECTOR_PREMIUM" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">⭐ Premium Sector</button>
-        <button onclick="setScope('Stage 1 Premium')" id="pill-Stage 1 Premium" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 font-bold transition">Pediamil 1</button>
-        <button onclick="setScope('Stage 2 Premium')" id="pill-Stage 2 Premium" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pediamil 2</button>
-        <button onclick="setScope('Stage 3 Premium')" id="pill-Stage 3 Premium" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pediagrow 3</button>
-        <button onclick="setScope('SECTOR_STANDARD')" id="pill-SECTOR_STANDARD" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">🥛 Standard Sector</button>
-        <button onclick="setScope('Stage 1 Standard')" id="pill-Stage 1 Standard" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pedia-Start 1</button>
-        <button onclick="setScope('Stage 2 Standard')" id="pill-Stage 2 Standard" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pedia-Start 2</button>
-        <button onclick="setScope('SECTOR_SPECIALTY')" id="pill-SECTOR_SPECIALTY" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">🩺 Specialty Sector</button>
-        <button onclick="setScope('AC Market')" id="pill-AC Market" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pediamil AC</button>
-        <button onclick="setScope('AR Market')" id="pill-AR Market" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pediamil AR</button>
-        <button onclick="setScope('LF Market')" id="pill-LF Market" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pediamil LF</button>
-        <button onclick="setScope('HA Prevention Market')" id="pill-HA Prevention Market" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pediamil HA</button>
-        <button onclick="setScope('LBW Market')" id="pill-LBW Market" class="scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition">Pediamil LBW</button>
+      <!-- Touch-friendly Horizontal Pill Scrollbar (Native momentum scroll) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto touch-scroll py-1 text-[11px] font-semibold text-slate-600">
+        <button onclick="setScope('ALL_MARKET')" id="pill-ALL_MARKET" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">🌍 Total Market</button>
+        <button onclick="setScope('SECTOR_PREMIUM')" id="pill-SECTOR_PREMIUM" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">⭐ Premium Sector</button>
+        <button onclick="setScope('Stage 1 Premium')" id="pill-Stage 1 Premium" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-indigo-300 bg-indigo-50 text-indigo-700 font-bold transition ring-1 ring-indigo-200 active:scale-95">Pediamil 1</button>
+        <button onclick="setScope('Stage 2 Premium')" id="pill-Stage 2 Premium" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pediamil 2</button>
+        <button onclick="setScope('Stage 3 Premium')" id="pill-Stage 3 Premium" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pediagrow 3</button>
+        <button onclick="setScope('SECTOR_STANDARD')" id="pill-SECTOR_STANDARD" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">🥛 Standard Sector</button>
+        <button onclick="setScope('Stage 1 Standard')" id="pill-Stage 1 Standard" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pedia-Start 1</button>
+        <button onclick="setScope('Stage 2 Standard')" id="pill-Stage 2 Standard" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pedia-Start 2</button>
+        <button onclick="setScope('SECTOR_SPECIALTY')" id="pill-SECTOR_SPECIALTY" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">🩺 Specialty Sector</button>
+        <button onclick="setScope('AC Market')" id="pill-AC Market" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pediamil AC</button>
+        <button onclick="setScope('AR Market')" id="pill-AR Market" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pediamil AR</button>
+        <button onclick="setScope('LF Market')" id="pill-LF Market" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pediamil LF</button>
+        <button onclick="setScope('HA Prevention Market')" id="pill-HA Prevention Market" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pediamil HA</button>
+        <button onclick="setScope('LBW Market')" id="pill-LBW Market" class="scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition active:scale-95">Pediamil LBW</button>
       </div>
     </div>
 
-    <!-- DYNAMIC RESONATING TOP KPI SUMMARY CARDS -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="kpi-cards-grid">
+    <!-- DYNAMIC TOP 4 KPI CARDS (2x2 on Mobile, 4x1 on Desktop) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="kpi-cards-grid">
       
-      <!-- CARD 1: TOTAL MARKET VOLUME IN CHOSEN SCOPE -->
-      <div id="kpi-card-1" class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-xs relative overflow-hidden transition-all duration-300">
-        <div class="absolute right-0 top-0 translate-x-3 -translate-y-3 w-20 h-20 bg-blue-50 rounded-full blur-xl pointer-events-none"></div>
-        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1">
-          <span id="kpi-market-title" class="truncate pr-1">TOTAL MARKET (STAGE 1 PREM)</span>
-          <span id="kpi-market-badge" class="inline-flex items-center text-rose-600 font-bold bg-rose-50 px-1.5 py-0.5 rounded text-[11px]">-2.9%</span>
+      <!-- CARD 1: TOTAL MARKET VOLUME -->
+      <div id="kpi-card-1" class="bg-white rounded-2xl p-3 sm:p-4 border border-slate-200 shadow-xs relative overflow-hidden transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-start justify-between gap-1 mb-1">
+          <span id="kpi-market-title" class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-tight line-clamp-1">TOTAL MARKET</span>
+          <span id="kpi-market-badge" class="inline-flex items-center text-rose-600 font-bold bg-rose-50 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">-2.9%</span>
         </div>
-        <div class="text-2xl font-extrabold text-slate-900 tracking-tight" id="kpi-market-vol">3,277,851</div>
-        <div class="text-xs text-slate-400 mt-1 flex items-center justify-between">
-          <span id="kpi-market-sub1">2025: 3,375,037 tins</span>
-          <span id="kpi-market-sub2" class="text-rose-600 font-semibold">-97,186 Abs.</span>
+        <div class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight my-0.5" id="kpi-market-vol">3,277,851</div>
+        <div class="text-[10px] sm:text-xs text-slate-400 mt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
+          <span id="kpi-market-sub1">2025: 3.38M</span>
+          <span id="kpi-market-sub2" class="text-rose-600 font-semibold">-97.2k Abs.</span>
         </div>
       </div>
 
-      <!-- CARD 2: LIPTIS VOLUME IN CHOSEN SCOPE -->
-      <div id="kpi-card-2" class="bg-white rounded-2xl p-4 border border-emerald-200/90 shadow-xs relative overflow-hidden ring-1 ring-emerald-100 transition-all duration-300">
-        <div class="absolute right-0 top-0 translate-x-3 -translate-y-3 w-20 h-20 bg-emerald-50 rounded-full blur-xl pointer-events-none"></div>
-        <div class="flex items-center justify-between text-xs font-semibold text-emerald-700 mb-1">
-          <span id="kpi-liptis-title" class="truncate pr-1">PEDIAMIL 1 VOLUME</span>
-          <span id="kpi-liptis-badge" class="inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[11px]">+238.9%</span>
+      <!-- CARD 2: LIPTIS PRODUCT VOLUME -->
+      <div id="kpi-card-2" class="bg-white rounded-2xl p-3 sm:p-4 border border-emerald-200 shadow-xs relative overflow-hidden ring-1 ring-emerald-100 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-start justify-between gap-1 mb-1">
+          <span id="kpi-liptis-title" class="text-[10px] sm:text-xs font-semibold text-emerald-800 uppercase tracking-tight line-clamp-1">PEDIAMIL 1 VOL.</span>
+          <span id="kpi-liptis-badge" class="inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">+238.9%</span>
         </div>
-        <div class="text-2xl font-extrabold text-emerald-900 tracking-tight" id="kpi-liptis-vol">189,718</div>
-        <div class="text-xs text-emerald-700/80 mt-1 flex items-center justify-between">
-          <span id="kpi-liptis-sub1">2025: 55,981 tins</span>
+        <div class="text-xl sm:text-2xl font-extrabold text-emerald-950 tracking-tight my-0.5" id="kpi-liptis-vol">189,718</div>
+        <div class="text-[10px] sm:text-xs text-emerald-700/90 mt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
+          <span id="kpi-liptis-sub1">2025: 55.9k</span>
           <span id="kpi-liptis-sub2" class="font-bold">+133.7k Abs.</span>
         </div>
       </div>
 
-      <!-- CARD 3: LIPTIS MARKET SHARE IN CHOSEN SCOPE -->
-      <div id="kpi-card-3" class="bg-white rounded-2xl p-4 border border-indigo-200/90 shadow-xs relative overflow-hidden ring-1 ring-indigo-100 transition-all duration-300">
-        <div class="absolute right-0 top-0 translate-x-3 -translate-y-3 w-20 h-20 bg-indigo-50 rounded-full blur-xl pointer-events-none"></div>
-        <div class="flex items-center justify-between text-xs font-semibold text-indigo-700 mb-1">
-          <span id="kpi-share-title" class="truncate pr-1">PEDIAMIL 1 MARKET SHARE</span>
-          <span id="kpi-share-badge" class="inline-flex items-center text-indigo-700 font-bold bg-indigo-100 px-1.5 py-0.5 rounded text-[11px]">+4.13% Gain</span>
+      <!-- CARD 3: LIPTIS MARKET SHARE -->
+      <div id="kpi-card-3" class="bg-white rounded-2xl p-3 sm:p-4 border border-indigo-200 shadow-xs relative overflow-hidden ring-1 ring-indigo-100 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-start justify-between gap-1 mb-1">
+          <span id="kpi-share-title" class="text-[10px] sm:text-xs font-semibold text-indigo-800 uppercase tracking-tight line-clamp-1">MARKET SHARE</span>
+          <span id="kpi-share-badge" class="inline-flex items-center text-indigo-700 font-bold bg-indigo-100 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">+4.13% Gain</span>
         </div>
-        <div class="text-2xl font-extrabold text-indigo-900 tracking-tight" id="kpi-share-val">5.8%</div>
-        <div class="text-xs text-indigo-700/80 mt-1 flex items-center justify-between">
+        <div class="text-xl sm:text-2xl font-extrabold text-indigo-950 tracking-tight my-0.5" id="kpi-share-val">5.8%</div>
+        <div class="text-[10px] sm:text-xs text-indigo-700/90 mt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
           <span id="kpi-share-sub1">2025: 1.7% MS</span>
           <span id="kpi-share-sub2" class="font-semibold">Rank #5 of 12</span>
         </div>
       </div>
 
-      <!-- CARD 4: LIPTIS EVOLUTION INDEX IN CHOSEN SCOPE -->
-      <div id="kpi-card-4" class="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-xs relative overflow-hidden transition-all duration-300">
-        <div class="absolute right-0 top-0 translate-x-3 -translate-y-3 w-20 h-20 bg-purple-50 rounded-full blur-xl pointer-events-none"></div>
-        <div class="flex items-center justify-between text-xs font-semibold text-slate-500 mb-1">
-          <span id="kpi-ei-title" class="truncate pr-1">LIPTIS EVOLUTION INDEX</span>
-          <span id="kpi-ei-badge" class="inline-flex items-center text-purple-700 font-bold bg-purple-50 px-1.5 py-0.5 rounded text-[11px]">Outperformer</span>
+      <!-- CARD 4: EVOLUTION INDEX -->
+      <div id="kpi-card-4" class="bg-white rounded-2xl p-3 sm:p-4 border border-purple-200 shadow-xs relative overflow-hidden ring-1 ring-purple-100 transition-all duration-300 flex flex-col justify-between">
+        <div class="flex items-start justify-between gap-1 mb-1">
+          <span id="kpi-ei-title" class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-tight line-clamp-1">EVOLUTION INDEX</span>
+          <span id="kpi-ei-badge" class="inline-flex items-center text-purple-700 font-bold bg-purple-50 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">Outperformer</span>
         </div>
-        <div class="text-2xl font-extrabold text-purple-900 tracking-tight" id="kpi-ei-val">349.0</div>
-        <div class="text-xs text-slate-400 mt-1 flex items-center justify-between">
-          <span id="kpi-ei-sub1">Benchmark: 100.0</span>
-          <span id="kpi-ei-sub2" class="text-emerald-600 font-semibold">+249.0 pts vs Mkt</span>
+        <div class="text-xl sm:text-2xl font-extrabold text-purple-950 tracking-tight my-0.5" id="kpi-ei-val">349.0</div>
+        <div class="text-[10px] sm:text-xs text-slate-400 mt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
+          <span id="kpi-ei-sub1">Base: 100.0</span>
+          <span id="kpi-ei-sub2" class="text-emerald-600 font-semibold">+249.0 pts</span>
         </div>
       </div>
     </div>
 
     <!-- ======================================================== -->
-    <!-- VIEW 1: SEGMENTS & STAGES DASHBOARD (Default / Interactive) -->
+    <!-- VIEW 1: SEGMENTS & STAGES DASHBOARD -->
     <!-- ======================================================== -->
-    <section id="view-stage" class="space-y-6">
+    <section id="view-stage" class="space-y-4 sm:space-y-6">
       
       <!-- Stage Visuals: Pie & Comparative Bars -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
         
         <!-- Stage Market Share Pie Chart -->
-        <div class="lg:col-span-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
+        <div class="lg:col-span-5 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="text-sm font-bold text-slate-900" id="stage-pie-title">Market Share Distribution</h3>
-              <p class="text-xs text-slate-500" id="stage-pie-subtitle">By Brand / Product</p>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight" id="stage-pie-title">Market Share Distribution</h3>
+              <p class="text-[11px] text-slate-500 mt-0.5" id="stage-pie-subtitle">By Brand / Product</p>
             </div>
             <div class="inline-flex rounded-lg p-0.5 bg-slate-100 text-xs font-medium border border-slate-200">
               <button onclick="setStagePieYear('2026')" id="stage-pie-2026-btn" class="px-2.5 py-1 rounded-md bg-white text-indigo-700 font-bold shadow-xs">2026</button>
@@ -233,62 +272,70 @@
             </div>
           </div>
 
-          <div class="relative flex-1 flex flex-col items-center justify-center min-h-[300px]">
+          <!-- Pie / Donut SVG Container (Responsive & Touch Sized) -->
+          <div class="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[260px] sm:min-h-[290px]">
             <div id="stage-pie-container" class="w-full flex items-center justify-center"></div>
-            <div id="stage-pie-tooltip" class="text-center mt-2 min-h-[44px]">
-              <span class="text-xs font-semibold text-slate-400">Hover slice to see details</span>
+            <!-- Mobile Tap / Tooltip Feedback -->
+            <div id="stage-pie-tooltip" class="text-center mt-2 min-h-[40px] flex items-center justify-center px-2">
+              <span class="text-[11px] font-semibold text-slate-400">Tap a slice to see volume & market share</span>
             </div>
           </div>
 
-          <div id="stage-legend" class="grid grid-cols-2 gap-1.5 pt-3 border-t border-slate-100 text-[11px] max-h-40 overflow-y-auto custom-scrollbar"></div>
+          <!-- Legend Grid (Scrollable on small screens) -->
+          <div id="stage-legend" class="grid grid-cols-2 gap-1.5 pt-3 border-t border-slate-100 text-[11px] max-h-36 sm:max-h-44 overflow-y-auto custom-scrollbar"></div>
         </div>
 
-        <!-- Stage Volume Bar Chart -->
-        <div class="lg:col-span-7 bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
-          <div class="flex items-center justify-between mb-4">
+        <!-- Stage Volume Bar Chart (Responsive Full Width - No horizontal scroll cutoff) -->
+        <div class="lg:col-span-7 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
+          <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="text-sm font-bold text-slate-900" id="stage-bar-title">Product Volumes (2025 vs 2026)</h3>
-              <p class="text-xs text-slate-500">Dual-year comparison & PPG Growth</p>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight" id="stage-bar-title">Volume Comparison</h3>
+              <p class="text-[11px] text-slate-500 mt-0.5">2025 vs 2026 sales (tins)</p>
             </div>
             <div class="flex items-center gap-3 text-xs">
-              <div class="flex items-center gap-1.5 font-medium text-slate-500">
-                <span class="w-2.5 h-2.5 rounded bg-slate-300"></span> 2025
+              <div class="flex items-center gap-1.5 font-medium text-slate-500 text-[11px]">
+                <span class="w-2.5 h-2.5 rounded bg-slate-300"></span> '25
               </div>
-              <div class="flex items-center gap-1.5 font-semibold text-indigo-600">
-                <span class="w-2.5 h-2.5 rounded bg-indigo-600"></span> 2026
+              <div class="flex items-center gap-1.5 font-semibold text-indigo-600 text-[11px]">
+                <span class="w-2.5 h-2.5 rounded bg-indigo-600"></span> '26
               </div>
             </div>
           </div>
 
-          <div id="stage-bar-container" class="flex-1 w-full overflow-y-auto max-h-[420px] custom-scrollbar"></div>
+          <div id="stage-bar-container" class="flex-1 w-full overflow-y-auto max-h-[420px] custom-scrollbar space-y-2.5"></div>
         </div>
 
       </div>
 
-      <!-- Stage Detailed Table -->
+      <!-- Stage Detailed Table with Sticky First Column & Mobile Swipe Hint -->
       <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="p-4 border-b border-slate-200 bg-slate-50/50 flex flex-wrap items-center justify-between gap-2">
+        <div class="p-3.5 sm:p-4 border-b border-slate-200 bg-slate-50/70 flex flex-wrap items-center justify-between gap-2">
           <div>
-            <h3 class="text-sm font-bold text-slate-900" id="stage-table-title">Stage Breakdown Table</h3>
-            <p class="text-xs text-slate-500">Complete performance metrics for active selection</p>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900" id="stage-table-title">Full Matrix</h3>
+            <p class="text-[11px] text-slate-500">Swipe horizontally on mobile to view all metrics</p>
           </div>
-          <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-md">
-            ⭐ Liptis Nutrition products highlighted in emerald
+          <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+            ⭐ Liptis in emerald
           </span>
         </div>
-        <div class="overflow-x-auto custom-scrollbar">
+
+        <div class="sm:hidden text-[10px] text-indigo-600 font-semibold px-3 py-1 bg-indigo-50/60 border-b border-indigo-100 flex items-center gap-1.5">
+          <span>👈 Swipe table horizontally for Growth & EI 👉</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar touch-scroll">
           <table class="w-full text-left text-xs">
             <thead class="bg-slate-100 text-slate-600 font-semibold border-b border-slate-200">
               <tr>
-                <th class="py-3 px-4">Product / Item</th>
-                <th class="py-3 px-3 text-right">2025 Vol</th>
-                <th class="py-3 px-3 text-right">2026 Vol</th>
-                <th class="py-3 px-3 text-right">PPG %</th>
-                <th class="py-3 px-3 text-right">MS% 2025</th>
-                <th class="py-3 px-3 text-right">MS% 2026</th>
-                <th class="py-3 px-3 text-right">MS Gain/Loss</th>
-                <th class="py-3 px-3 text-right">Abs. Growth</th>
-                <th class="py-3 px-4 text-right">EI</th>
+                <th class="py-2.5 px-3 sm:px-4 sticky-col bg-slate-100">Product / SKU</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">2025 Vol</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">2026 Vol</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">PPG %</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS% '25</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS% '26</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS G/L</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">Abs. Gth</th>
+                <th class="py-2.5 px-3 text-right whitespace-nowrap">EI</th>
               </tr>
             </thead>
             <tbody id="stage-table-body" class="divide-y divide-slate-100"></tbody>
@@ -301,15 +348,15 @@
     <!-- ======================================================== -->
     <!-- VIEW 2: CORPORATE OVERVIEW -->
     <!-- ======================================================== -->
-    <section id="view-corporate" class="hidden space-y-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <section id="view-corporate" class="hidden space-y-4 sm:space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
         
         <!-- Corporate Pie / Donut Market Share -->
-        <div class="lg:col-span-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
+        <div class="lg:col-span-5 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h2 class="text-base font-bold text-slate-900">Corporate Market Share (MS %)</h2>
-              <p class="text-xs text-slate-500">Overall market distribution across all companies</p>
+              <h2 class="text-xs sm:text-base font-bold text-slate-900 leading-tight">Corporate Market Share (MS %)</h2>
+              <p class="text-[11px] text-slate-500 mt-0.5">Overall market distribution across all companies</p>
             </div>
             <div class="inline-flex rounded-lg p-0.5 bg-slate-100 text-xs font-medium border border-slate-200">
               <button onclick="setCorporatePieYear('2026')" id="corp-pie-2026-btn" class="px-2.5 py-1 rounded-md bg-white text-indigo-700 font-bold shadow-xs">2026</button>
@@ -317,62 +364,66 @@
             </div>
           </div>
 
-          <div class="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[300px]">
+          <div class="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[260px] sm:min-h-[290px]">
             <div id="corporate-pie-container" class="w-full flex items-center justify-center"></div>
-            <div id="pie-tooltip" class="text-center mt-2 min-h-[44px] transition-all">
-              <span class="text-xs font-semibold text-slate-400">Hover or click a slice to view exact volume & metrics</span>
+            <div id="pie-tooltip" class="text-center mt-2 min-h-[40px] flex items-center justify-center px-2">
+              <span class="text-[11px] font-semibold text-slate-400">Tap or hover a slice to view details</span>
             </div>
           </div>
 
-          <div id="corporate-legend" class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 pt-3 border-t border-slate-100 text-[11px]"></div>
+          <div id="corporate-legend" class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 pt-3 border-t border-slate-100 text-[11px] max-h-36 sm:max-h-44 overflow-y-auto custom-scrollbar"></div>
         </div>
 
         <!-- Corporate Volume Bars -->
-        <div class="lg:col-span-7 bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
-          <div class="flex items-center justify-between mb-4">
+        <div class="lg:col-span-7 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
+          <div class="flex items-center justify-between mb-3">
             <div>
-              <h2 class="text-base font-bold text-slate-900">Corporate Sales Volume: 2025 vs 2026</h2>
-              <p class="text-xs text-slate-500">Volume (tins) with PPG Growth % and Evolution Index (EI)</p>
+              <h2 class="text-xs sm:text-base font-bold text-slate-900 leading-tight">Corporate Sales Volume</h2>
+              <p class="text-[11px] text-slate-500 mt-0.5">2025 vs 2026 Volume (tins) & Growth</p>
             </div>
             <div class="flex items-center gap-3 text-xs">
-              <div class="flex items-center gap-1.5 font-medium text-slate-500">
-                <span class="w-2.5 h-2.5 rounded bg-slate-300"></span> 2025
+              <div class="flex items-center gap-1.5 font-medium text-slate-500 text-[11px]">
+                <span class="w-2.5 h-2.5 rounded bg-slate-300"></span> '25
               </div>
-              <div class="flex items-center gap-1.5 font-semibold text-indigo-600">
-                <span class="w-2.5 h-2.5 rounded bg-indigo-600"></span> 2026
+              <div class="flex items-center gap-1.5 font-semibold text-indigo-600 text-[11px]">
+                <span class="w-2.5 h-2.5 rounded bg-indigo-600"></span> '26
               </div>
             </div>
           </div>
 
-          <div id="corporate-bar-container" class="flex-1 w-full overflow-x-auto custom-scrollbar"></div>
+          <div id="corporate-bar-container" class="flex-1 w-full overflow-y-auto max-h-[420px] custom-scrollbar space-y-2.5"></div>
         </div>
       </div>
 
       <!-- Corporate Data Table -->
       <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 bg-slate-50/50">
+        <div class="p-3.5 sm:p-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 bg-slate-50/70">
           <div>
-            <h3 class="text-sm font-bold text-slate-900">Corporate Volume Sales & Market Performance Matrix</h3>
-            <p class="text-xs text-slate-500">YTD MAY 2025 vs YTD MAY 2026 Volume, Share Gain/Loss, and Evolution Index</p>
+            <h3 class="text-xs sm:text-sm font-bold text-slate-900">Corporate Volume Sales Matrix</h3>
+            <p class="text-[11px] text-slate-500">YTD MAY 2025 vs 2026 Share Gain/Loss & Evolution Index</p>
           </div>
-          <span class="inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span> Liptis Highlighted
           </span>
         </div>
 
-        <div class="overflow-x-auto custom-scrollbar">
+        <div class="sm:hidden text-[10px] text-indigo-600 font-semibold px-3 py-1 bg-indigo-50/60 border-b border-indigo-100">
+          <span>👈 Swipe table horizontally for Growth & EI 👉</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar touch-scroll">
           <table class="w-full text-left text-xs">
             <thead class="bg-slate-100 text-slate-600 font-semibold border-b border-slate-200">
               <tr>
-                <th class="py-3 px-4">Corporate</th>
-                <th class="py-3 px-3 text-right">2025 Vol</th>
-                <th class="py-3 px-3 text-right">2026 Vol</th>
-                <th class="py-3 px-3 text-right">PPG %</th>
-                <th class="py-3 px-3 text-right">MS% 2025</th>
-                <th class="py-3 px-3 text-right">MS% 2026</th>
-                <th class="py-3 px-3 text-right">MS Gain/Loss</th>
-                <th class="py-3 px-3 text-right">Abs. Growth</th>
-                <th class="py-3 px-4 text-right">EI (2026)</th>
+                <th class="py-2.5 px-3 sm:px-4 sticky-col bg-slate-100">Corporate</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">2025 Vol</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">2026 Vol</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">PPG %</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS% '25</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS% '26</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS G/L</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">Abs. Gth</th>
+                <th class="py-2.5 px-3 text-right whitespace-nowrap">EI (2026)</th>
               </tr>
             </thead>
             <tbody id="corporate-table-body" class="divide-y divide-slate-100"></tbody>
@@ -384,115 +435,120 @@
     <!-- ======================================================== -->
     <!-- VIEW 3: LIPTIS NUTRITION DEDICATED PORTFOLIO DEEP DIVE -->
     <!-- ======================================================== -->
-    <section id="view-liptis" class="hidden space-y-6">
+    <section id="view-liptis" class="hidden space-y-4 sm:space-y-6">
 
-      <!-- Executive Overview Banner -->
-      <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-indigo-950 text-white rounded-3xl p-6 shadow-lg relative overflow-hidden">
-        <div class="absolute right-0 top-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-          <div class="md:col-span-8 space-y-3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
-              🚀 Extraordinary Performance
+      <!-- Executive Overview Banner (Responsive on mobile) -->
+      <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-indigo-950 text-white rounded-3xl p-4 sm:p-6 shadow-lg relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
+          <div class="md:col-span-8 space-y-2 sm:space-y-3">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
+              🚀 Market Outperformer
             </div>
-            <h2 class="text-2xl font-black tracking-tight">Liptis Nutrition: +105.6% Volume Surge</h2>
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
-              Liptis volume more than doubled from <span class="text-white font-bold">317,589 tins</span> in YTD May 2025 to <span class="text-emerald-300 font-bold">653,051 tins</span> in YTD May 2026, capturing a 4.4% market share (up from 2.3%). Liptis is the fastest growing multi-product corporate with an Evolution Index of <span class="text-emerald-300 font-bold">188.1</span>.
+            <h2 class="text-lg sm:text-2xl font-black tracking-tight leading-tight">Liptis Nutrition: +105.6% Volume Surge</h2>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              Liptis volume more than doubled from <span class="text-white font-bold">317,589 tins</span> in YTD May 2025 to <span class="text-emerald-300 font-bold">653,051 tins</span> in YTD May 2026, reaching a 4.4% overall market share with an Evolution Index of <span class="text-emerald-300 font-bold">188.1</span>.
             </p>
           </div>
-          <div class="md:col-span-4 grid grid-cols-2 gap-3">
-            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center">
-              <div class="text-xs text-slate-300">Absolute Growth</div>
-              <div class="text-lg font-black text-emerald-300">+335,462</div>
-              <div class="text-[10px] text-slate-400">tins gained</div>
+          <div class="md:col-span-4 grid grid-cols-2 gap-2 sm:gap-3">
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
+              <div class="text-[10px] sm:text-xs text-slate-300">Absolute Growth</div>
+              <div class="text-base sm:text-lg font-black text-emerald-300">+335,462</div>
+              <div class="text-[9px] sm:text-[10px] text-slate-400">tins gained</div>
             </div>
-            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center">
-              <div class="text-xs text-slate-300">MS Gain</div>
-              <div class="text-lg font-black text-emerald-300">+2.04%</div>
-              <div class="text-[10px] text-slate-400">to 4.4% overall</div>
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
+              <div class="text-[10px] sm:text-xs text-slate-300">MS Gain</div>
+              <div class="text-base sm:text-lg font-black text-emerald-300">+2.04%</div>
+              <div class="text-[9px] sm:text-[10px] text-slate-400">to 4.4% overall</div>
             </div>
-            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center">
-              <div class="text-xs text-slate-300">Top Growth SKU</div>
-              <div class="text-sm font-bold text-white">PEDIAMIL 1</div>
-              <div class="text-[10px] text-emerald-300">+238.9% (190k tins)</div>
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
+              <div class="text-[10px] sm:text-xs text-slate-300">Top Growth SKU</div>
+              <div class="text-xs sm:text-sm font-bold text-white truncate">PEDIAMIL 1</div>
+              <div class="text-[9px] sm:text-[10px] text-emerald-300">+238.9% (190k)</div>
             </div>
-            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10 text-center">
-              <div class="text-xs text-slate-300">New Launch</div>
-              <div class="text-sm font-bold text-white">PEDIAMIL LBW</div>
-              <div class="text-[10px] text-emerald-300">10.8% MS Debut!</div>
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-white/10 text-center">
+              <div class="text-[10px] sm:text-xs text-slate-300">New Launch</div>
+              <div class="text-xs sm:text-sm font-bold text-white truncate">PEDIAMIL LBW</div>
+              <div class="text-[9px] sm:text-[10px] text-emerald-300">10.8% MS Debut</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Liptis Portfolio Visuals -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
 
         <!-- Liptis Portfolio Volume Share Pie Chart -->
-        <div class="lg:col-span-5 bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
+        <div class="lg:col-span-5 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="text-sm font-bold text-slate-900">Liptis Internal Volume Breakdown (2026)</h3>
-              <p class="text-xs text-slate-500">Share of Liptis 653,051 total tins by SKU</p>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight">Liptis Internal Volume Share</h3>
+              <p class="text-[11px] text-slate-500 mt-0.5">Share of 653,051 total tins by SKU</p>
             </div>
           </div>
 
-          <div class="relative flex-1 flex flex-col items-center justify-center min-h-[300px]">
+          <div class="relative flex-1 flex flex-col items-center justify-center py-2 min-h-[260px] sm:min-h-[290px]">
             <div id="liptis-pie-container" class="w-full flex items-center justify-center"></div>
-            <div id="liptis-pie-tooltip" class="text-center mt-2 min-h-[44px]">
-              <span class="text-xs font-semibold text-slate-400">Hover slice to see SKU volume & internal share</span>
+            <div id="liptis-pie-tooltip" class="text-center mt-2 min-h-[40px] flex items-center justify-center px-2">
+              <span class="text-[11px] font-semibold text-slate-400">Tap or hover slice to see SKU metrics</span>
             </div>
           </div>
 
-          <div id="liptis-legend" class="grid grid-cols-2 gap-1.5 pt-3 border-t border-slate-100 text-[11px]"></div>
+          <div id="liptis-legend" class="grid grid-cols-2 gap-1.5 pt-3 border-t border-slate-100 text-[11px] max-h-36 sm:max-h-44 overflow-y-auto custom-scrollbar"></div>
         </div>
 
         <!-- Liptis SKU Growth & Evolution Index Matrix -->
-        <div class="lg:col-span-7 bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
-          <div class="flex items-center justify-between mb-4">
+        <div class="lg:col-span-7 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col">
+          <div class="flex items-center justify-between mb-3">
             <div>
-              <h3 class="text-sm font-bold text-slate-900">Liptis SKU Volume Comparison (2025 vs 2026)</h3>
-              <p class="text-xs text-slate-500">Volume and market share evolution by SKU</p>
+              <h3 class="text-xs sm:text-sm font-bold text-slate-900 leading-tight">Liptis SKU Volumes</h3>
+              <p class="text-[11px] text-slate-500 mt-0.5">2025 vs 2026 Volume by Product</p>
             </div>
             <div class="flex items-center gap-3 text-xs">
-              <div class="flex items-center gap-1.5 font-medium text-slate-500">
-                <span class="w-2.5 h-2.5 rounded bg-slate-300"></span> 2025
+              <div class="flex items-center gap-1.5 font-medium text-slate-500 text-[11px]">
+                <span class="w-2.5 h-2.5 rounded bg-slate-300"></span> '25
               </div>
-              <div class="flex items-center gap-1.5 font-semibold text-emerald-600">
-                <span class="w-2.5 h-2.5 rounded bg-emerald-600"></span> 2026
+              <div class="flex items-center gap-1.5 font-semibold text-emerald-600 text-[11px]">
+                <span class="w-2.5 h-2.5 rounded bg-emerald-600"></span> '26
               </div>
             </div>
           </div>
 
-          <div id="liptis-bar-container" class="flex-1 w-full overflow-y-auto max-h-[420px] custom-scrollbar"></div>
+          <div id="liptis-bar-container" class="flex-1 w-full overflow-y-auto max-h-[420px] custom-scrollbar space-y-2.5"></div>
         </div>
 
       </div>
 
       <!-- Liptis Complete Products Table -->
       <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="p-4 border-b border-slate-200 bg-emerald-50/30 flex items-center justify-between">
+        <div class="p-3.5 sm:p-4 border-b border-slate-200 bg-emerald-50/40 flex items-center justify-between">
           <div>
-            <h3 class="text-sm font-bold text-emerald-950">Liptis Nutrition Product Performance Matrix (10 SKUs)</h3>
-            <p class="text-xs text-emerald-700">Detailed performance against corresponding sub-segment</p>
+            <h3 class="text-xs sm:text-sm font-bold text-emerald-950">Liptis Product Performance (10 SKUs)</h3>
+            <p class="text-[11px] text-emerald-700">Detailed performance against corresponding sub-segment</p>
           </div>
-          <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-            Total 2026: 653,051 tins
+          <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+            Total '26: 653,051
           </span>
         </div>
-        <div class="overflow-x-auto custom-scrollbar">
+
+        <div class="sm:hidden text-[10px] text-emerald-800 font-semibold px-3 py-1 bg-emerald-50/80 border-b border-emerald-100">
+          <span>👈 Swipe table horizontally for Growth & EI 👉</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar touch-scroll">
           <table class="w-full text-left text-xs">
             <thead class="bg-slate-100 text-slate-600 font-semibold border-b border-slate-200">
               <tr>
-                <th class="py-3 px-4">Liptis Product</th>
-                <th class="py-3 px-3">Segment / Stage</th>
-                <th class="py-3 px-3 text-right">2025 Vol</th>
-                <th class="py-3 px-3 text-right">2026 Vol</th>
-                <th class="py-3 px-3 text-right">PPG Growth</th>
-                <th class="py-3 px-3 text-right">Category MS% '25</th>
-                <th class="py-3 px-3 text-right">Category MS% '26</th>
-                <th class="py-3 px-3 text-right">MS Gain/Loss</th>
-                <th class="py-3 px-3 text-right">Evolution Index</th>
-                <th class="py-3 px-4 text-center">Category Rank</th>
+                <th class="py-2.5 px-3 sm:px-4 sticky-col bg-slate-100">Product</th>
+                <th class="py-2.5 px-2.5 whitespace-nowrap">Segment</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">2025 Vol</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">2026 Vol</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">PPG %</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS% '25</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS% '26</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">MS G/L</th>
+                <th class="py-2.5 px-2.5 text-right whitespace-nowrap">EI</th>
+                <th class="py-2.5 px-3 text-center whitespace-nowrap">Rank</th>
               </tr>
             </thead>
             <tbody id="liptis-table-body" class="divide-y divide-slate-100 font-medium"></tbody>
@@ -505,10 +561,10 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-white border-t border-slate-200 py-4 mt-12 text-center text-xs text-slate-500">
+  <footer class="bg-white border-t border-slate-200 py-4 mt-8 sm:mt-12 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div>Infant Formula Market Volume Sales Intelligence Dashboard &bull; YTD MAY 2025 - YTD MAY 2026</div>
-      <div class="font-medium text-slate-600">Liptis Nutrition Analytics Platform</div>
+      <div>Infant Formula Market Volume Sales Intelligence Dashboard</div>
+      <div class="font-medium text-slate-600">Liptis Nutrition Analytics Platform &bull; Mobile & Desktop Ready</div>
     </div>
   </footer>
 
@@ -709,6 +765,12 @@
 
     // Formatters
     const fmt = (num) => (num !== null && num !== undefined) ? num.toLocaleString() : "-";
+    const fmtCompact = (num) => {
+      if (num === null || num === undefined) return "-";
+      if (Math.abs(num) >= 1000000) return (num / 1000000).toFixed(2) + 'M';
+      if (Math.abs(num) >= 1000) return (num / 1000).toFixed(1) + 'k';
+      return num.toLocaleString();
+    };
     const fmtPct = (num) => (num !== null && num !== undefined) ? `${num > 0 ? '+' : ''}${num.toFixed(1)}%` : "N/A";
     const fmtSign = (num) => (num !== null && num !== undefined) ? `${num > 0 ? '+' : ''}${num.toLocaleString()}` : "-";
 
@@ -755,24 +817,25 @@
 
       // Update pill styling
       document.querySelectorAll('.scope-pill').forEach(el => {
-        el.className = 'scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition';
+        el.className = 'scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition active:scale-95';
       });
       const activePill = document.getElementById(`pill-${scope}`);
       if (activePill) {
-        activePill.className = 'scope-pill whitespace-nowrap px-2.5 py-1 rounded-full border border-indigo-300 bg-indigo-50 text-indigo-700 font-bold transition ring-1 ring-indigo-200';
+        activePill.className = 'scope-pill whitespace-nowrap px-3 py-1.5 rounded-full border border-indigo-300 bg-indigo-50 text-indigo-700 font-bold transition ring-1 ring-indigo-200 active:scale-95';
+        // Auto scroll active pill into view smoothly on mobile
+        activePill.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
       }
 
       // Update Top KPI Cards
       updateTopKPIs(scope);
 
-      // Re-render Stage View if on Stage tab, or sync view
+      // Re-render Stage View if on Stage tab
       if (currentView === 'stage') {
         renderStageView();
       }
     }
 
     function updateTopKPIs(scope) {
-      // Elements
       const mktTitle = document.getElementById('kpi-market-title');
       const mktBadge = document.getElementById('kpi-market-badge');
       const mktVol = document.getElementById('kpi-market-vol');
@@ -797,29 +860,28 @@
       const eiSub1 = document.getElementById('kpi-ei-sub1');
       const eiSub2 = document.getElementById('kpi-ei-sub2');
 
-      // Add pulse highlight animation to cards
+      // Subtle pulse animation
       ['kpi-card-1', 'kpi-card-2', 'kpi-card-3', 'kpi-card-4'].forEach(id => {
         const el = document.getElementById(id);
         el.classList.remove('kpi-pulse');
-        void el.offsetWidth; // trigger reflow
+        void el.offsetWidth;
         el.classList.add('kpi-pulse');
       });
 
       if (scope === 'ALL_MARKET') {
-        // Total Market Figures
-        mktTitle.textContent = "TOTAL MARKET (ALL CORPORATES)";
+        mktTitle.textContent = "TOTAL MARKET";
         mktBadge.textContent = "+9.3%";
-        mktBadge.className = "inline-flex items-center text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded text-[11px]";
+        mktBadge.className = "inline-flex items-center text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap";
         mktVol.textContent = "15,008,604";
-        mktSub1.textContent = "2025: 13,728,180 tins";
+        mktSub1.textContent = "2025: 13.73M";
         mktSub2.textContent = "+1.28M Abs.";
         mktSub2.className = "text-indigo-600 font-semibold";
 
-        lipTitle.textContent = "LIPTIS NUTRITION VOL.";
+        lipTitle.textContent = "LIPTIS VOLUME";
         lipBadge.textContent = "+105.6%";
-        lipBadge.className = "inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[11px]";
+        lipBadge.className = "inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap";
         lipVol.textContent = "653,051";
-        lipSub1.textContent = "2025: 317,589 tins";
+        lipSub1.textContent = "2025: 317.6k";
         lipSub2.textContent = "+335.5k Abs.";
 
         shTitle.textContent = "LIPTIS MARKET SHARE";
@@ -828,16 +890,15 @@
         shSub1.textContent = "2025: 2.3% MS";
         shSub2.textContent = "Rank #5 Corporate";
 
-        eiTitle.textContent = "LIPTIS EVOLUTION INDEX";
+        eiTitle.textContent = "EVOLUTION INDEX";
         eiBadge.textContent = "Outperformer";
         eiVal.textContent = "188.1";
-        eiSub1.textContent = "Benchmark: 100.0";
+        eiSub1.textContent = "Base: 100.0";
         eiSub2.textContent = "+88.1 pts vs Mkt";
         return;
       }
 
       if (scope === 'SECTOR_PREMIUM') {
-        // Aggregated Premium Sector (Stage 1, 2, 3)
         const mkt25 = 3375037 + 2126128 + 994199;
         const mkt26 = 3277851 + 2244528 + 573223;
         const mktGrowth = ((mkt26 - mkt25) / mkt25) * 100;
@@ -849,36 +910,35 @@
         const msGain = ms26 - ms25;
         const ei = ((1 + lipGrowth/100) / (1 + mktGrowth/100)) * 100;
 
-        mktTitle.textContent = "PREMIUM SECTOR MARKET";
+        mktTitle.textContent = "PREMIUM MARKET";
         mktBadge.textContent = fmtPct(mktGrowth);
-        mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[11px] ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
+        mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
         mktVol.textContent = fmt(mkt26);
-        mktSub1.textContent = `2025: ${fmt(mkt25)} tins`;
-        mktSub2.textContent = fmtSign(mkt26 - mkt25) + ' Abs.';
+        mktSub1.textContent = `2025: ${fmtCompact(mkt25)}`;
+        mktSub2.textContent = fmtCompact(mkt26 - mkt25) + ' Abs.';
         mktSub2.className = mktGrowth >= 0 ? "text-emerald-600 font-semibold" : "text-rose-600 font-semibold";
 
-        lipTitle.textContent = "LIPTIS PREMIUM PORTFOLIO";
+        lipTitle.textContent = "LIPTIS PREMIUM";
         lipBadge.textContent = fmtPct(lipGrowth);
         lipVol.textContent = fmt(lip26);
-        lipSub1.textContent = `2025: ${fmt(lip25)} tins`;
-        lipSub2.textContent = fmtSign(lip26 - lip25) + ' Abs.';
+        lipSub1.textContent = `2025: ${fmtCompact(lip25)}`;
+        lipSub2.textContent = fmtCompact(lip26 - lip25) + ' Abs.';
 
-        shTitle.textContent = "LIPTIS PREMIUM SHARE";
+        shTitle.textContent = "PREMIUM SHARE";
         shBadge.textContent = `+${msGain.toFixed(2)}% Gain`;
         shVal.textContent = `${ms26.toFixed(1)}%`;
         shSub1.textContent = `2025: ${ms25.toFixed(1)}% MS`;
         shSub2.textContent = "3 SKUs (1, 2, 3)";
 
-        eiTitle.textContent = "LIPTIS PREMIUM EI";
+        eiTitle.textContent = "PREMIUM EI";
         eiBadge.textContent = "Hyper Growth";
         eiVal.textContent = ei.toFixed(1);
-        eiSub1.textContent = "Benchmark: 100.0";
+        eiSub1.textContent = "Base: 100.0";
         eiSub2.textContent = `+${(ei - 100).toFixed(1)} pts`;
         return;
       }
 
       if (scope === 'SECTOR_STANDARD') {
-        // Aggregated Standard Sector (Stage 1 Std, Stage 2 Std)
         const mkt25 = 2970410 + 1934199;
         const mkt26 = 3453175 + 2663701;
         const mktGrowth = ((mkt26 - mkt25) / mkt25) * 100;
@@ -890,36 +950,35 @@
         const msGain = ms26 - ms25;
         const ei = ((1 + lipGrowth/100) / (1 + mktGrowth/100)) * 100;
 
-        mktTitle.textContent = "STANDARD SECTOR MARKET";
+        mktTitle.textContent = "STANDARD MARKET";
         mktBadge.textContent = fmtPct(mktGrowth);
-        mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[11px] ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
+        mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
         mktVol.textContent = fmt(mkt26);
-        mktSub1.textContent = `2025: ${fmt(mkt25)} tins`;
-        mktSub2.textContent = fmtSign(mkt26 - mkt25) + ' Abs.';
+        mktSub1.textContent = `2025: ${fmtCompact(mkt25)}`;
+        mktSub2.textContent = fmtCompact(mkt26 - mkt25) + ' Abs.';
         mktSub2.className = mktGrowth >= 0 ? "text-emerald-600 font-semibold" : "text-rose-600 font-semibold";
 
-        lipTitle.textContent = "LIPTIS STANDARD (PEDIA-START)";
+        lipTitle.textContent = "LIPTIS STANDARD";
         lipBadge.textContent = fmtPct(lipGrowth);
         lipVol.textContent = fmt(lip26);
-        lipSub1.textContent = `2025: ${fmt(lip25)} tins`;
-        lipSub2.textContent = fmtSign(lip26 - lip25) + ' Abs.';
+        lipSub1.textContent = `2025: ${fmtCompact(lip25)}`;
+        lipSub2.textContent = fmtCompact(lip26 - lip25) + ' Abs.';
 
-        shTitle.textContent = "LIPTIS STANDARD SHARE";
+        shTitle.textContent = "STANDARD SHARE";
         shBadge.textContent = `${msGain >= 0 ? '+' : ''}${msGain.toFixed(2)}% Gain`;
         shVal.textContent = `${ms26.toFixed(1)}%`;
         shSub1.textContent = `2025: ${ms25.toFixed(1)}% MS`;
         shSub2.textContent = "2 SKUs (1 & 2)";
 
-        eiTitle.textContent = "LIPTIS STANDARD EI";
+        eiTitle.textContent = "STANDARD EI";
         eiBadge.textContent = "Positive";
         eiVal.textContent = ei.toFixed(1);
-        eiSub1.textContent = "Benchmark: 100.0";
+        eiSub1.textContent = "Base: 100.0";
         eiSub2.textContent = `+${(ei - 100).toFixed(1)} pts`;
         return;
       }
 
       if (scope === 'SECTOR_SPECIALTY') {
-        // Aggregated Specialty Sector (AC, AR, LF, HA, LBW)
         const mkt25 = 459410 + 420751 + 251324 + 408599 + 131187;
         const mkt26 = 453975 + 359538 + 240060 + 615975 + 212475;
         const mktGrowth = ((mkt26 - mkt25) / mkt25) * 100;
@@ -931,35 +990,35 @@
         const msGain = ms26 - ms25;
         const ei = ((1 + lipGrowth/100) / (1 + mktGrowth/100)) * 100;
 
-        mktTitle.textContent = "SPECIALTY CLINICAL MARKET";
+        mktTitle.textContent = "SPECIALTY MARKET";
         mktBadge.textContent = fmtPct(mktGrowth);
-        mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[11px] ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
+        mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
         mktVol.textContent = fmt(mkt26);
-        mktSub1.textContent = `2025: ${fmt(mkt25)} tins`;
-        mktSub2.textContent = fmtSign(mkt26 - mkt25) + ' Abs.';
+        mktSub1.textContent = `2025: ${fmtCompact(mkt25)}`;
+        mktSub2.textContent = fmtCompact(mkt26 - mkt25) + ' Abs.';
         mktSub2.className = mktGrowth >= 0 ? "text-emerald-600 font-semibold" : "text-rose-600 font-semibold";
 
-        lipTitle.textContent = "LIPTIS SPECIALTY PORTFOLIO";
+        lipTitle.textContent = "LIPTIS SPECIALTY";
         lipBadge.textContent = fmtPct(lipGrowth);
         lipVol.textContent = fmt(lip26);
-        lipSub1.textContent = `2025: ${fmt(lip25)} tins`;
-        lipSub2.textContent = fmtSign(lip26 - lip25) + ' Abs.';
+        lipSub1.textContent = `2025: ${fmtCompact(lip25)}`;
+        lipSub2.textContent = fmtCompact(lip26 - lip25) + ' Abs.';
 
-        shTitle.textContent = "LIPTIS SPECIALTY SHARE";
+        shTitle.textContent = "SPECIALTY SHARE";
         shBadge.textContent = `+${msGain.toFixed(2)}% Gain`;
         shVal.textContent = `${ms26.toFixed(1)}%`;
         shSub1.textContent = `2025: ${ms25.toFixed(1)}% MS`;
         shSub2.textContent = "5 Specialty SKUs";
 
-        eiTitle.textContent = "LIPTIS SPECIALTY EI";
+        eiTitle.textContent = "SPECIALTY EI";
         eiBadge.textContent = "Outperformer";
         eiVal.textContent = ei.toFixed(1);
-        eiSub1.textContent = "Benchmark: 100.0";
+        eiSub1.textContent = "Base: 100.0";
         eiSub2.textContent = `+${(ei - 100).toFixed(1)} pts`;
         return;
       }
 
-      // Specific Individual Stage Selected (e.g. "Stage 1 Premium", "AC Market", etc.)
+      // Individual Stage
       const stageObj = STAGE_DATA[scope];
       if (!stageObj) return;
 
@@ -968,54 +1027,49 @@
       const total26 = stageObj.total26;
       const mktGrowth = stageObj.ppg;
 
-      // 1. Total Market Card
-      mktTitle.textContent = `${scope.toUpperCase()} MARKET`;
+      mktTitle.textContent = `${scope.replace(' Market', '').toUpperCase()}`;
       mktBadge.textContent = fmtPct(mktGrowth);
-      mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[11px] ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
+      mktBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap ${mktGrowth >= 0 ? 'text-emerald-600 bg-emerald-50' : 'text-rose-600 bg-rose-50'}`;
       mktVol.textContent = fmt(total26);
-      mktSub1.textContent = `2025: ${fmt(total25)} tins`;
-      mktSub2.textContent = fmtSign(total26 - total25) + ' Abs.';
+      mktSub1.textContent = `2025: ${fmtCompact(total25)}`;
+      mktSub2.textContent = fmtCompact(total26 - total25) + ' Abs.';
       mktSub2.className = (total26 >= total25) ? "text-emerald-600 font-semibold" : "text-rose-600 font-semibold";
 
-      // 2. Liptis Volume Card
       if (liptisItem) {
-        lipTitle.textContent = `${liptisItem.name} VOLUME`;
+        lipTitle.textContent = `${liptisItem.name}`;
         lipBadge.textContent = liptisItem.ppg !== null ? fmtPct(liptisItem.ppg) : "New Entry";
-        lipBadge.className = "inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[11px]";
+        lipBadge.className = "inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap";
         lipVol.textContent = fmt(liptisItem.vol26);
-        lipSub1.textContent = `2025: ${fmt(liptisItem.vol25)} tins`;
-        lipSub2.textContent = fmtSign(liptisItem.abs) + ' Abs.';
+        lipSub1.textContent = `2025: ${fmtCompact(liptisItem.vol25)}`;
+        lipSub2.textContent = fmtCompact(liptisItem.abs) + ' Abs.';
 
-        // 3. Liptis Market Share Card
         shTitle.textContent = `${liptisItem.name} SHARE`;
         shBadge.textContent = `${liptisItem.ms_gl >= 0 ? '+' : ''}${liptisItem.ms_gl.toFixed(2)}% Gain`;
         shVal.textContent = `${liptisItem.ms26}%`;
         shSub1.textContent = `2025: ${liptisItem.ms25}% MS`;
         
-        // Find product rank
         const rankIndex = stageObj.products.findIndex(p => p.isLiptis) + 1;
         shSub2.textContent = `Rank #${rankIndex} of ${stageObj.products.length}`;
 
-        // 4. Liptis Evolution Index Card
-        eiTitle.textContent = `EVOLUTION INDEX (${liptisItem.name})`;
+        eiTitle.textContent = `EI (${liptisItem.name})`;
         if (liptisItem.ei) {
           eiVal.textContent = liptisItem.ei.toFixed(1);
           eiBadge.textContent = liptisItem.ei >= 100 ? "Outperformer" : "Underperformer";
-          eiBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[11px] ${liptisItem.ei >= 100 ? 'text-purple-700 bg-purple-50' : 'text-slate-700 bg-slate-100'}`;
-          eiSub1.textContent = "Benchmark: 100.0";
-          eiSub2.textContent = `${liptisItem.ei >= 100 ? '+' : ''}${(liptisItem.ei - 100).toFixed(1)} pts vs Mkt`;
+          eiBadge.className = `inline-flex items-center font-bold px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap ${liptisItem.ei >= 100 ? 'text-purple-700 bg-purple-50' : 'text-slate-700 bg-slate-100'}`;
+          eiSub1.textContent = "Base: 100.0";
+          eiSub2.textContent = `${liptisItem.ei >= 100 ? '+' : ''}${(liptisItem.ei - 100).toFixed(1)} pts`;
         } else {
           eiVal.textContent = "NEW LAUNCH";
           eiBadge.textContent = "10.8% Debut";
-          eiBadge.className = "inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[11px]";
-          eiSub1.textContent = "22,853 tins in 2026";
-          eiSub2.textContent = "Rank #4 in category";
+          eiBadge.className = "inline-flex items-center text-emerald-700 font-bold bg-emerald-100 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap";
+          eiSub1.textContent = "22.9k tins '26";
+          eiSub2.textContent = "Rank #4 Debut";
         }
       }
     }
 
     // ==========================================
-    // PURE SVG PIE / DONUT CHART GENERATOR
+    // PURE SVG PIE / DONUT (MOBILE RESPONSIVE + TOUCH)
     // ==========================================
     function createSvgDonut(data, valueKey, labelKey, colorKey, tooltipTargetId, centerTitle, centerSub) {
       const size = 260;
@@ -1027,7 +1081,7 @@
       const total = data.reduce((acc, d) => acc + (d[valueKey] || 0), 0);
       if (total === 0) return `<div class="text-xs text-slate-400">No volume data</div>`;
 
-      let cumulativeAngle = -Math.PI / 2; // start at top 12 o'clock
+      let cumulativeAngle = -Math.PI / 2;
 
       const slices = data.map((item, idx) => {
         const val = item[valueKey] || 0;
@@ -1067,13 +1121,17 @@
         const color = item[colorKey] || '#94A3B8';
         const labelText = item[labelKey];
 
+        // Touch and mouse handlers
+        const handlerArgs = `'${tooltipTargetId}', '${labelText.replace(/'/g, "\\'")}', '${fmt(val)} tins', '${pct}%', '${color}', '${item.isLiptis ? '🌟 Liptis' : ''}'`;
+
         return `
           <g class="pie-slice" 
-             onmouseenter="showPieTooltip('${tooltipTargetId}', '${labelText.replace(/'/g, "\\'")}', '${fmt(val)} tins', '${pct}%', '${color}', '${item.isLiptis ? '🌟 Liptis' : ''}')"
-             onmouseleave="resetPieTooltip('${tooltipTargetId}')">
+             onmouseenter="showPieTooltip(${handlerArgs})"
+             onclick="showPieTooltip(${handlerArgs})"
+             ontouchstart="showPieTooltip(${handlerArgs})">
             <path d="${pathData}" fill="${color}" stroke="#FFFFFF" stroke-width="2"></path>
-            ${fraction >= 0.045 ? `
-              <text x="${lx}" y="${ly}" dy="4" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle" pointer-events="none" style="text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
+            ${fraction >= 0.05 ? `
+              <text x="${lx}" y="${ly}" dy="4" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle" pointer-events="none" style="text-shadow: 0 1px 2px rgba(0,0,0,0.6);">
                 ${pct}%
               </text>
             ` : ''}
@@ -1082,7 +1140,7 @@
       }).join('');
 
       return `
-        <svg viewBox="0 0 ${size} ${size}" class="w-64 h-64 max-w-full drop-shadow-sm">
+        <svg viewBox="0 0 ${size} ${size}" class="w-full max-w-[240px] sm:max-w-[260px] aspect-square drop-shadow-sm">
           <circle cx="${cx}" cy="${cy}" r="${innerRadius}" fill="#FFFFFF"></circle>
           ${slices}
           <!-- Center Text -->
@@ -1096,20 +1154,18 @@
       const el = document.getElementById(containerId);
       if (!el) return;
       el.innerHTML = `
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-lg text-xs animate-fade-in">
-          <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${color}"></span>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 text-white shadow-lg text-[11px] sm:text-xs animate-fade-in flex-wrap justify-center">
+          <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${color}"></span>
           <span class="font-bold">${name}:</span>
           <span class="text-emerald-400 font-extrabold">${pct}</span>
-          <span class="text-slate-300">(${vol})</span>
-          ${extra ? `<span class="bg-emerald-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded">${extra}</span>` : ''}
+          <span class="text-slate-300 font-mono">(${vol})</span>
+          ${extra ? `<span class="bg-emerald-500 text-white text-[9px] font-bold px-1.5 py-0.2 rounded">${extra}</span>` : ''}
         </div>
       `;
     }
 
     function resetPieTooltip(containerId) {
-      const el = document.getElementById(containerId);
-      if (!el) return;
-      el.innerHTML = `<span class="text-xs font-semibold text-slate-400">Hover or click a slice to view exact volume & metrics</span>`;
+      // Kept open on touch devices for easier readability
     }
 
     // ==========================================
@@ -1132,8 +1188,8 @@
       let subtitle = "";
 
       if (stageKey === 'ALL_MARKET') {
-        title = "Total Infant Formula Market by Corporate";
-        subtitle = "Showing major corporate volume distribution";
+        title = "Total Market Share";
+        subtitle = "Major corporate volume distribution";
         displayProducts = CORPORATE_DATA.map(d => ({
           name: d.name,
           vol25: d.vol25,
@@ -1152,8 +1208,8 @@
         total26 = 15008604;
         ppg = 9.3;
       } else if (stageKey === 'SECTOR_PREMIUM') {
-        title = "Premium Sector Products (Stages 1, 2, 3)";
-        subtitle = "Consolidated Premium Market";
+        title = "Premium Sector Share";
+        subtitle = "Consolidated Stages 1, 2, 3";
         ['Stage 1 Premium', 'Stage 2 Premium', 'Stage 3 Premium'].forEach(stg => {
           displayProducts.push(...STAGE_DATA[stg].products);
           total25 += STAGE_DATA[stg].total25;
@@ -1162,8 +1218,8 @@
         ppg = ((total26 - total25) / total25) * 100;
         displayProducts.sort((a, b) => b.vol26 - a.vol26);
       } else if (stageKey === 'SECTOR_STANDARD') {
-        title = "Standard Sector Products (Stages 1, 2)";
-        subtitle = "Consolidated Standard Market";
+        title = "Standard Sector Share";
+        subtitle = "Consolidated Stages 1 & 2";
         ['Stage 1 Standard', 'Stage 2 Standard'].forEach(stg => {
           displayProducts.push(...STAGE_DATA[stg].products);
           total25 += STAGE_DATA[stg].total25;
@@ -1172,8 +1228,8 @@
         ppg = ((total26 - total25) / total25) * 100;
         displayProducts.sort((a, b) => b.vol26 - a.vol26);
       } else if (stageKey === 'SECTOR_SPECIALTY') {
-        title = "Specialty Sector Products (AC, AR, LF, HA, LBW)";
-        subtitle = "Consolidated Specialty / Clinical Market";
+        title = "Specialty Clinical Share";
+        subtitle = "Consolidated AC, AR, LF, HA, LBW";
         ['AC Market', 'AR Market', 'LF Market', 'HA Prevention Market', 'LBW Market'].forEach(stg => {
           displayProducts.push(...STAGE_DATA[stg].products);
           total25 += STAGE_DATA[stg].total25;
@@ -1184,7 +1240,7 @@
       } else {
         const stageObj = STAGE_DATA[stageKey];
         if (!stageObj) return;
-        title = `${stageKey} Market Share (${stagePieYear})`;
+        title = `${stageKey} Share (${stagePieYear})`;
         subtitle = `Sector: ${stageObj.sector} &bull; Liptis SKU: ${stageObj.liptisProduct}`;
         displayProducts = stageObj.products;
         total25 = stageObj.total25;
@@ -1194,21 +1250,22 @@
 
       document.getElementById('stage-pie-title').textContent = title;
       document.getElementById('stage-pie-subtitle').innerHTML = subtitle;
-      document.getElementById('stage-bar-title').textContent = `Volume Comparison (${stageKey})`;
-      document.getElementById('stage-table-title').textContent = `${stageKey} Full Breakdown Matrix`;
+      document.getElementById('stage-bar-title').textContent = `Volume: ${stageKey}`;
+      document.getElementById('stage-table-title').textContent = `${stageKey} Matrix`;
 
       // 1. Stage Pie Chart
       const valKey = stagePieYear === '2026' ? 'vol26' : 'vol25';
       const pieContainer = document.getElementById('stage-pie-container');
       const pieTotal = displayProducts.reduce((acc, p) => acc + (p[valKey] || 0), 0);
-      pieContainer.innerHTML = createSvgDonut(displayProducts, valKey, 'name', 'color', 'stage-pie-tooltip', stagePieYear, (pieTotal >= 1000000 ? (pieTotal / 1000000).toFixed(2) + 'M' : (pieTotal / 1000).toFixed(0) + 'k tins'));
+      pieContainer.innerHTML = createSvgDonut(displayProducts, valKey, 'name', 'color', 'stage-pie-tooltip', stagePieYear, fmtCompact(pieTotal));
 
       // Stage Legend
       const leg = document.getElementById('stage-legend');
       leg.innerHTML = displayProducts.map(p => {
         const share = pieTotal > 0 ? ((p[valKey] / pieTotal) * 100).toFixed(1) : '0';
         return `
-          <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-default">
+          <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-pointer active:bg-slate-100" 
+               onclick="showPieTooltip('stage-pie-tooltip', '${p.name.replace(/'/g, "\\'")}', '${fmt(p[valKey])} tins', '${share}%', '${p.color}', '${p.isLiptis ? '🌟 Liptis' : ''}')">
             <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
             <span class="truncate font-medium ${p.isLiptis ? 'font-bold text-emerald-700' : 'text-slate-700'}">${p.name}</span>
             <span class="ml-auto font-bold text-slate-900">${share}%</span>
@@ -1216,90 +1273,90 @@
         `;
       }).join('');
 
-      // 2. Stage Bars
+      // 2. Stage Bars (Fully responsive mobile layout)
       const barContainer = document.getElementById('stage-bar-container');
       const maxVol = Math.max(...displayProducts.map(p => Math.max(p.vol25, p.vol26)));
 
-      barContainer.innerHTML = `
-        <div class="space-y-3 min-w-[480px]">
-          ${displayProducts.map(p => {
-            const w25 = ((p.vol25 / maxVol) * 100).toFixed(1);
-            const w26 = ((p.vol26 / maxVol) * 100).toFixed(1);
-            const isGrowth = (p.vol26 >= p.vol25);
-            return `
-              <div class="p-2 rounded-xl transition ${p.isLiptis ? 'bg-emerald-50/80 border border-emerald-300 ring-1 ring-emerald-200' : 'hover:bg-slate-50'}">
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${p.color}"></span>
-                    <span class="font-bold ${p.isLiptis ? 'text-emerald-950 font-black' : 'text-slate-800'}">${p.name}</span>
-                    <span class="text-[10px] text-slate-400">(${p.corp || ''})</span>
-                    ${p.isLiptis ? '<span class="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded">LIPTIS PRODUCT</span>' : ''}
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-slate-500">MS '26: <strong class="text-slate-900">${p.ms26 !== undefined ? p.ms26 + '%' : ((p.vol26/total26)*100).toFixed(1) + '%'}</strong></span>
-                    <span class="font-bold ${isGrowth ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</span>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold text-indigo-600 w-8">2026</span>
-                  <div class="flex-1 bg-slate-100 rounded-full h-3 overflow-hidden flex">
-                    <div class="bar-anim h-full rounded-full ${p.isLiptis ? 'bg-emerald-500' : 'bg-indigo-600'}" style="width: ${Math.max(w26, 1)}%"></div>
-                  </div>
-                  <span class="text-[11px] font-bold text-slate-800 w-20 text-right">${fmt(p.vol26)}</span>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold text-slate-400 w-8">2025</span>
-                  <div class="flex-1 bg-slate-100 rounded-full h-2 overflow-hidden flex">
-                    <div class="bar-anim h-full rounded-full bg-slate-300" style="width: ${Math.max(w25, 0.5)}%"></div>
-                  </div>
-                  <span class="text-[10px] font-medium text-slate-400 w-20 text-right">${fmt(p.vol25)}</span>
-                </div>
+      barContainer.innerHTML = displayProducts.map(p => {
+        const w25 = ((p.vol25 / maxVol) * 100).toFixed(1);
+        const w26 = ((p.vol26 / maxVol) * 100).toFixed(1);
+        const isGrowth = (p.vol26 >= p.vol25);
+        return `
+          <div class="p-2 sm:p-2.5 rounded-xl transition ${p.isLiptis ? 'bg-emerald-50/80 border border-emerald-300 ring-1 ring-emerald-200' : 'bg-slate-50/60 hover:bg-slate-100/70'}">
+            <!-- Header Row -->
+            <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
+                <span class="font-bold truncate ${p.isLiptis ? 'text-emerald-950 font-black' : 'text-slate-800'}">${p.name}</span>
+                ${p.isLiptis ? '<span class="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded flex-shrink-0">LIPTIS</span>' : ''}
               </div>
-            `;
-          }).join('')}
-        </div>
-      `;
+              <div class="flex items-center gap-2 flex-shrink-0 text-[11px]">
+                <span class="text-slate-500 hidden xs:inline">MS: <strong class="text-slate-900">${p.ms26 !== undefined ? p.ms26 + '%' : ((p.vol26/total26)*100).toFixed(1) + '%'}</strong></span>
+                <span class="font-bold ${isGrowth ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</span>
+              </div>
+            </div>
 
-      // 3. Stage Table
+            <!-- 2026 Bar -->
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-1">
+              <span class="text-[9px] sm:text-[10px] font-bold text-indigo-600 w-6 sm:w-7">'26</span>
+              <div class="flex-1 bg-slate-200/80 rounded-full h-2.5 sm:h-3 overflow-hidden flex">
+                <div class="bar-anim h-full rounded-full ${p.isLiptis ? 'bg-emerald-500' : 'bg-indigo-600'}" style="width: ${Math.max(w26, 1)}%"></div>
+              </div>
+              <span class="text-[10px] sm:text-[11px] font-bold text-slate-900 w-16 sm:w-20 text-right font-mono">${fmt(p.vol26)}</span>
+            </div>
+
+            <!-- 2025 Bar -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <span class="text-[9px] sm:text-[10px] font-semibold text-slate-400 w-6 sm:w-7">'25</span>
+              <div class="flex-1 bg-slate-200/80 rounded-full h-1.5 sm:h-2 overflow-hidden flex">
+                <div class="bar-anim h-full rounded-full bg-slate-400" style="width: ${Math.max(w25, 0.5)}%"></div>
+              </div>
+              <span class="text-[9px] sm:text-[10px] font-medium text-slate-400 w-16 sm:w-20 text-right font-mono">${fmt(p.vol25)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 3. Stage Table with Sticky First Column
       const tbody = document.getElementById('stage-table-body');
       tbody.innerHTML = displayProducts.map(p => {
         const isPos = (p.ms_gl >= 0);
         return `
           <tr class="${p.isLiptis ? 'bg-emerald-50/70 font-semibold' : 'hover:bg-slate-50/80'} transition">
-            <td class="py-3 px-4 font-bold flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${p.color}"></span>
-              <span class="${p.isLiptis ? 'text-emerald-950 font-black' : 'text-slate-800'}">${p.name}</span>
-              ${p.isLiptis ? '<span class="text-[10px] bg-emerald-600 text-white px-1.5 rounded font-bold">LIPTIS</span>' : ''}
+            <td class="py-2.5 px-3 sm:px-4 font-bold sticky-col ${p.isLiptis ? 'bg-emerald-50 text-emerald-950 font-black' : 'bg-white text-slate-800'} whitespace-nowrap">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
+                <span>${p.name}</span>
+                ${p.isLiptis ? '<span class="text-[9px] bg-emerald-600 text-white px-1 py-0.2 rounded font-bold ml-1">LIPTIS</span>' : ''}
+              </div>
             </td>
-            <td class="py-3 px-3 text-right font-mono text-slate-500">${fmt(p.vol25)}</td>
-            <td class="py-3 px-3 text-right font-mono font-bold text-slate-900">${fmt(p.vol26)}</td>
-            <td class="py-3 px-3 text-right font-bold ${p.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</td>
-            <td class="py-3 px-3 text-right text-slate-600">${p.ms25 !== undefined ? p.ms25 + '%' : ((p.vol25/total25)*100).toFixed(1) + '%'}</td>
-            <td class="py-3 px-3 text-right font-black text-slate-900">${p.ms26 !== undefined ? p.ms26 + '%' : ((p.vol26/total26)*100).toFixed(1) + '%'}</td>
-            <td class="py-3 px-3 text-right font-bold ${isPos ? 'text-emerald-600' : 'text-rose-500'}">
-              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] ${isPos ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+            <td class="py-2.5 px-2.5 text-right font-mono text-slate-500 whitespace-nowrap">${fmt(p.vol25)}</td>
+            <td class="py-2.5 px-2.5 text-right font-mono font-bold text-slate-900 whitespace-nowrap">${fmt(p.vol26)}</td>
+            <td class="py-2.5 px-2.5 text-right font-bold whitespace-nowrap ${p.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</td>
+            <td class="py-2.5 px-2.5 text-right text-slate-600 whitespace-nowrap">${p.ms25 !== undefined ? p.ms25 + '%' : ((p.vol25/total25)*100).toFixed(1) + '%'}</td>
+            <td class="py-2.5 px-2.5 text-right font-black text-slate-900 whitespace-nowrap">${p.ms26 !== undefined ? p.ms26 + '%' : ((p.vol26/total26)*100).toFixed(1) + '%'}</td>
+            <td class="py-2.5 px-2.5 text-right font-bold whitespace-nowrap ${isPos ? 'text-emerald-600' : 'text-rose-500'}">
+              <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] sm:text-[11px] ${isPos ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
                 ${p.ms_gl !== undefined ? (p.ms_gl > 0 ? '+' : '') + p.ms_gl.toFixed(2) + '%' : '-'}
               </span>
             </td>
-            <td class="py-3 px-3 text-right font-mono font-medium ${(p.abs >= 0 || (p.vol26-p.vol25)>=0) ? 'text-emerald-600' : 'text-rose-500'}">
+            <td class="py-2.5 px-2.5 text-right font-mono font-medium whitespace-nowrap ${(p.abs >= 0 || (p.vol26-p.vol25)>=0) ? 'text-emerald-600' : 'text-rose-500'}">
               ${fmtSign(p.abs !== undefined ? p.abs : (p.vol26 - p.vol25))}
             </td>
-            <td class="py-3 px-4 text-right font-mono font-bold ${p.ei >= 100 ? 'text-emerald-700' : 'text-slate-600'}">${p.ei ? p.ei.toFixed(2) : '-'}</td>
+            <td class="py-2.5 px-3 text-right font-mono font-bold whitespace-nowrap ${p.ei >= 100 ? 'text-emerald-700' : 'text-slate-600'}">${p.ei ? p.ei.toFixed(2) : '-'}</td>
           </tr>
         `;
       }).join('') + `
         <tr class="bg-slate-100 font-black border-t-2 border-slate-300">
-          <td class="py-3 px-4 text-slate-900">SCOPE TOTAL</td>
-          <td class="py-3 px-3 text-right font-mono">${fmt(total25)}</td>
-          <td class="py-3 px-3 text-right font-mono">${fmt(total26)}</td>
-          <td class="py-3 px-3 text-right ${ppg >= 0 ? 'text-emerald-700' : 'text-rose-600'}">${fmtPct(ppg)}</td>
-          <td class="py-3 px-3 text-right text-slate-700">100.0%</td>
-          <td class="py-3 px-3 text-right text-slate-900">100.0%</td>
-          <td class="py-3 px-3 text-right text-slate-400">-</td>
-          <td class="py-3 px-3 text-right font-mono">${fmtSign(total26 - total25)}</td>
-          <td class="py-3 px-4 text-right text-slate-500">-</td>
+          <td class="py-2.5 px-3 sm:px-4 text-slate-900 sticky-col bg-slate-100 whitespace-nowrap">SCOPE TOTAL</td>
+          <td class="py-2.5 px-2.5 text-right font-mono whitespace-nowrap">${fmt(total25)}</td>
+          <td class="py-2.5 px-2.5 text-right font-mono whitespace-nowrap">${fmt(total26)}</td>
+          <td class="py-2.5 px-2.5 text-right whitespace-nowrap ${ppg >= 0 ? 'text-emerald-700' : 'text-rose-600'}">${fmtPct(ppg)}</td>
+          <td class="py-2.5 px-2.5 text-right text-slate-700 whitespace-nowrap">100.0%</td>
+          <td class="py-2.5 px-2.5 text-right text-slate-900 whitespace-nowrap">100.0%</td>
+          <td class="py-2.5 px-2.5 text-right text-slate-400 whitespace-nowrap">-</td>
+          <td class="py-2.5 px-2.5 text-right font-mono whitespace-nowrap">${fmtSign(total26 - total25)}</td>
+          <td class="py-2.5 px-3 text-right text-slate-500 whitespace-nowrap">-</td>
         </tr>
       `;
     }
@@ -1318,11 +1375,12 @@
       const valKey = corporatePieYear === '2026' ? 'vol26' : 'vol25';
       const container = document.getElementById('corporate-pie-container');
       const total = CORPORATE_DATA.reduce((a, b) => a + b[valKey], 0);
-      container.innerHTML = createSvgDonut(CORPORATE_DATA, valKey, 'name', 'color', 'pie-tooltip', 'TOTAL ' + corporatePieYear, (total / 1000000).toFixed(2) + 'M');
+      container.innerHTML = createSvgDonut(CORPORATE_DATA, valKey, 'name', 'color', 'pie-tooltip', 'TOTAL ' + corporatePieYear, fmtCompact(total));
 
       const leg = document.getElementById('corporate-legend');
       leg.innerHTML = CORPORATE_DATA.map(d => `
-        <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-default">
+        <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-pointer active:bg-slate-100"
+             onclick="showPieTooltip('pie-tooltip', '${d.name.replace(/'/g, "\\'")}', '${fmt(d[valKey])} tins', '${corporatePieYear === '2026' ? d.ms26 : d.ms25}%', '${d.color}', '${d.isLiptis ? '🌟 Liptis' : ''}')">
           <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${d.color}"></span>
           <span class="truncate font-medium text-slate-700 ${d.isLiptis ? 'font-bold text-emerald-700' : ''}">${d.name.replace('*', '')}</span>
           <span class="ml-auto font-bold text-slate-900">${corporatePieYear === '2026' ? d.ms26 : d.ms25}%</span>
@@ -1334,51 +1392,43 @@
       const container = document.getElementById('corporate-bar-container');
       const maxVol = Math.max(...CORPORATE_DATA.map(d => Math.max(d.vol25, d.vol26)));
 
-      container.innerHTML = `
-        <div class="space-y-3.5 min-w-[500px]">
-          ${CORPORATE_DATA.map(d => {
-            const w25 = ((d.vol25 / maxVol) * 100).toFixed(1);
-            const w26 = ((d.vol26 / maxVol) * 100).toFixed(1);
-            const isGrowth = (d.vol26 >= d.vol25);
-            return `
-              <div class="space-y-1 p-2 rounded-xl transition ${d.isLiptis ? 'bg-emerald-50/70 border border-emerald-200' : 'hover:bg-slate-50'}">
-                <div class="flex items-center justify-between text-xs">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${d.color}"></span>
-                    <span class="font-bold ${d.isLiptis ? 'text-emerald-900 font-extrabold' : 'text-slate-800'}">${d.name}</span>
-                    ${d.isLiptis ? '<span class="bg-emerald-500 text-white text-[10px] font-black px-1.5 rounded-sm">⭐ FOCUS</span>' : ''}
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="text-slate-500 font-medium">MS '26: <strong class="text-slate-900">${d.ms26}%</strong></span>
-                    <span class="font-bold text-xs ${isGrowth ? 'text-emerald-600' : 'text-rose-500'}">
-                      ${fmtPct(d.ppg)}
-                    </span>
-                    <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
-                      EI: ${d.ei ? d.ei.toFixed(1) : 'N/A'}
-                    </span>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold text-indigo-600 w-8">2026</span>
-                  <div class="flex-1 bg-slate-100 rounded-full h-3.5 overflow-hidden flex">
-                    <div class="bar-anim h-full rounded-full ${d.isLiptis ? 'bg-gradient-to-r from-emerald-500 to-teal-400' : 'bg-indigo-600'}" style="width: ${Math.max(w26, 1)}%"></div>
-                  </div>
-                  <span class="text-[11px] font-bold text-slate-800 w-24 text-right">${fmt(d.vol26)}</span>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold text-slate-400 w-8">2025</span>
-                  <div class="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden flex">
-                    <div class="bar-anim h-full rounded-full bg-slate-300" style="width: ${Math.max(w25, 0.5)}%"></div>
-                  </div>
-                  <span class="text-[10px] font-medium text-slate-400 w-24 text-right">${fmt(d.vol25)}</span>
-                </div>
+      container.innerHTML = CORPORATE_DATA.map(d => {
+        const w25 = ((d.vol25 / maxVol) * 100).toFixed(1);
+        const w26 = ((d.vol26 / maxVol) * 100).toFixed(1);
+        const isGrowth = (d.vol26 >= d.vol25);
+        return `
+          <div class="p-2 sm:p-2.5 rounded-xl transition ${d.isLiptis ? 'bg-emerald-50/80 border border-emerald-300 ring-1 ring-emerald-200' : 'bg-slate-50/60 hover:bg-slate-100/70'}">
+            <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${d.color}"></span>
+                <span class="font-bold truncate ${d.isLiptis ? 'text-emerald-950 font-black' : 'text-slate-800'}">${d.name}</span>
+                ${d.isLiptis ? '<span class="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded flex-shrink-0">⭐ FOCUS</span>' : ''}
               </div>
-            `;
-          }).join('')}
-        </div>
-      `;
+              <div class="flex items-center gap-2 flex-shrink-0 text-[11px]">
+                <span class="text-slate-500 hidden xs:inline">MS '26: <strong class="text-slate-900">${d.ms26}%</strong></span>
+                <span class="font-bold ${isGrowth ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(d.ppg)}</span>
+                <span class="text-[10px] font-mono px-1 py-0.2 rounded bg-slate-200/60 text-slate-700">EI: ${d.ei ? d.ei.toFixed(1) : '-'}</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-1">
+              <span class="text-[9px] sm:text-[10px] font-bold text-indigo-600 w-6 sm:w-7">'26</span>
+              <div class="flex-1 bg-slate-200/80 rounded-full h-2.5 sm:h-3 overflow-hidden flex">
+                <div class="bar-anim h-full rounded-full ${d.isLiptis ? 'bg-gradient-to-r from-emerald-500 to-teal-400' : 'bg-indigo-600'}" style="width: ${Math.max(w26, 1)}%"></div>
+              </div>
+              <span class="text-[10px] sm:text-[11px] font-bold text-slate-900 w-16 sm:w-20 text-right font-mono">${fmt(d.vol26)}</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <span class="text-[9px] sm:text-[10px] font-semibold text-slate-400 w-6 sm:w-7">'25</span>
+              <div class="flex-1 bg-slate-200/80 rounded-full h-1.5 sm:h-2 overflow-hidden flex">
+                <div class="bar-anim h-full rounded-full bg-slate-400" style="width: ${Math.max(w25, 0.5)}%"></div>
+              </div>
+              <span class="text-[9px] sm:text-[10px] font-medium text-slate-400 w-16 sm:w-20 text-right font-mono">${fmt(d.vol25)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function renderCorporateTable() {
@@ -1387,40 +1437,42 @@
         const isPos = d.ms_gl >= 0;
         return `
           <tr class="${d.isLiptis ? 'bg-emerald-50/60 font-semibold' : 'hover:bg-slate-50/80'} transition">
-            <td class="py-3 px-4 font-bold flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${d.color}"></span>
-              <span class="${d.isLiptis ? 'text-emerald-950 font-black' : 'text-slate-800'}">${d.name}</span>
-              ${d.isLiptis ? '<span class="text-[10px] bg-emerald-600 text-white px-1.5 rounded font-bold">LIPTIS</span>' : ''}
+            <td class="py-2.5 px-3 sm:px-4 font-bold sticky-col ${d.isLiptis ? 'bg-emerald-50 text-emerald-950 font-black' : 'bg-white text-slate-800'} whitespace-nowrap">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: ${d.color}"></span>
+                <span>${d.name}</span>
+                ${d.isLiptis ? '<span class="text-[9px] bg-emerald-600 text-white px-1 py-0.2 rounded font-bold ml-1">LIPTIS</span>' : ''}
+              </div>
             </td>
-            <td class="py-3 px-3 text-right text-slate-500 font-mono">${fmt(d.vol25)}</td>
-            <td class="py-3 px-3 text-right font-bold text-slate-900 font-mono">${fmt(d.vol26)}</td>
-            <td class="py-3 px-3 text-right font-bold ${d.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(d.ppg)}</td>
-            <td class="py-3 px-3 text-right text-slate-600 font-medium">${d.ms25}%</td>
-            <td class="py-3 px-3 text-right font-black text-slate-900">${d.ms26}%</td>
-            <td class="py-3 px-3 text-right font-bold ${isPos ? 'text-emerald-600' : 'text-rose-500'}">
-              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] ${isPos ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+            <td class="py-2.5 px-2.5 text-right text-slate-500 font-mono whitespace-nowrap">${fmt(d.vol25)}</td>
+            <td class="py-2.5 px-2.5 text-right font-bold text-slate-900 font-mono whitespace-nowrap">${fmt(d.vol26)}</td>
+            <td class="py-2.5 px-2.5 text-right font-bold whitespace-nowrap ${d.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(d.ppg)}</td>
+            <td class="py-2.5 px-2.5 text-right text-slate-600 font-medium whitespace-nowrap">${d.ms25}%</td>
+            <td class="py-2.5 px-2.5 text-right font-black text-slate-900 whitespace-nowrap">${d.ms26}%</td>
+            <td class="py-2.5 px-2.5 text-right font-bold whitespace-nowrap ${isPos ? 'text-emerald-600' : 'text-rose-500'}">
+              <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] sm:text-[11px] ${isPos ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
                 ${d.ms_gl > 0 ? '+' : ''}${d.ms_gl.toFixed(2)}%
               </span>
             </td>
-            <td class="py-3 px-3 text-right font-mono font-medium ${d.abs_gth >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtSign(d.abs_gth)}</td>
-            <td class="py-3 px-4 text-right">
-              <span class="inline-flex items-center font-mono font-bold text-xs ${d.ei >= 100 ? 'text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded' : 'text-slate-600'}">
+            <td class="py-2.5 px-2.5 text-right font-mono font-medium whitespace-nowrap ${d.abs_gth >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtSign(d.abs_gth)}</td>
+            <td class="py-2.5 px-3 text-right whitespace-nowrap">
+              <span class="inline-flex items-center font-mono font-bold text-xs ${d.ei >= 100 ? 'text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded' : 'text-slate-600'}">
                 ${d.ei ? d.ei.toFixed(2) : '-'}
               </span>
             </td>
           </tr>
         `;
       }).join('') + `
-        <tr class="bg-slate-100/90 font-black border-t-2 border-slate-300">
-          <td class="py-3 px-4 text-slate-900">TOTAL MARKET</td>
-          <td class="py-3 px-3 text-right font-mono text-slate-700">13,728,180</td>
-          <td class="py-3 px-3 text-right font-mono text-slate-900">15,008,604</td>
-          <td class="py-3 px-3 text-right text-emerald-700">+9.3%</td>
-          <td class="py-3 px-3 text-right text-slate-700">100.0%</td>
-          <td class="py-3 px-3 text-right text-slate-900">100.0%</td>
-          <td class="py-3 px-3 text-right text-slate-400">-</td>
-          <td class="py-3 px-3 text-right font-mono text-emerald-700">+1,280,424</td>
-          <td class="py-3 px-4 text-right text-slate-500 font-mono">100.00</td>
+        <tr class="bg-slate-100 font-black border-t-2 border-slate-300">
+          <td class="py-2.5 px-3 sm:px-4 text-slate-900 sticky-col bg-slate-100 whitespace-nowrap">TOTAL MARKET</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-slate-700 whitespace-nowrap">13,728,180</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-slate-900 whitespace-nowrap">15,008,604</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">+9.3%</td>
+          <td class="py-2.5 px-2.5 text-right text-slate-700 whitespace-nowrap">100.0%</td>
+          <td class="py-2.5 px-2.5 text-right text-slate-900 whitespace-nowrap">100.0%</td>
+          <td class="py-2.5 px-2.5 text-right text-slate-400 whitespace-nowrap">-</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-700 whitespace-nowrap">+1,280,424</td>
+          <td class="py-2.5 px-3 text-right text-slate-500 font-mono whitespace-nowrap">100.00</td>
         </tr>
       `;
     }
@@ -1436,13 +1488,14 @@
     // ==========================================
     function renderLiptisView() {
       const container = document.getElementById('liptis-pie-container');
-      container.innerHTML = createSvgDonut(LIPTIS_PRODUCTS, 'vol26', 'name', 'color', 'liptis-pie-tooltip', 'LIPTIS 2026', '653,051 tins');
+      container.innerHTML = createSvgDonut(LIPTIS_PRODUCTS, 'vol26', 'name', 'color', 'liptis-pie-tooltip', 'LIPTIS ' + stagePieYear, '653,051');
 
       const leg = document.getElementById('liptis-legend');
       leg.innerHTML = LIPTIS_PRODUCTS.map(p => {
         const share = ((p.vol26 / 653051) * 100).toFixed(1);
         return `
-          <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-default">
+          <div class="flex items-center gap-1.5 p-1 rounded hover:bg-slate-50 cursor-pointer active:bg-slate-100"
+               onclick="showPieTooltip('liptis-pie-tooltip', '${p.name.replace(/'/g, "\\'")}', '${fmt(p.vol26)} tins', '${share}%', '${p.color}', '🌟 Liptis')">
             <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
             <span class="truncate font-bold text-slate-800">${p.name}</span>
             <span class="ml-auto font-bold text-emerald-700">${share}%</span>
@@ -1453,88 +1506,86 @@
       const barContainer = document.getElementById('liptis-bar-container');
       const maxVol = Math.max(...LIPTIS_PRODUCTS.map(p => Math.max(p.vol25, p.vol26)));
 
-      barContainer.innerHTML = `
-        <div class="space-y-3 min-w-[480px]">
-          ${LIPTIS_PRODUCTS.map(p => {
-            const w25 = ((p.vol25 / maxVol) * 100).toFixed(1);
-            const w26 = ((p.vol26 / maxVol) * 100).toFixed(1);
-            return `
-              <div class="p-2 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:border-emerald-300 transition">
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${p.color}"></span>
-                    <span class="font-extrabold text-slate-900">${p.name}</span>
-                    <span class="text-[10px] text-slate-500 px-1.5 py-0.5 bg-slate-200/60 rounded">${p.stage}</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs font-semibold text-slate-500">Category Share: <strong class="text-emerald-700">${p.ms26}%</strong></span>
-                    <span class="text-xs font-black ${p.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</span>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold text-emerald-700 w-8">2026</span>
-                  <div class="flex-1 bg-slate-200 rounded-full h-3 overflow-hidden flex">
-                    <div class="bar-anim h-full rounded-full bg-gradient-to-r from-emerald-600 to-teal-400" style="width: ${Math.max(w26, 1)}%"></div>
-                  </div>
-                  <span class="text-[11px] font-bold text-slate-900 w-20 text-right">${fmt(p.vol26)}</span>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-semibold text-slate-400 w-8">2025</span>
-                  <div class="flex-1 bg-slate-200 rounded-full h-2 overflow-hidden flex">
-                    <div class="bar-anim h-full rounded-full bg-slate-400" style="width: ${Math.max(w25, 0.5)}%"></div>
-                  </div>
-                  <span class="text-[10px] font-medium text-slate-400 w-20 text-right">${fmt(p.vol25)}</span>
-                </div>
+      barContainer.innerHTML = LIPTIS_PRODUCTS.map(p => {
+        const w25 = ((p.vol25 / maxVol) * 100).toFixed(1);
+        const w26 = ((p.vol26 / maxVol) * 100).toFixed(1);
+        return `
+          <div class="p-2 sm:p-2.5 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:border-emerald-300 transition">
+            <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
+              <div class="flex items-center gap-1.5 truncate">
+                <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
+                <span class="font-extrabold text-slate-900 truncate">${p.name}</span>
+                <span class="text-[9px] sm:text-[10px] text-slate-500 px-1 py-0.2 bg-slate-200/60 rounded truncate">${p.stage.replace(' Market', '')}</span>
               </div>
-            `;
-          }).join('')}
-        </div>
-      `;
+              <div class="flex items-center gap-2 flex-shrink-0 text-[11px]">
+                <span class="text-slate-500 hidden xs:inline">Share: <strong class="text-emerald-700">${p.ms26}%</strong></span>
+                <span class="font-black ${p.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-1">
+              <span class="text-[9px] sm:text-[10px] font-bold text-emerald-700 w-6 sm:w-7">'26</span>
+              <div class="flex-1 bg-slate-200/80 rounded-full h-2.5 sm:h-3 overflow-hidden flex">
+                <div class="bar-anim h-full rounded-full bg-gradient-to-r from-emerald-600 to-teal-400" style="width: ${Math.max(w26, 1)}%"></div>
+              </div>
+              <span class="text-[10px] sm:text-[11px] font-bold text-slate-900 w-16 sm:w-20 text-right font-mono">${fmt(p.vol26)}</span>
+            </div>
+
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <span class="text-[9px] sm:text-[10px] font-semibold text-slate-400 w-6 sm:w-7">'25</span>
+              <div class="flex-1 bg-slate-200/80 rounded-full h-1.5 sm:h-2 overflow-hidden flex">
+                <div class="bar-anim h-full rounded-full bg-slate-400" style="width: ${Math.max(w25, 0.5)}%"></div>
+              </div>
+              <span class="text-[9px] sm:text-[10px] font-medium text-slate-400 w-16 sm:w-20 text-right font-mono">${fmt(p.vol25)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
 
       const tbody = document.getElementById('liptis-table-body');
       tbody.innerHTML = LIPTIS_PRODUCTS.map(p => {
         const isPos = p.ms_gl >= 0;
         return `
           <tr class="hover:bg-emerald-50/40 transition">
-            <td class="py-3 px-4 font-extrabold text-slate-900 flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${p.color}"></span>
-              ${p.name}
+            <td class="py-2.5 px-3 sm:px-4 font-extrabold sticky-col bg-white text-slate-900 whitespace-nowrap">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background-color: ${p.color}"></span>
+                <span>${p.name}</span>
+              </div>
             </td>
-            <td class="py-3 px-3">
-              <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] bg-slate-100 text-slate-700 font-medium">
+            <td class="py-2.5 px-2.5 whitespace-nowrap">
+              <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] sm:text-[11px] bg-slate-100 text-slate-700 font-medium">
                 ${p.stage}
               </span>
             </td>
-            <td class="py-3 px-3 text-right font-mono text-slate-500">${fmt(p.vol25)}</td>
-            <td class="py-3 px-3 text-right font-mono font-black text-slate-900">${fmt(p.vol26)}</td>
-            <td class="py-3 px-3 text-right font-bold ${p.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</td>
-            <td class="py-3 px-3 text-right text-slate-600">${p.ms25}%</td>
-            <td class="py-3 px-3 text-right font-black text-emerald-800">${p.ms26}%</td>
-            <td class="py-3 px-3 text-right font-bold ${isPos ? 'text-emerald-600' : 'text-rose-500'}">
-              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] ${isPos ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+            <td class="py-2.5 px-2.5 text-right font-mono text-slate-500 whitespace-nowrap">${fmt(p.vol25)}</td>
+            <td class="py-2.5 px-2.5 text-right font-mono font-black text-slate-900 whitespace-nowrap">${fmt(p.vol26)}</td>
+            <td class="py-2.5 px-2.5 text-right font-bold whitespace-nowrap ${p.ppg >= 0 ? 'text-emerald-600' : 'text-rose-500'}">${fmtPct(p.ppg)}</td>
+            <td class="py-2.5 px-2.5 text-right text-slate-600 whitespace-nowrap">${p.ms25}%</td>
+            <td class="py-2.5 px-2.5 text-right font-black text-emerald-800 whitespace-nowrap">${p.ms26}%</td>
+            <td class="py-2.5 px-2.5 text-right font-bold whitespace-nowrap ${isPos ? 'text-emerald-600' : 'text-rose-500'}">
+              <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] sm:text-[11px] ${isPos ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
                 ${p.ms_gl > 0 ? '+' : ''}${p.ms_gl.toFixed(2)}%
               </span>
             </td>
-            <td class="py-3 px-3 text-right font-mono font-bold ${p.ei >= 100 ? 'text-emerald-700' : 'text-slate-600'}">${p.ei ? p.ei.toFixed(2) : 'Debut'}</td>
-            <td class="py-3 px-4 text-center font-bold">
-              <span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 text-[11px]">${p.rank}</span>
+            <td class="py-2.5 px-2.5 text-right font-mono font-bold whitespace-nowrap ${p.ei >= 100 ? 'text-emerald-700' : 'text-slate-600'}">${p.ei ? p.ei.toFixed(2) : 'Debut'}</td>
+            <td class="py-2.5 px-3 text-center font-bold whitespace-nowrap">
+              <span class="px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px] sm:text-[11px]">${p.rank}</span>
             </td>
           </tr>
         `;
       }).join('') + `
         <tr class="bg-emerald-100/70 font-black border-t-2 border-emerald-300">
-          <td class="py-3 px-4 text-emerald-950">TOTAL LIPTIS PORTFOLIO</td>
-          <td class="py-3 px-3 text-emerald-800">10 SKUs</td>
-          <td class="py-3 px-3 text-right font-mono text-emerald-900">317,589</td>
-          <td class="py-3 px-3 text-right font-mono text-emerald-950">653,051</td>
-          <td class="py-3 px-3 text-right text-emerald-700">+105.6%</td>
-          <td class="py-3 px-3 text-right text-emerald-900">2.3% (Total Market)</td>
-          <td class="py-3 px-3 text-right text-emerald-950">4.4% (Total Market)</td>
-          <td class="py-3 px-3 text-right text-emerald-700">+2.04% Gain</td>
-          <td class="py-3 px-3 text-right text-emerald-800 font-mono">188.09</td>
-          <td class="py-3 px-4 text-center text-emerald-900">#5 Overall Market</td>
+          <td class="py-2.5 px-3 sm:px-4 text-emerald-950 sticky-col bg-emerald-100 whitespace-nowrap">TOTAL LIPTIS</td>
+          <td class="py-2.5 px-2.5 text-emerald-800 whitespace-nowrap">10 SKUs</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-900 whitespace-nowrap">317,589</td>
+          <td class="py-2.5 px-2.5 text-right font-mono text-emerald-950 whitespace-nowrap">653,051</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">+105.6%</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-900 whitespace-nowrap">2.3%</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-950 whitespace-nowrap">4.4%</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-700 whitespace-nowrap">+2.04%</td>
+          <td class="py-2.5 px-2.5 text-right text-emerald-800 font-mono whitespace-nowrap">188.09</td>
+          <td class="py-2.5 px-3 text-center text-emerald-900 whitespace-nowrap">#5 Overall</td>
         </tr>
       `;
     }

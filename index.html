@@ -566,29 +566,6 @@
             </div>
           </div>
 
-          <!-- Strategic Takeaway & Managerial Guidance Box -->
-          <div class="bg-slate-900 text-white rounded-2xl p-4 sm:p-5 border border-slate-800 relative overflow-hidden">
-            <div class="absolute -right-8 -bottom-8 w-44 h-44 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col sm:flex-row gap-4 sm:items-center">
-              <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-              </div>
-              <div class="space-y-1 flex-1">
-                <h5 class="text-xs sm:text-sm font-black text-emerald-400 uppercase tracking-wider">
-                  Managerial Action Plan & Next Steps
-                </h5>
-                <p class="text-xs sm:text-sm text-slate-200 leading-relaxed" id="exec-action-plan">
-                  Strategic directive detailing distribution leverage, HCP detailing focus, and defense recommendations.
-                </p>
-              </div>
-              <div class="flex items-center gap-2 self-end sm:self-center flex-shrink-0">
-                <span class="px-3 py-1.5 rounded-xl bg-white/10 text-emerald-300 text-xs font-bold border border-white/10" id="exec-priority-tag">
-                  High Priority Action
-                </span>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -2046,8 +2023,6 @@
       document.getElementById('exec-liptis-velocity').textContent = execReport.velocity;
       document.getElementById('exec-competitor-moves').textContent = execReport.competitor;
       document.getElementById('exec-share-donor').textContent = execReport.donor;
-      document.getElementById('exec-action-plan').textContent = execReport.actionPlan;
-      document.getElementById('exec-priority-tag').textContent = execReport.priority;
 
       // Titles
       document.getElementById('liptis-pie-title').textContent = `Liptis Breakdown (${currentScope})`;

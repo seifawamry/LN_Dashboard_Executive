@@ -1,7 +1,0 @@
-{
-  " name\: \infant-formula-dashboard\,
- \version\: \1.0.0\,
- \scripts\: {
- \start\: \serve .\
- }
-}

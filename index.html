@@ -209,12 +209,12 @@
       <div id="kpi-card-1" class="bg-white rounded-2xl p-3 sm:p-4 border border-slate-200 shadow-xs relative overflow-hidden transition-all duration-300 flex flex-col justify-between">
         <div class="flex items-start justify-between gap-1 mb-1">
           <span id="kpi-market-title" class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-tight line-clamp-1">TOTAL MARKET</span>
-          <span id="kpi-market-badge" class="inline-flex items-center text-rose-600 font-bold bg-rose-50 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">-2.9%</span>
+          <span id="kpi-market-badge" class="inline-flex items-center text-rose-600 font-bold bg-rose-50 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">-3.0%</span>
         </div>
-        <div class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight my-0.5" id="kpi-market-vol">3,277,851</div>
+        <div class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight my-0.5" id="kpi-market-vol">3,273,945</div>
         <div class="text-[10px] sm:text-xs text-slate-400 mt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
           <span id="kpi-market-sub1">2025: 3.38M</span>
-          <span id="kpi-market-sub2" class="text-rose-600 font-semibold">-97.2k Abs.</span>
+          <span id="kpi-market-sub2" class="text-rose-600 font-semibold">-101.1k Abs.</span>
         </div>
       </div>
 
@@ -235,12 +235,12 @@
       <div id="kpi-card-3" class="bg-white rounded-2xl p-3 sm:p-4 border border-indigo-200 shadow-xs relative overflow-hidden ring-1 ring-indigo-100 transition-all duration-300 flex flex-col justify-between">
         <div class="flex items-start justify-between gap-1 mb-1">
           <span id="kpi-share-title" class="text-[10px] sm:text-xs font-semibold text-indigo-800 uppercase tracking-tight line-clamp-1">MARKET SHARE</span>
-          <span id="kpi-share-badge" class="inline-flex items-center text-indigo-700 font-bold bg-indigo-100 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">+4.13% Gain</span>
+          <span id="kpi-share-badge" class="inline-flex items-center text-indigo-700 font-bold bg-indigo-100 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">+4.14% Gain</span>
         </div>
         <div class="text-xl sm:text-2xl font-extrabold text-indigo-950 tracking-tight my-0.5" id="kpi-share-val">5.8%</div>
         <div class="text-[10px] sm:text-xs text-indigo-700/90 mt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
           <span id="kpi-share-sub1">2025: 1.7% MS</span>
-          <span id="kpi-share-sub2" class="font-semibold">Rank #5 of 12</span>
+          <span id="kpi-share-sub2" class="font-semibold">Rank #5 of 11</span>
         </div>
       </div>
 
@@ -250,10 +250,10 @@
           <span id="kpi-ei-title" class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-tight line-clamp-1">EVOLUTION INDEX</span>
           <span id="kpi-ei-badge" class="inline-flex items-center text-purple-700 font-bold bg-purple-50 px-1.5 py-0.5 rounded text-[10px] sm:text-[11px] whitespace-nowrap">Outperformer</span>
         </div>
-        <div class="text-xl sm:text-2xl font-extrabold text-purple-950 tracking-tight my-0.5" id="kpi-ei-val">349.0</div>
+        <div class="text-xl sm:text-2xl font-extrabold text-purple-950 tracking-tight my-0.5" id="kpi-ei-val">349.4</div>
         <div class="text-[10px] sm:text-xs text-slate-400 mt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5">
           <span id="kpi-ei-sub1">Base: 100.0</span>
-          <span id="kpi-ei-sub2" class="text-emerald-600 font-semibold">+249.0 pts</span>
+          <span id="kpi-ei-sub2" class="text-emerald-600 font-semibold">+249.4 pts</span>
         </div>
       </div>
     </div>
@@ -718,7 +718,9 @@
       "PHARMALYS": "#94A3B8",
       "PHARMALYS LAB.*": "#94A3B8",
       "OTHER": "#94A3B8",
+      "NUTRIX GROUP": "#CBD5E1",
       "NUTRIX GROUP*": "#CBD5E1",
+      "INTRA PHARM": "#E2E8F0",
       "INTRA PHARM*": "#E2E8F0"
     };
 
@@ -726,90 +728,89 @@
       "Stage 1 Premium": {
         sector: "Premium",
         total25: 3375037,
-        total26: 3277851,
-        ppg: -2.9,
+        total26: 3273945,
+        ppg: -3.0,
         liptisProduct: "PEDIAMIL 1",
         products: [
-          { name: "BEBELAC 1", vol25: 1370256, vol26: 1510312, ppg: 10.2, ms25: 40.6, ms26: 46.1, ms_gl: 5.48, abs: 140056, ei: 113.49, corp: "NUTRICIA", color: "#6366F1" },
-          { name: "HERO BBY N. DEF 1+", vol25: 858908, vol26: 507156, ppg: -41.0, ms25: 25.4, ms26: 15.5, ms_gl: -9.98, abs: -351752, ei: 60.80, corp: "HERO", color: "#3B82F6" },
-          { name: "HERO BABY NUTRASENSE. 1", vol25: 285021, vol26: 398821, ppg: 39.9, ms25: 8.4, ms26: 12.2, ms_gl: 3.72, abs: 113800, ei: 144.08, corp: "HERO", color: "#60A5FA" },
-          { name: "APTAMIL ADVANCE 1", vol25: 134193, vol26: 282904, ppg: 110.8, ms25: 4.0, ms26: 8.6, ms_gl: 4.65, abs: 148711, ei: 217.07, corp: "NUTRICIA", color: "#818CF8" },
-          { name: "PEDIAMIL 1", vol25: 55981, vol26: 189718, ppg: 238.9, ms25: 1.7, ms26: 5.8, ms_gl: 4.13, abs: 133737, ei: 348.95, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
-          { name: "NAN OPTIPRO 1", vol25: 527182, vol26: 187138, ppg: -64.5, ms25: 15.6, ms26: 5.7, ms_gl: -9.91, abs: -340044, ei: 36.55, corp: "NESTLE", color: "#EC4899" },
-          { name: "S26 GOLD 1", vol25: 122097, vol26: 125910, ppg: 3.1, ms25: 3.6, ms26: 3.8, ms_gl: 0.22, abs: 3813, ei: 106.18, corp: "NESTLE", color: "#F472B6" },
-          { name: "BLEMIL PLUS 1", vol25: 19334, vol26: 36735, ppg: 90.0, ms25: 0.6, ms26: 1.1, ms_gl: 0.55, abs: 17401, ei: 195.64, corp: "OTHER", color: "#F59E0B" },
-          { name: "LACTO 1 ADVANCED", vol25: 2035, vol26: 15638, ppg: 668.5, ms25: 0.1, ms26: 0.5, ms_gl: 0.42, abs: 13603, ei: 791.24, corp: "LACTO MISR", color: "#D97706" },
-          { name: "SIMILAC GOLD 1", vol25: 30, vol26: 15444, ppg: 51380.0, ms25: 0.0, ms26: 0.5, ms_gl: 0.47, abs: 15414, ei: 53006.35, corp: "ABBOTT", color: "#06B6D4" },
-          { name: "KIDZO 1", vol25: 0, vol26: 4169, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.13, abs: 4169, ei: null, corp: "OTHER", color: "#94A3B8" },
-          { name: "WINILAC 1", vol25: 0, vol26: 3906, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.12, abs: 3906, ei: null, corp: "OTHER", color: "#CBD5E1" }
+          { name: "BEBELAC 1", vol25: 1370256, vol26: 1510312, ppg: 10.2, ms25: 40.6, ms26: 46.1, ms_gl: 5.53, abs: 140056, ei: 113.62, corp: "NUTRICIA", color: "#6366F1" },
+          { name: "HERO BBY N. DEF 1+", vol25: 858908, vol26: 507156, ppg: -41.0, ms25: 25.4, ms26: 15.5, ms_gl: -9.96, abs: -351752, ei: 60.87, corp: "HERO", color: "#3B82F6" },
+          { name: "HERO BABY NUTRASENSE. 1", vol25: 285021, vol26: 398821, ppg: 39.9, ms25: 8.4, ms26: 12.2, ms_gl: 3.74, abs: 113800, ei: 144.25, corp: "HERO", color: "#60A5FA" },
+          { name: "APTAMIL ADVANCE 1", vol25: 134193, vol26: 282904, ppg: 110.8, ms25: 4.0, ms26: 8.6, ms_gl: 4.67, abs: 148711, ei: 217.33, corp: "NUTRICIA", color: "#818CF8" },
+          { name: "PEDIAMIL 1", vol25: 55981, vol26: 189718, ppg: 238.9, ms25: 1.7, ms26: 5.8, ms_gl: 4.14, abs: 133737, ei: 349.36, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
+          { name: "NAN OPTIPRO 1", vol25: 527182, vol26: 187138, ppg: -64.5, ms25: 15.6, ms26: 5.7, ms_gl: -9.90, abs: -340044, ei: 36.59, corp: "NESTLE", color: "#EC4899" },
+          { name: "S26 GOLD 1", vol25: 122097, vol26: 125910, ppg: 3.1, ms25: 3.6, ms26: 3.8, ms_gl: 0.23, abs: 3813, ei: 106.31, corp: "NESTLE", color: "#F472B6" },
+          { name: "BLEMIL PLUS 1", vol25: 19334, vol26: 36735, ppg: 90.0, ms25: 0.6, ms26: 1.1, ms_gl: 0.55, abs: 17401, ei: 195.87, corp: "GLOBAL NAPI*", color: "#14B8A6" },
+          { name: "LACTO 1 ADVANCED", vol25: 2035, vol26: 15638, ppg: 668.5, ms25: 0.1, ms26: 0.5, ms_gl: 0.42, abs: 13603, ei: 792.18, corp: "LACTO MISR", color: "#D97706" },
+          { name: "SIMILAC GOLD 1", vol25: 30, vol26: 15444, ppg: 51380.0, ms25: 0.0, ms26: 0.5, ms_gl: 0.47, abs: 15414, ei: 53069.59, corp: "ABBOTT", color: "#06B6D4" },
+          { name: "KIDZO 1", vol25: 0, vol26: 4169, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.13, abs: 4169, ei: null, corp: "NUTRIX GROUP*", color: "#CBD5E1" }
         ]
       },
       "Stage 2 Premium": {
         sector: "Premium",
         total25: 2126128,
-        total26: 2244528,
-        ppg: 5.6,
+        total26: 2242498,
+        ppg: 5.5,
         liptisProduct: "PEDIAMIL 2",
         products: [
-          { name: "BEBELAC 2", vol25: 661286, vol26: 1017599, ppg: 53.9, ms25: 31.1, ms26: 45.3, ms_gl: 14.23, abs: 356313, ei: 145.76, corp: "NUTRICIA", color: "#6366F1" },
-          { name: "HERO BBY NU DE 2+", vol25: 673364, vol26: 314854, ppg: -53.2, ms25: 31.7, ms26: 14.0, ms_gl: -17.64, abs: -358510, ei: 44.29, corp: "HERO", color: "#3B82F6" },
-          { name: "NAN OPTIPRO 2", vol25: 373209, vol26: 268048, ppg: -28.2, ms25: 17.6, ms26: 11.9, ms_gl: -5.61, abs: -105161, ei: 68.03, corp: "NESTLE", color: "#EC4899" },
-          { name: "HERO BABY NUTRASENSE. 2", vol25: 213191, vol26: 259203, ppg: 21.6, ms25: 10.0, ms26: 11.5, ms_gl: 1.52, abs: 46012, ei: 115.17, corp: "HERO", color: "#60A5FA" },
-          { name: "APTAMIL ADVANCE 2", vol25: 47779, vol26: 134028, ppg: 180.5, ms25: 2.2, ms26: 6.0, ms_gl: 3.72, abs: 86249, ei: 265.72, corp: "NUTRICIA", color: "#818CF8" },
-          { name: "PEDIAMIL 2", vol25: 40330, vol26: 109041, ppg: 170.4, ms25: 1.9, ms26: 4.9, ms_gl: 2.96, abs: 68711, ei: 256.11, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
-          { name: "S26 GOLD 2", vol25: 89046, vol26: 97792, ppg: 9.8, ms25: 4.2, ms26: 4.4, ms_gl: 0.17, abs: 8746, ei: 104.03, corp: "NESTLE", color: "#F472B6" },
-          { name: "BLEMIL PLUS 2", vol25: 3253, vol26: 16274, ppg: 400.3, ms25: 0.2, ms26: 0.7, ms_gl: 0.57, abs: 13021, ei: 473.89, corp: "OTHER", color: "#F59E0B" },
+          { name: "BEBELAC 2", vol25: 661286, vol26: 1017599, ppg: 53.9, ms25: 31.1, ms26: 45.4, ms_gl: 14.28, abs: 356313, ei: 145.90, corp: "NUTRICIA", color: "#6366F1" },
+          { name: "HERO BBY NU DE 2+", vol25: 673364, vol26: 314854, ppg: -53.2, ms25: 31.7, ms26: 14.0, ms_gl: -17.63, abs: -358510, ei: 44.33, corp: "HERO", color: "#3B82F6" },
+          { name: "NAN OPTIPRO 2", vol25: 373209, vol26: 268048, ppg: -28.2, ms25: 17.6, ms26: 12.0, ms_gl: -5.60, abs: -105161, ei: 68.10, corp: "NESTLE", color: "#EC4899" },
+          { name: "HERO BABY NUTRASENSE. 2", vol25: 213191, vol26: 259203, ppg: 21.6, ms25: 10.0, ms26: 11.6, ms_gl: 1.53, abs: 46012, ei: 115.27, corp: "HERO", color: "#60A5FA" },
+          { name: "APTAMIL ADVANCE 2", vol25: 47779, vol26: 134028, ppg: 180.5, ms25: 2.2, ms26: 6.0, ms_gl: 3.73, abs: 86249, ei: 265.96, corp: "NUTRICIA", color: "#818CF8" },
+          { name: "PEDIAMIL 2", vol25: 40330, vol26: 109041, ppg: 170.4, ms25: 1.9, ms26: 4.9, ms_gl: 2.97, abs: 68711, ei: 256.34, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
+          { name: "S26 GOLD 2", vol25: 89046, vol26: 97792, ppg: 9.8, ms25: 4.2, ms26: 4.4, ms_gl: 0.17, abs: 8746, ei: 104.12, corp: "NESTLE", color: "#F472B6" },
+          { name: "BLEMIL PLUS 2", vol25: 3253, vol26: 16274, ppg: 400.3, ms25: 0.2, ms26: 0.7, ms_gl: 0.57, abs: 13021, ei: 474.32, corp: "GLOBAL NAPI*", color: "#14B8A6" },
           { name: "SIMILAC GOLD 2", vol25: 0, vol26: 12105, ppg: null, ms25: 0.0, ms26: 0.5, ms_gl: 0.54, abs: 12105, ei: null, corp: "ABBOTT", color: "#06B6D4" },
-          { name: "LACTO 2 ADVANCED", vol25: 1223, vol26: 7679, ppg: 527.9, ms25: 0.1, ms26: 0.3, ms_gl: 0.28, abs: 6456, ei: 594.76, corp: "LACTO MISR", color: "#D97706" },
-          { name: "KIDZO 2", vol25: 0, vol26: 3038, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.14, abs: 3038, ei: null, corp: "OTHER", color: "#94A3B8" },
-          { name: "SWISSLAC 2", vol25: 23447, vol26: 2837, ppg: -87.9, ms25: 1.1, ms26: 0.1, ms_gl: -0.98, abs: -20610, ei: 11.46, corp: "PHARMALYS", color: "#64748B" },
-          { name: "WINILAC 2", vol25: 0, vol26: 2030, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.09, abs: 2030, ei: null, corp: "OTHER", color: "#CBD5E1" }
+          { name: "LACTO 2 ADVANCED", vol25: 1223, vol26: 7679, ppg: 527.9, ms25: 0.1, ms26: 0.3, ms_gl: 0.28, abs: 6456, ei: 595.30, corp: "LACTO MISR", color: "#D97706" },
+          { name: "KIDZO 2", vol25: 0, vol26: 3038, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.14, abs: 3038, ei: null, corp: "NUTRIX GROUP*", color: "#CBD5E1" },
+          { name: "SWISSLAC 2", vol25: 23447, vol26: 2837, ppg: -87.9, ms25: 1.1, ms26: 0.1, ms_gl: -0.98, abs: -20610, ei: 11.47, corp: "PHARMALYS LAB.*", color: "#94A3B8" }
         ]
       },
       "Stage 3 Premium": {
         sector: "Premium",
         total25: 994199,
-        total26: 573223,
-        ppg: -42.3,
+        total26: 572383,
+        ppg: -42.4,
         liptisProduct: "PEDIAGROW 3",
         products: [
-          { name: "HERO BBY NU DE 3+", vol25: 361170, vol26: 185062, ppg: -48.8, ms25: 36.3, ms26: 32.3, ms_gl: -4.04, abs: -176108, ei: 88.87, corp: "HERO", color: "#3B82F6" },
-          { name: "NAN OPTIPRO 3", vol25: 230380, vol26: 153202, ppg: -33.5, ms25: 23.2, ms26: 26.7, ms_gl: 3.55, abs: -77178, ei: 115.34, corp: "NESTLE", color: "#EC4899" },
-          { name: "PEDIASURE COMPLETE", vol25: 161323, vol26: 113899, ppg: -29.4, ms25: 16.2, ms26: 19.9, ms_gl: 3.64, abs: -47424, ei: 122.45, corp: "ABBOTT", color: "#06B6D4" },
-          { name: "S26 GOLD 3", vol25: 73058, vol26: 44656, ppg: -38.9, ms25: 7.3, ms26: 7.8, ms_gl: 0.44, abs: -28402, ei: 106.01, corp: "NESTLE", color: "#F472B6" },
-          { name: "APTAMIL ADVANCE 3", vol25: 18471, vol26: 42329, ppg: 129.2, ms25: 1.9, ms26: 7.4, ms_gl: 5.53, abs: 23858, ei: 397.46, corp: "NUTRICIA", color: "#6366F1" },
-          { name: "PEDIAGROW 3", vol25: 10540, vol26: 25989, ppg: 146.6, ms25: 1.1, ms26: 4.5, ms_gl: 3.47, abs: 15449, ei: 427.66, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
-          { name: "BEBELAC 3", vol25: 133782, vol26: 4573, ppg: -96.6, ms25: 13.5, ms26: 0.8, ms_gl: -12.66, abs: -129209, ei: 5.93, corp: "NUTRICIA", color: "#818CF8" },
-          { name: "SWISSLAC 3", vol25: 5475, vol26: 2673, ppg: -51.2, ms25: 0.6, ms26: 0.5, ms_gl: -0.08, abs: -2802, ei: 84.68, corp: "PHARMALYS", color: "#64748B" },
-          { name: "WINILAC 3", vol25: 0, vol26: 840, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.15, abs: 840, ei: null, corp: "OTHER", color: "#CBD5E1" }
+          { name: "HERO BBY NU DE 3+", vol25: 361170, vol26: 185062, ppg: -48.8, ms25: 36.3, ms26: 32.3, ms_gl: -4.00, abs: -176108, ei: 89.00, corp: "HERO", color: "#3B82F6" },
+          { name: "NAN OPTIPRO 3", vol25: 230380, vol26: 153202, ppg: -33.5, ms25: 23.2, ms26: 26.8, ms_gl: 3.59, abs: -77178, ei: 115.51, corp: "NESTLE", color: "#EC4899" },
+          { name: "PEDIASURE COMPLETE", vol25: 161323, vol26: 113899, ppg: -29.4, ms25: 16.2, ms26: 19.9, ms_gl: 3.67, abs: -47424, ei: 122.63, corp: "ABBOTT", color: "#06B6D4" },
+          { name: "S26 GOLD 3", vol25: 73058, vol26: 44656, ppg: -38.9, ms25: 7.3, ms26: 7.8, ms_gl: 0.45, abs: -28402, ei: 106.17, corp: "NESTLE", color: "#F472B6" },
+          { name: "APTAMIL ADVANCE 3", vol25: 18471, vol26: 42329, ppg: 129.2, ms25: 1.9, ms26: 7.4, ms_gl: 5.54, abs: 23858, ei: 398.05, corp: "NUTRICIA", color: "#6366F1" },
+          { name: "PEDIAGROW 3", vol25: 10540, vol26: 25989, ppg: 146.6, ms25: 1.1, ms26: 4.5, ms_gl: 3.48, abs: 15449, ei: 428.29, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
+          { name: "BEBELAC 3", vol25: 133782, vol26: 4573, ppg: -96.6, ms25: 13.5, ms26: 0.8, ms_gl: -12.66, abs: -129209, ei: 5.94, corp: "NUTRICIA", color: "#818CF8" },
+          { name: "SWISSLAC 3", vol25: 5475, vol26: 2673, ppg: -51.2, ms25: 0.6, ms26: 0.5, ms_gl: -0.08, abs: -2802, ei: 84.80, corp: "PHARMALYS LAB.*", color: "#94A3B8" }
         ]
       },
       "Stage 1 Standard": {
         sector: "Standard",
         total25: 2970410,
-        total26: 3453175,
-        ppg: 16.3,
+        total26: 3457081,
+        ppg: 16.4,
         liptisProduct: "PEDIA-START",
         products: [
-          { name: "HERO BABY 1", vol25: 1441959, vol26: 1715746, ppg: 19.0, ms25: 48.5, ms26: 49.7, ms_gl: 1.14, abs: 273787, ei: 102.35, corp: "HERO", color: "#3B82F6" },
-          { name: "NESTOGEN 1", vol25: 830259, vol26: 1032070, ppg: 24.3, ms25: 28.0, ms26: 29.9, ms_gl: 1.94, abs: 201811, ei: 106.93, corp: "NESTLE", color: "#EC4899" },
-          { name: "LACTO 1", vol25: 54261, vol26: 496057, ppg: 814.2, ms25: 1.8, ms26: 14.4, ms_gl: 12.54, abs: 441796, ei: 786.40, corp: "LACTO MISR", color: "#F59E0B" },
-          { name: "PEDIA-START", vol25: 117388, vol26: 111297, ppg: -5.2, ms25: 4.0, ms26: 3.2, ms_gl: -0.73, abs: -6091, ei: 81.56, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
-          { name: "NACTALIA 1", vol25: 526543, vol26: 98005, ppg: -81.4, ms25: 17.7, ms26: 2.8, ms_gl: -14.89, abs: -428538, ei: 16.01, corp: "NUTRIBIO", color: "#8B5CF6" }
+          { name: "HERO BABY 1", vol25: 1441959, vol26: 1715746, ppg: 19.0, ms25: 48.5, ms26: 49.6, ms_gl: 1.09, abs: 273787, ei: 102.24, corp: "HERO", color: "#3B82F6" },
+          { name: "NESTOGEN 1", vol25: 830259, vol26: 1032070, ppg: 24.3, ms25: 28.0, ms26: 29.9, ms_gl: 1.90, abs: 201811, ei: 106.81, corp: "NESTLE", color: "#EC4899" },
+          { name: "LACTO 1", vol25: 54261, vol26: 496057, ppg: 814.2, ms25: 1.8, ms26: 14.3, ms_gl: 12.52, abs: 441796, ei: 785.51, corp: "LACTO MISR", color: "#F59E0B" },
+          { name: "PEDIA-START", vol25: 117388, vol26: 111297, ppg: -5.2, ms25: 4.0, ms26: 3.2, ms_gl: -0.73, abs: -6091, ei: 81.46, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
+          { name: "NACTALIA 1", vol25: 526543, vol26: 98005, ppg: -81.4, ms25: 17.7, ms26: 2.8, ms_gl: -14.89, abs: -428538, ei: 15.99, corp: "NUTRIBIO", color: "#8B5CF6" },
+          { name: "WINILAC 1", vol25: 0, vol26: 3906, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.12, abs: 3906, ei: null, corp: "INTRA PHARM*", color: "#E2E8F0" }
         ]
       },
       "Stage 2 Standard": {
         sector: "Standard",
         total25: 1934199,
-        total26: 2663701,
-        ppg: 37.7,
+        total26: 2665731,
+        ppg: 37.8,
         liptisProduct: "PEDIA-START 2",
         products: [
-          { name: "HERO BABY 2", vol25: 1124410, vol26: 1346975, ppg: 19.8, ms25: 58.1, ms26: 50.6, ms_gl: -7.57, abs: 222565, ei: 86.99, corp: "HERO", color: "#3B82F6" },
-          { name: "NESTOGEN 2", vol25: 475072, vol26: 688943, ppg: 45.0, ms25: 24.6, ms26: 25.9, ms_gl: 1.30, abs: 213871, ei: 105.30, corp: "NESTLE", color: "#EC4899" },
-          { name: "LACTO 2", vol25: 21235, vol26: 429757, ppg: 1923.8, ms25: 1.1, ms26: 16.1, ms_gl: 15.04, abs: 408522, ei: 1469.56, corp: "LACTO MISR", color: "#F59E0B" },
-          { name: "NACTALIA 2", vol25: 285609, vol26: 109437, ppg: -61.7, ms25: 14.8, ms26: 4.1, ms_gl: -10.66, abs: -176172, ei: 27.82, corp: "NUTRIBIO", color: "#8B5CF6" },
-          { name: "PEDIA-START 2", vol25: 27873, vol26: 88589, ppg: 217.8, ms25: 1.4, ms26: 3.3, ms_gl: 1.88, abs: 60716, ei: 230.79, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" }
+          { name: "HERO BABY 2", vol25: 1124410, vol26: 1346975, ppg: 19.8, ms25: 58.1, ms26: 50.5, ms_gl: -7.60, abs: 222565, ei: 86.92, corp: "HERO", color: "#3B82F6" },
+          { name: "NESTOGEN 2", vol25: 475072, vol26: 688943, ppg: 45.0, ms25: 24.6, ms26: 25.8, ms_gl: 1.28, abs: 213871, ei: 105.22, corp: "NESTLE", color: "#EC4899" },
+          { name: "LACTO 2", vol25: 21235, vol26: 429757, ppg: 1923.8, ms25: 1.1, ms26: 16.1, ms_gl: 15.02, abs: 408522, ei: 1468.44, corp: "LACTO MISR", color: "#F59E0B" },
+          { name: "NACTALIA 2", vol25: 285609, vol26: 109437, ppg: -61.7, ms25: 14.8, ms26: 4.1, ms_gl: -10.66, abs: -176172, ei: 27.80, corp: "NUTRIBIO", color: "#8B5CF6" },
+          { name: "PEDIA-START 2", vol25: 27873, vol26: 88589, ppg: 217.8, ms25: 1.4, ms26: 3.3, ms_gl: 1.88, abs: 60716, ei: 230.61, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
+          { name: "WINILAC 2", vol25: 0, vol26: 2030, ppg: null, ms25: 0.0, ms26: 0.1, ms_gl: 0.09, abs: 2030, ei: null, corp: "INTRA PHARM*", color: "#E2E8F0" }
         ]
       },
       "AC Market": {
@@ -835,7 +836,7 @@
           { name: "BEBELAC AR", vol25: 58585, vol26: 88593, ppg: 51.2, ms25: 13.9, ms26: 24.6, ms_gl: 10.72, abs: 30008, ei: 176.97, corp: "NUTRICIA", color: "#6366F1" },
           { name: "S-26 AR", vol25: 77548, vol26: 51431, ppg: -33.7, ms25: 18.4, ms26: 14.3, ms_gl: -4.13, abs: -26117, ei: 77.61, corp: "NESTLE", color: "#EC4899" },
           { name: "PEDIAMIL AR", vol25: 14498, vol26: 17317, ppg: 19.4, ms25: 3.4, ms26: 4.8, ms_gl: 1.37, abs: 2819, ei: 139.78, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
-          { name: "SWISSLAC AR1", vol25: 17723, vol26: 1452, ppg: -91.8, ms25: 4.2, ms26: 0.4, ms_gl: -3.81, abs: -16271, ei: 9.59, corp: "PHARMALYS", color: "#64748B" }
+          { name: "SWISSLAC AR1", vol25: 17723, vol26: 1452, ppg: -91.8, ms25: 4.2, ms26: 0.4, ms_gl: -3.81, abs: -16271, ei: 9.59, corp: "PHARMALYS LAB.*", color: "#94A3B8" }
         ]
       },
       "LF Market": {
@@ -849,7 +850,7 @@
           { name: "BEBELAC F L", vol25: 29259, vol26: 79467, ppg: 171.6, ms25: 11.6, ms26: 33.1, ms_gl: 21.46, abs: 50208, ei: 284.34, corp: "NUTRICIA", color: "#6366F1" },
           { name: "NAN LF", vol25: 26671, vol26: 27537, ppg: 3.2, ms25: 10.6, ms26: 11.5, ms_gl: 0.86, abs: 866, ei: 108.09, corp: "NESTLE", color: "#EC4899" },
           { name: "PEDIAMIL LF", vol25: 11286, vol26: 20355, ppg: 80.4, ms25: 4.5, ms26: 8.5, ms_gl: 3.99, abs: 9069, ei: 188.82, corp: "LIPTIS NUTRITION", isLiptis: true, color: "#10B981" },
-          { name: "SWISSLAC LF", vol25: 6604, vol26: 3741, ppg: -43.4, ms25: 2.6, ms26: 1.6, ms_gl: -1.07, abs: -2863, ei: 59.31, corp: "PHARMALYS", color: "#64748B" },
+          { name: "SWISSLAC LF", vol25: 6604, vol26: 3741, ppg: -43.4, ms25: 2.6, ms26: 1.6, ms_gl: -1.07, abs: -2863, ei: 59.31, corp: "PHARMALYS LAB.*", color: "#94A3B8" },
           { name: "LACTO LF", vol25: 0, vol26: 725, ppg: null, ms25: 0.0, ms26: 0.3, ms_gl: 0.30, abs: 725, ei: null, corp: "LACTO MISR", color: "#F59E0B" }
         ]
       },
@@ -886,13 +887,13 @@
 
     // 2. LIPTIS DEDICATED PRODUCTS LIST
     const LIPTIS_PRODUCTS = [
-      { name: "PEDIAMIL 1", stage: "Stage 1 Premium", sector: "Premium", vol25: 55981, vol26: 189718, ppg: 238.9, ms25: 1.7, ms26: 5.8, ms_gl: 4.13, ei: 348.95, rank: "#5 of 12", color: "#10B981" },
-      { name: "PEDIAMIL 2", stage: "Stage 2 Premium", sector: "Premium", vol25: 40330, vol26: 109041, ppg: 170.4, ms25: 1.9, ms26: 4.9, ms_gl: 2.96, ei: 256.11, rank: "#6 of 13", color: "#059669" },
-      { name: "PEDIA-START", stage: "Stage 1 Standard", sector: "Standard", vol25: 117388, vol26: 111297, ppg: -5.2, ms25: 4.0, ms26: 3.2, ms_gl: -0.73, ei: 81.56, rank: "#4 of 5", color: "#34D399" },
-      { name: "PEDIA-START 2", stage: "Stage 2 Standard", sector: "Standard", vol25: 27873, vol26: 88589, ppg: 217.8, ms25: 1.4, ms26: 3.3, ms_gl: 1.88, ei: 230.79, rank: "#5 of 5", color: "#6EE7B7" },
+      { name: "PEDIAMIL 1", stage: "Stage 1 Premium", sector: "Premium", vol25: 55981, vol26: 189718, ppg: 238.9, ms25: 1.7, ms26: 5.8, ms_gl: 4.14, ei: 349.36, rank: "#5 of 11", color: "#10B981" },
+      { name: "PEDIAMIL 2", stage: "Stage 2 Premium", sector: "Premium", vol25: 40330, vol26: 109041, ppg: 170.4, ms25: 1.9, ms26: 4.9, ms_gl: 2.97, ei: 256.34, rank: "#6 of 12", color: "#059669" },
+      { name: "PEDIA-START", stage: "Stage 1 Standard", sector: "Standard", vol25: 117388, vol26: 111297, ppg: -5.2, ms25: 4.0, ms26: 3.2, ms_gl: -0.73, ei: 81.46, rank: "#4 of 6", color: "#34D399" },
+      { name: "PEDIA-START 2", stage: "Stage 2 Standard", sector: "Standard", vol25: 27873, vol26: 88589, ppg: 217.8, ms25: 1.4, ms26: 3.3, ms_gl: 1.88, ei: 230.61, rank: "#5 of 6", color: "#6EE7B7" },
       { name: "PEDIAMIL HA", stage: "HA Prevention Market", sector: "Specialty", vol25: 24219, vol26: 34306, ppg: 41.6, ms25: 5.9, ms26: 5.6, ms_gl: -0.36, ei: 93.96, rank: "#5 of 6", color: "#14B8A6" },
       { name: "PEDIAMIL AC", stage: "AC Market", sector: "Specialty", vol25: 15474, vol26: 33586, ppg: 117.0, ms25: 3.4, ms26: 7.4, ms_gl: 4.03, ei: 219.65, rank: "#3 of 3", color: "#2DD4BF" },
-      { name: "PEDIAGROW 3", stage: "Stage 3 Premium", sector: "Premium", vol25: 10540, vol26: 25989, ppg: 146.6, ms25: 1.1, ms26: 4.5, ms_gl: 3.47, ei: 427.66, rank: "#6 of 9", color: "#0D9488" },
+      { name: "PEDIAGROW 3", stage: "Stage 3 Premium", sector: "Premium", vol25: 10540, vol26: 25989, ppg: 146.6, ms25: 1.1, ms26: 4.5, ms_gl: 3.48, ei: 428.29, rank: "#6 of 8", color: "#0D9488" },
       { name: "PEDIAMIL LBW", stage: "LBW Market", sector: "Specialty", vol25: 0, vol26: 22853, ppg: null, ms25: 0.0, ms26: 10.8, ms_gl: 10.76, ei: null, rank: "#4 of 5 (NEW)", color: "#0F766E" },
       { name: "PEDIAMIL LF", stage: "LF Market", sector: "Specialty", vol25: 11286, vol26: 20355, ppg: 80.4, ms25: 4.5, ms26: 8.5, ms_gl: 3.99, ei: 188.82, rank: "#4 of 6", color: "#047857" },
       { name: "PEDIAMIL AR", stage: "AR Market", sector: "Specialty", vol25: 14498, vol26: 17317, ppg: 19.4, ms25: 3.4, ms26: 4.8, ms_gl: 1.37, ei: 139.78, rank: "#4 of 5", color: "#065F46" }
@@ -1033,8 +1034,8 @@
       }
 
       if (scope === 'SECTOR_PREMIUM') {
-        const mkt25 = 3375037 + 2126128 + 994199;
-        const mkt26 = 3277851 + 2244528 + 573223;
+        const mkt25 = STAGE_DATA['Stage 1 Premium'].total25 + STAGE_DATA['Stage 2 Premium'].total25 + STAGE_DATA['Stage 3 Premium'].total25;
+        const mkt26 = STAGE_DATA['Stage 1 Premium'].total26 + STAGE_DATA['Stage 2 Premium'].total26 + STAGE_DATA['Stage 3 Premium'].total26;
         const mktGrowth = ((mkt26 - mkt25) / mkt25) * 100;
         const lip25 = 55981 + 40330 + 10540;
         const lip26 = 189718 + 109041 + 25989;
@@ -1073,8 +1074,8 @@
       }
 
       if (scope === 'SECTOR_STANDARD') {
-        const mkt25 = 2970410 + 1934199;
-        const mkt26 = 3453175 + 2663701;
+        const mkt25 = STAGE_DATA['Stage 1 Standard'].total25 + STAGE_DATA['Stage 2 Standard'].total25;
+        const mkt26 = STAGE_DATA['Stage 1 Standard'].total26 + STAGE_DATA['Stage 2 Standard'].total26;
         const mktGrowth = ((mkt26 - mkt25) / mkt25) * 100;
         const lip25 = 117388 + 27873;
         const lip26 = 111297 + 88589;
@@ -1113,8 +1114,8 @@
       }
 
       if (scope === 'SECTOR_SPECIALTY') {
-        const mkt25 = 459410 + 420751 + 251324 + 408599 + 131187;
-        const mkt26 = 453975 + 359538 + 240060 + 615975 + 212475;
+        const mkt25 = STAGE_DATA['AC Market'].total25 + STAGE_DATA['AR Market'].total25 + STAGE_DATA['LF Market'].total25 + STAGE_DATA['HA Prevention Market'].total25 + STAGE_DATA['LBW Market'].total25;
+        const mkt26 = STAGE_DATA['AC Market'].total26 + STAGE_DATA['AR Market'].total26 + STAGE_DATA['LF Market'].total26 + STAGE_DATA['HA Prevention Market'].total26 + STAGE_DATA['LBW Market'].total26;
         const mktGrowth = ((mkt26 - mkt25) / mkt25) * 100;
         const lip25 = 15474 + 14498 + 11286 + 24219 + 0;
         const lip26 = 33586 + 17317 + 20355 + 34306 + 22853;
@@ -1745,12 +1746,12 @@
         const tot25 = 106851;
         const tot26 = 324748;
         bannerTitle = "Liptis Premium Portfolio: +203.9% Volume Explosion";
-        bannerDesc = "Pediamil 1, Pediamil 2, and Pediagrow 3 combined for 324,748 tins in 2026 (up from 106,851), capturing 5.3% of the Premium sector with an outstanding Evolution Index of 323.9.";
+        bannerDesc = "Pediamil 1, Pediamil 2, and Pediagrow 3 combined for 324,748 tins in 2026 (up from 106,851), capturing 5.3% of the Premium sector with an outstanding Evolution Index of 324.2.";
         absGain = "+217,897";
-        msGain = "+3.68%";
+        msGain = "+3.69%";
         msGainSub = "to 5.3% sector MS";
-        box3Val = "323.9";
-        box3Sub = "+223.9 vs benchmark";
+        box3Val = "324.2";
+        box3Sub = "+224.2 vs benchmark";
         box4Val = "3 SKUs";
         box4Sub = "Stages 1, 2, 3";
       } else if (scope === 'SECTOR_STANDARD') {
@@ -1758,12 +1759,12 @@
         const tot25 = 145261;
         const tot26 = 199886;
         bannerTitle = "Liptis Standard Portfolio (Pedia-Start): +37.6% Growth";
-        bannerDesc = "Pedia-Start 1 and Pedia-Start 2 reached 199,886 tins in 2026 (up from 145,261), capturing 3.3% of the Standard sector with an Evolution Index of 110.3.";
+        bannerDesc = "Pedia-Start 1 and Pedia-Start 2 reached 199,886 tins in 2026 (up from 145,261), capturing 3.3% of the Standard sector with an Evolution Index of 110.2.";
         absGain = "+54,625";
-        msGain = "+0.31%";
+        msGain = "+0.30%";
         msGainSub = "to 3.3% sector MS";
-        box3Val = "110.3";
-        box3Sub = "+10.3 vs benchmark";
+        box3Val = "110.2";
+        box3Sub = "+10.2 vs benchmark";
         box4Val = "2 SKUs";
         box4Sub = "Stages 1 & 2";
       } else if (scope === 'SECTOR_SPECIALTY') {
@@ -1825,10 +1826,10 @@
       const reports = {
         'ALL_MARKET': {
           title: "Total Infant Formula Market: Macro Dynamics & Liptis Strategic Position",
-          subtitle: "Executive overview of macro market shift across all 10 clinical & developmental stages (7.67M tins).",
+          subtitle: "Executive overview of macro market shift across all 10 clinical & developmental stages (15.01M tins).",
           badge: "Active Scope: All Infant Formula (Total Market)",
-          dynamics: "The total market expanded by +8.6% (adding +605k tins, from 7.06M to 7.67M), primarily fueled by intense standard stage expansion and localized manufacturing substitution. Premium infant formulas saw major brand churn as price inflation prompted parents to migrate toward high-value alternatives.",
-          health: "Expanding (+8.6% Vol Gain)",
+          dynamics: "The total market expanded by +9.3% (adding +1.28M tins, from 13.73M to 15.01M tins), primarily fueled by intense standard stage expansion and localized manufacturing substitution. Premium infant formulas saw major brand churn as price inflation prompted parents to migrate toward high-value alternatives.",
+          health: "Expanding (+9.3% Vol Gain)",
           liptisPerf: "Liptis Nutrition emerged as the #1 fastest growing established manufacturer in Egypt, exploding by +105.6% (from 317,589 to 653,051 tins) and capturing +335k net incremental tins. Overall market share rose from 2.3% to 4.4% (Evolution Index 188.1), elevating Liptis into the Top 5 Corporate rankings (#5).",
           velocity: "Market Outperformer (EI: 188.1)",
           competitor: "Traditional leader HERO suffered volume loss (-4.1%, -240k tins, MS fell from 42.4% to 37.1%). NESTLE contracted -5.6% (-206k tins). Conversely, NUTRICIA surged +41.1% (+1.13M tins via Bebelac) and local producer LACTO MISR skyrocketed +1,106% (+871k tins) leveraging subsidized/affordable channels.",
@@ -1838,12 +1839,12 @@
         },
         'SECTOR_PREMIUM': {
           title: "Premium Infant Formula Sector: Brand Polarization & Pediamil Conquest",
-          subtitle: "In-depth analysis of Stage 1, Stage 2, and Stage 3 Premium formulas (6.10M tins total sector).",
+          subtitle: "In-depth analysis of Stage 1, Stage 2, and Stage 3 Premium formulas (6.09M tins total sector).",
           badge: "Active Scope: Premium Formula Sector",
-          dynamics: "The Premium sector remained relatively flat (+0.5% volume, from 6.49M to 6.10M tins due to Stage 3 contraction), but witnessed violent internal market share redistribution. Parents strongly favored premium products offering advanced digestive and cognitive claims over legacy basic nutrition lines.",
+          dynamics: "The Premium sector volume contracted by -6.3% (from 6.50M to 6.09M tins due to Stage 3 and Stage 1 contraction), witnessing violent internal market share redistribution. Parents strongly favored premium products offering advanced digestive and cognitive claims over legacy basic nutrition lines.",
           health: "Shifting / Premium Consolidation",
-          liptisPerf: "Liptis's Premium portfolio (Pediamil 1, Pediamil 2, Pediagrow 3) tripled in volume (+203.9%, leaping from 106,851 to 324,748 tins). Premium market share more than doubled from 1.6% to 5.3% (+3.68% MS gain), registering an astronomical Evolution Index of 323.9.",
-          velocity: "Hyper-Growth (EI: 323.9)",
+          liptisPerf: "Liptis's Premium portfolio (Pediamil 1, Pediamil 2, Pediagrow 3) tripled in volume (+203.9%, leaping from 106,851 to 324,748 tins). Premium market share more than doubled from 1.6% to 5.3% (+3.69% MS gain), registering an astronomical Evolution Index of 324.2.",
+          velocity: "Hyper-Growth (EI: 324.2)",
           competitor: "HERO suffered massive erosion in legacy Nutradefense lines (-352k tins in Stage 1, -358k in Stage 2), partially offset by Nutrasense. NESTLE's Nan Optipro dropped -64.5% in Stage 1 and -28.2% in Stage 2. NUTRICIA conquered the category with Bebelac and Aptamil Advance.",
           donor: "Hero Nutradefense & Nan Optipro",
           actionPlan: "Pediamil 1 and 2 are in hyper-growth phase. Ensure uninterrupted distributor stock in tier-1 pharmacy chains (El-Ezaby, 19011, Seif) and intensify pediatric detailing on Swiss quality formulation vs. declining legacy brands.",
@@ -1855,8 +1856,8 @@
           badge: "Active Scope: Standard Formula Sector",
           dynamics: "The Standard category experienced an aggressive volume surge (+24.8%, growing from 4.90M to 6.12M tins) driven by macroeconomic inflation and consumer down-trading. Middle-income households increasingly substituted expensive premium formulas with high-quality standard offerings.",
           health: "Booming (+24.8% Inflation Surge)",
-          liptisPerf: "Liptis captured steady expansion through Pedia-Start and Pedia-Start 2 (+37.6% growth, 199,886 tins in 2026 vs 145,261 tins in 2025). Pedia-Start 2 exhibited exceptional momentum (+217.8%, 88,589 tins, EI: 230.8), demonstrating strong continuation rates from Stage 1.",
-          velocity: "Strong Follow-on Growth (EI: 110.3)",
+          liptisPerf: "Liptis captured steady expansion through Pedia-Start and Pedia-Start 2 (+37.6% growth, 199,886 tins in 2026 vs 145,261 tins in 2025). Pedia-Start 2 exhibited exceptional momentum (+217.8%, 88,589 tins, EI: 230.6), demonstrating strong continuation rates from Stage 1.",
+          velocity: "Strong Follow-on Growth (EI: 110.2)",
           competitor: "LACTO MISR achieved historic gains (+850k tins combined in Lacto 1 & 2, capturing 15% share), capitalizing on local pricing. HERO BABY standard grew +19%, while NUTRIBIO (Nactalia) collapsed (-74.5% volume collapse across both stages, forfeiting over 600k tins).",
           donor: "Nutribio Nactalia (-604k tins lost)",
           actionPlan: "Pedia-Start must aggressively target ex-Nactalia prescribing doctors and pharmacies. Package Pedia-Start 1 and 2 in bundled loyalty initiatives to guarantee uninterrupted infant continuation at the 6-month milestone.",
@@ -1877,12 +1878,12 @@
         },
         'Stage 1 Premium': {
           title: "Stage 1 Premium Market: Pediamil 1 Strategic Breakthrough",
-          subtitle: "0-6 Months Premium Infant Formula (3.28M tins market).",
+          subtitle: "0-6 Months Premium Infant Formula (3.27M tins market).",
           badge: "Active Scope: Stage 1 Premium (Pediamil 1)",
-          dynamics: "The core starting category contracted slightly (-2.9%, from 3.38M to 3.28M tins), creating an intense zero-sum competitive battleground where brand gains required direct customer conquest from incumbent leaders.",
-          health: "Zero-Sum Battleground (-2.9%)",
-          liptisPerf: "PEDIAMIL 1 achieved extraordinary triple-digit growth (+238.9%, jumping from 55,981 to 189,718 tins). Market share exploded from 1.7% to 5.8% (+4.13% gain), achieving an outstanding Evolution Index of 348.9 and ranking #5 in the category.",
-          velocity: "Hyper-Velocity (EI: 348.9)",
+          dynamics: "The core starting category contracted slightly (-3.0%, from 3.38M to 3.27M tins), creating an intense zero-sum competitive battleground where brand gains required direct customer conquest from incumbent leaders.",
+          health: "Zero-Sum Battleground (-3.0%)",
+          liptisPerf: "PEDIAMIL 1 achieved extraordinary triple-digit growth (+238.9%, jumping from 55,981 to 189,718 tins). Market share exploded from 1.7% to 5.8% (+4.14% gain), achieving an outstanding Evolution Index of 349.4 and ranking #5 in the category.",
+          velocity: "Hyper-Velocity (EI: 349.4)",
           competitor: "HERO Baby Nutradefense 1+ suffered massive losses (-41.0%, shedding 351,752 tins; MS dropped from 25.4% to 15.5%). NESTLE Nan Optipro 1 collapsed by -64.5% (-340,044 tins; MS fell from 15.6% to 5.7%). NUTRICIA's Bebelac 1 (+10.2%, 1.51M tins, 46.1% share) and Aptamil Advance 1 (+110.8%, 282k tins) were the only other gainers.",
           donor: "Hero Nutradefense 1 & Nan Optipro 1 (-691k tins combined)",
           actionPlan: "Pediamil 1 is capturing huge volumes from parents rejecting older formulations. Target maternity clinics and gynecologist-pediatrician handoffs with starter kits to cement Pediamil 1 as the default first-feed recommendation.",
@@ -1892,23 +1893,23 @@
           title: "Stage 2 Premium Market: Pediamil 2 Follow-on Retention",
           subtitle: "6-12 Months Follow-on Premium Formula (2.24M tins market).",
           badge: "Active Scope: Stage 2 Premium (Pediamil 2)",
-          dynamics: "Stage 2 Premium expanded by +5.6% (from 2.13M to 2.24M tins), highlighting healthy infant retention as infants cross the 6-month weaning boundary.",
-          health: "Healthy Growth (+5.6%)",
-          liptisPerf: "PEDIAMIL 2 mirrored the Stage 1 breakthrough, expanding +170.4% (from 40,330 to 109,041 tins). Category market share rose from 1.9% to 4.9% (+2.96% gain), delivering an Evolution Index of 256.1 and ranking #6 overall.",
-          velocity: "High Retention (EI: 256.1)",
-          competitor: "HERO Baby Nutradefense 2+ dropped -53.2% (-358,510 tins; MS halved to 14.0%). NESTLE Nan Optipro 2 shrank -28.2% (-105,161 tins). Bebelac 2 dominated growth (+53.9%, adding +356k tins to reach 45.3% share).",
+          dynamics: "Stage 2 Premium expanded by +5.5% (from 2.13M to 2.24M tins), highlighting healthy infant retention as infants cross the 6-month weaning boundary.",
+          health: "Healthy Growth (+5.5%)",
+          liptisPerf: "PEDIAMIL 2 mirrored the Stage 1 breakthrough, expanding +170.4% (from 40,330 to 109,041 tins). Category market share rose from 1.9% to 4.9% (+2.97% gain), delivering an Evolution Index of 256.3 and ranking #6 overall.",
+          velocity: "High Retention (EI: 256.3)",
+          competitor: "HERO Baby Nutradefense 2+ dropped -53.2% (-358,510 tins; MS halved to 14.0%). NESTLE Nan Optipro 2 shrank -28.2% (-105,161 tins). Bebelac 2 dominated growth (+53.9%, adding +356k tins to reach 45.4% share).",
           donor: "Hero Nutradefense 2+ & Nan Optipro 2 (-463k tins lost)",
           actionPlan: "Ensure strong transition protocols in pharmacies from Pediamil 1 to Pediamil 2 at the 6th month. Implement SMS or CRM mother-reminder programs to prevent drop-off to standard formulas or cow milk.",
           priority: "Stage 1 to 2 Conversion Protocols"
         },
         'Stage 3 Premium': {
           title: "Stage 3 Premium (Growing-Up Milk): Pediagrow 3 High Evolution",
-          subtitle: "1-3 Years Toddler & Growing-Up Milk (573k tins market).",
+          subtitle: "1-3 Years Toddler & Growing-Up Milk (572k tins market).",
           badge: "Active Scope: Stage 3 Premium (Pediagrow 3)",
-          dynamics: "Stage 3 contracted sharply by -42.3% (from 994k to 573k tins) due to economic pressures prompting parents to transition toddlers directly to fresh or UHT cow milk after year one.",
-          health: "Severe Contraction (-42.3%)",
-          liptisPerf: "Despite the steep category decline, PEDIAGROW 3 defied all market trends, surging +146.6% (from 10,540 to 25,989 tins). Market share quadrupled from 1.1% to 4.5% (+3.47% gain), delivering the highest Evolution Index in the portfolio: 427.7.",
-          velocity: "Extreme Outperformer (EI: 427.7)",
+          dynamics: "Stage 3 contracted sharply by -42.4% (from 994k to 572k tins) due to economic pressures prompting parents to transition toddlers directly to fresh or UHT cow milk after year one.",
+          health: "Severe Contraction (-42.4%)",
+          liptisPerf: "Despite the steep category decline, PEDIAGROW 3 defied all market trends, surging +146.6% (from 10,540 to 25,989 tins). Market share quadrupled from 1.1% to 4.5% (+3.48% gain), delivering the highest Evolution Index in the portfolio: 428.3.",
+          velocity: "Extreme Outperformer (EI: 428.3)",
           competitor: "Market leaders contracted violently: Bebelac 3 plummeted -96.6% (from 133k tins to just 4.5k tins). Hero Nutradefense 3+ dropped -48.8% (-176k tins). PediaSure Complete declined -29.4% (-47k tins).",
           donor: "Bebelac 3 & Hero Nutradefense 3+ (-305k tins lost)",
           actionPlan: "Position Pediagrow 3 as specialized developmental nutrition with DHA and iron rather than plain milk. Highlight superior value against PediaSure to capture budget-conscious toddlers requiring nutritional supplementation.",
@@ -1916,25 +1917,25 @@
         },
         'Stage 1 Standard': {
           title: "Stage 1 Standard Market: Pedia-Start Inflation Defense",
-          subtitle: "0-6 Months Affordable Standard Formula (3.45M tins market).",
+          subtitle: "0-6 Months Affordable Standard Formula (3.46M tins market).",
           badge: "Active Scope: Stage 1 Standard (Pedia-Start)",
-          dynamics: "Stage 1 Standard grew +16.3% (from 2.97M to 3.45M tins), acting as the primary volume absorption pool for families facing purchasing power constraints.",
-          health: "Volume Expansion (+16.3%)",
-          liptisPerf: "PEDIA-START delivered 111,297 tins in 2026 (-5.2% vs 117,388 tins in 2025), holding 3.2% market share (Rank #4). Slight dip occurred as marketing and detailing prioritized the hyper-growth of Pediamil 1.",
-          velocity: "Stable Foundation (EI: 81.6)",
-          competitor: "LACTO 1 (Lacto Misr) experienced a meteoric rise (+814%, from 54k to 496k tins; MS rose to 14.4%). Hero Baby 1 grew +19% to 1.72M tins (49.7% share). Nutribio's Nactalia 1 collapsed -81.4% (-428k tins).",
+          dynamics: "Stage 1 Standard grew +16.4% (from 2.97M to 3.46M tins), acting as the primary volume absorption pool for families facing purchasing power constraints.",
+          health: "Volume Expansion (+16.4%)",
+          liptisPerf: "PEDIA-START delivered 111,297 tins in 2026 (-5.2% vs 117,388 tins in 2025), holding 3.2% market share (Rank #4).",
+          velocity: "Stable Foundation (EI: 81.5)",
+          competitor: "LACTO 1 (Lacto Misr) experienced a meteoric rise (+814%, from 54k to 496k tins; MS rose to 14.3%). Hero Baby 1 grew +19% to 1.72M tins (49.6% share). Nutribio's Nactalia 1 collapsed -81.4% (-428k tins).",
           donor: "Nutribio Nactalia 1 (-428k tins forfeit)",
           actionPlan: "Re-align Pedia-Start's value proposition against Lacto 1. Ensure pharmacists positioned in lower-tier socioeconomic areas recommend Pedia-Start as the premium-quality, affordable Swiss alternative.",
           priority: "Defend Share Against Local Producers"
         },
         'Stage 2 Standard': {
           title: "Stage 2 Standard Market: Pedia-Start 2 Triple-Digit Surge",
-          subtitle: "6-12 Months Affordable Follow-on Formula (2.66M tins market).",
+          subtitle: "6-12 Months Affordable Follow-on Formula (2.67M tins market).",
           badge: "Active Scope: Stage 2 Standard (Pedia-Start 2)",
-          dynamics: "Stage 2 Standard witnessed rapid growth of +37.7% (from 1.93M to 2.66M tins), reflecting strong family need for affordable continuing nutrition after 6 months.",
-          health: "High Expansion (+37.7%)",
-          liptisPerf: "PEDIA-START 2 generated spectacular triple-digit growth (+217.8%, jumping from 27,873 to 88,589 tins). Market share more than doubled from 1.4% to 3.3% (+1.88% gain), with an Evolution Index of 230.8.",
-          velocity: "Hyper-Growth Follow-on (EI: 230.8)",
+          dynamics: "Stage 2 Standard witnessed rapid growth of +37.8% (from 1.93M to 2.67M tins), reflecting strong family need for affordable continuing nutrition after 6 months.",
+          health: "High Expansion (+37.8%)",
+          liptisPerf: "PEDIA-START 2 generated spectacular triple-digit growth (+217.8%, jumping from 27,873 to 88,589 tins). Market share more than doubled from 1.4% to 3.3% (+1.88% gain), with an Evolution Index of 230.6.",
+          velocity: "Hyper-Growth Follow-on (EI: 230.6)",
           competitor: "LACTO 2 surged +1,923% (+408k tins, reaching 429k tins). Nestogen 2 grew +45% to 689k tins. Hero Baby 2 grew +19.8% to 1.35M tins. Nactalia 2 dropped -61.7% (-176k tins).",
           donor: "Nutribio Nactalia 2 (-176k tins lost)",
           actionPlan: "Build upon the 88k tin momentum. Create combined POS displays in community pharmacies pairing Pedia-Start 1 and Pedia-Start 2 to secure full 12-month child tenure.",
